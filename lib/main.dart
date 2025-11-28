@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:union_shop/product_page.dart';
+import 'package:union_shop/about_us_page.dart';
 
 void main() {
   runApp(const UnionShopApp());
@@ -21,7 +22,10 @@ class UnionShopApp extends StatelessWidget {
       initialRoute: '/',
       // When navigating to '/product', build and return the ProductPage
       // In your browser, try this link: http://localhost:49856/#/product
-      routes: {'/product': (context) => const ProductPage()},
+      routes: {
+        '/product': (context) => const ProductPage(),
+        '/about': (context) => const AboutUsPage(),
+      },
     );
   }
 }
@@ -89,6 +93,20 @@ class HomeScreen extends StatelessWidget {
                                   ),
                                 );
                               },
+                            ),
+                          ),
+                          const SizedBox(width: 24),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.pushNamed(context, '/about');
+                            },
+                            child: const Text(
+                              'About Us',
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.black,
+                              ),
                             ),
                           ),
                           const Spacer(),
