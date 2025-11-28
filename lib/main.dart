@@ -75,14 +75,14 @@ class HomeScreen extends StatelessWidget {
                               navigateToHome(context);
                             },
                             child: Image.network(
-                              'https://shop.upsu.net/cdn/shop/files/upsu_300x300.png?v=1614735854',
-                              height: 18,
-                              fit: BoxFit.cover,
+                              'assets/images/bearbricklogo.png',
+                              height: 48,
+                              fit: BoxFit.contain,
                               errorBuilder: (context, error, stackTrace) {
                                 return Container(
                                   color: Colors.grey[300],
-                                  width: 18,
-                                  height: 18,
+                                  width: 48,
+                                  height: 48,
                                   child: const Center(
                                     child: Icon(Icons.image_not_supported,
                                         color: Colors.grey),
