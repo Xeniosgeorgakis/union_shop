@@ -270,39 +270,46 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 48),
-                    GridView.count(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      crossAxisCount:
-                          MediaQuery.of(context).size.width > 600 ? 2 : 1,
-                      crossAxisSpacing: 24,
-                      mainAxisSpacing: 48,
-                      children: const [
-                        ProductCard(
-                          title: 'Placeholder Product 1',
-                          price: '£10.00',
-                          imageUrl:
-                              'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
+                    // { changed code } Constrain width to make cards smaller, and use 2 columns for "2 up 2 down"
+                    Center(
+                      child: ConstrainedBox(
+                        // Increased maxWidth to make cards a bit bigger
+                        constraints: const BoxConstraints(maxWidth: 800),
+                        child: GridView.count(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          crossAxisCount: 2,
+                          crossAxisSpacing: 24,
+                          mainAxisSpacing: 24,
+                          childAspectRatio: 0.75,
+                          children: const [
+                            ProductCard(
+                              title: 'Placeholder Product 1',
+                              price: '£10.00',
+                              imageUrl:
+                                  'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
+                            ),
+                            ProductCard(
+                              title: 'Placeholder Product 2',
+                              price: '£15.00',
+                              imageUrl:
+                                  'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
+                            ),
+                            ProductCard(
+                              title: 'Placeholder Product 3',
+                              price: '£20.00',
+                              imageUrl:
+                                  'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
+                            ),
+                            ProductCard(
+                              title: 'Placeholder Product 4',
+                              price: '£25.00',
+                              imageUrl:
+                                  'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
+                            ),
+                          ],
                         ),
-                        ProductCard(
-                          title: 'Placeholder Product 2',
-                          price: '£15.00',
-                          imageUrl:
-                              'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
-                        ),
-                        ProductCard(
-                          title: 'Placeholder Product 3',
-                          price: '£20.00',
-                          imageUrl:
-                              'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
-                        ),
-                        ProductCard(
-                          title: 'Placeholder Product 4',
-                          price: '£25.00',
-                          imageUrl:
-                              'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
-                        ),
-                      ],
+                      ),
                     ),
                   ],
                 ),
