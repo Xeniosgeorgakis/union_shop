@@ -262,7 +262,7 @@ class HomeScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     const Text(
-                      'PRODUCTS SECTION',
+                      'OVER 20% OFF ON SELECTED PRODUCTS!',
                       style: TextStyle(
                         fontSize: 20,
                         color: Colors.black,
@@ -284,28 +284,38 @@ class HomeScreen extends StatelessWidget {
                           childAspectRatio: 0.75,
                           children: const [
                             ProductCard(
-                              title: 'Placeholder Product 1',
-                              price: '£10.00',
+                              title:
+                                  'Bearbrick Garfield 100% & 400% Set (Gold)',
+                              price: '£112.00',
+                              originalPrice: '£140.00',
                               imageUrl:
                                   'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
+                              description:
+                                  'A limited edition Bearbrick set featuring Garfield in a stunning gold chrome finish. This set includes both 100% and 400% figures, perfect for collectors.',
                             ),
                             ProductCard(
                               title: 'Placeholder Product 2',
                               price: '£15.00',
                               imageUrl:
                                   'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
+                              description:
+                                  'A classic Portsmouth city magnet to remember your time at the university. Durable and stylish, perfect for your fridge.',
                             ),
                             ProductCard(
                               title: 'Placeholder Product 3',
                               price: '£20.00',
                               imageUrl:
                                   'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
+                              description:
+                                  'Essential university hoodie in navy blue. Comfortable, warm, and perfect for lectures or lounging at home.',
                             ),
                             ProductCard(
                               title: 'Placeholder Product 4',
                               price: '£25.00',
                               imageUrl:
                                   'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
+                              description:
+                                  'Reusable water bottle with university branding. Eco-friendly and keeps your drinks cold for hours.',
                             ),
                           ],
                         ),
@@ -340,20 +350,34 @@ class HomeScreen extends StatelessWidget {
 class ProductCard extends StatelessWidget {
   final String title;
   final String price;
+  final String? originalPrice;
   final String imageUrl;
+  final String description;
 
   const ProductCard({
     super.key,
     required this.title,
     required this.price,
+    this.originalPrice,
     required this.imageUrl,
+    required this.description,
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, '/product');
+        Navigator.pushNamed(
+          context,
+          '/product',
+          arguments: {
+            'title': title,
+            'price': price,
+            'originalPrice': originalPrice,
+            'imageUrl': imageUrl,
+            'description': description,
+          },
+        );
       },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -382,10 +406,33 @@ class ProductCard extends StatelessWidget {
                 maxLines: 2,
               ),
               const SizedBox(height: 4),
-              Text(
-                price,
-                style: const TextStyle(fontSize: 13, color: Colors.grey),
-              ),
+              if (originalPrice != null)
+                Row(
+                  children: [
+                    Text(
+                      originalPrice!,
+                      style: const TextStyle(
+                        fontSize: 13,
+                        color: Colors.grey,
+                        decoration: TextDecoration.lineThrough,
+                      ),
+                    ),
+                    const SizedBox(width: 8),
+                    Text(
+                      price,
+                      style: const TextStyle(
+                        fontSize: 13,
+                        color: Colors.red, // Highlight sale price
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                )
+              else
+                Text(
+                  price,
+                  style: const TextStyle(fontSize: 13, color: Colors.grey),
+                ),
             ],
           ),
         ],
