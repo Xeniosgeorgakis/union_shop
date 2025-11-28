@@ -57,6 +57,20 @@ class AboutUsPage extends StatelessWidget {
                               },
                             ),
                           ),
+                          const SizedBox(width: 24),
+                          GestureDetector(
+                            onTap: () {
+                              // Already on About Us page
+                            },
+                            child: const Text(
+                              'About Us',
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ),
                         ],
                       ),
                     ),
@@ -85,12 +99,12 @@ class AboutUsPage extends StatelessWidget {
                   ConstrainedBox(
                     constraints: const BoxConstraints(maxWidth: 800),
                     child: const Text(
-                      "Welcome to Union Shop! We are dedicated to providing the best products for our student community. From university essentials to exclusive merchandise, we've got you covered. Our goal is to make your campus life easier and more stylish.",
-                      textAlign: TextAlign.center,
+                      "Welcome to Bearbrick shop.\n\nWe’re dedicated to bringing you the best Bearbrick collectibles. From classic designs to limited-edition releases, we’ve got something for every collector.\n\nOur goal is to make building your Bearbrick collection easy, exciting, and enjoyable. Let us help you find the perfect piece to express your style\n\nHappy shopping!\n\nThe Bearbrick Team.",
+                      textAlign: TextAlign.left,
                       style: TextStyle(
-                        fontSize: 16,
+                        fontSize: 18,
                         color: Colors.grey,
-                        height: 1.5,
+                        height: 1.6,
                       ),
                     ),
                   ),

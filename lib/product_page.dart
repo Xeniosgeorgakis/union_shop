@@ -72,6 +72,20 @@ class ProductPage extends StatelessWidget {
                               },
                             ),
                           ),
+                          const SizedBox(width: 24),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.pushNamed(context, '/about');
+                            },
+                            child: const Text(
+                              'About Us',
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ),
                           const Spacer(),
                           ConstrainedBox(
                             constraints: const BoxConstraints(maxWidth: 600),
