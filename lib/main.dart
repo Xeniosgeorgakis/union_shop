@@ -179,7 +179,7 @@ class HomeScreen extends StatelessWidget {
                       ),
                       child: Container(
                         decoration: BoxDecoration(
-                          color: Colors.black.withValues(alpha: 0.7),
+                          color: Colors.black.withValues(alpha: 0.45),
                         ),
                       ),
                     ),
@@ -192,24 +192,45 @@ class HomeScreen extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
+                        // { changed code } larger, bolder, with letter spacing and shadow for better visibility
                         const Text(
-                          'Placeholder Hero Title',
+                          'OVER 20% OFF!',
                           style: TextStyle(
-                            fontSize: 32,
-                            fontWeight: FontWeight.bold,
+                            fontSize: 64, // Increased size
+                            fontFamily: 'Arial', // Changed font
+                            fontWeight: FontWeight.w900,
                             color: Colors.white,
-                            height: 1.2,
+                            height: 1.0,
+                            letterSpacing: 2.0,
+                            shadows: [
+                              Shadow(
+                                offset: Offset(0, 3),
+                                blurRadius: 8,
+                                color: Color.fromARGB(120, 0, 0, 0),
+                              ),
+                            ],
                           ),
                         ),
                         const SizedBox(height: 16),
+                        // { changed code } slightly larger subtitle with subtle shadow
                         const Text(
-                          "This is placeholder text for the hero section.",
-                          style: TextStyle(
-                            fontSize: 20,
-                            color: Colors.white,
-                            height: 1.5,
-                          ),
+                          "Buy yours before they are gone!",
                           textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 40, // Increased size
+                            fontFamily: 'Arial', // Changed font
+                            fontWeight: FontWeight.w600,
+                            color: Colors.white,
+                            height: 1.2,
+                            letterSpacing: 0.8,
+                            shadows: [
+                              Shadow(
+                                offset: Offset(0, 2),
+                                blurRadius: 6,
+                                color: Color.fromARGB(90, 0, 0, 0),
+                              ),
+                            ],
+                          ),
                         ),
                         const SizedBox(height: 32),
                         ElevatedButton(
