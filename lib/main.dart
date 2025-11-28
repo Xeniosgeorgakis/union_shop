@@ -172,7 +172,7 @@ class HomeScreen extends StatelessWidget {
                       decoration: const BoxDecoration(
                         image: DecorationImage(
                           image: NetworkImage(
-                            'https://shop.upsu.net/cdn/shop/files/PortsmouthCityPostcard2_1024x1024@2x.jpg?v=1752232561',
+                            'assets/images/bearbrickheader.png',
                           ),
                           fit: BoxFit.cover,
                         ),
