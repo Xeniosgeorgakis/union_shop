@@ -14,7 +14,7 @@ class UnionShopApp extends StatelessWidget {
       title: 'Union Shop',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF4d2963)),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
       ),
       home: const HomeScreen(),
       // By default, the app starts at the '/' route, which is the HomeScreen
@@ -57,9 +57,9 @@ class HomeScreen extends StatelessWidget {
                   Container(
                     width: double.infinity,
                     padding: const EdgeInsets.symmetric(vertical: 8),
-                    color: const Color(0xFF4d2963),
+                    color: Colors.black,
                     child: const Text(
-                      'PLACEHOLDER HEADER TEXT',
+                      'BIG SALE! OUR ESSENTIAL RANGE HAS DROPPED IN PRICE! OVER 20% OFF! COME GRAB YOURS WHILE STOCK LASTS!',
                       textAlign: TextAlign.center,
                       style: TextStyle(color: Colors.white, fontSize: 16),
                     ),
@@ -215,7 +215,7 @@ class HomeScreen extends StatelessWidget {
                         ElevatedButton(
                           onPressed: placeholderCallbackForButtons,
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(0xFF4d2963),
+                            backgroundColor: Colors.black,
                             foregroundColor: Colors.white,
                             shape: const RoundedRectangleBorder(
                               borderRadius: BorderRadius.zero,

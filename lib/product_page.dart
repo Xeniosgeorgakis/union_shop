@@ -27,7 +27,7 @@ class ProductPage extends StatelessWidget {
                   Container(
                     width: double.infinity,
                     padding: const EdgeInsets.symmetric(vertical: 8),
-                    color: const Color(0xFF4d2963),
+                    color: Colors.black,
                     child: const Text(
                       'BIG SALE! OUR ESSENTIAL RANGE HAS DROPPED IN PRICE! OVER 20% OFF! COME GRAB YOURS WHILE STOCK LASTS!',
                       textAlign: TextAlign.center,
@@ -196,7 +196,7 @@ class ProductPage extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
-                      color: Color(0xFF4d2963),
+                      color: Colors.black,
                     ),
                   ),
 
