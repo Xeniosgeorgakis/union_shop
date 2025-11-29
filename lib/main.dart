@@ -334,7 +334,7 @@ class HomeScreen extends StatelessWidget {
                               imageUrl:
                                   'https://images.stockx.com/images/Bearbrick-Garfield-100-400-Set-Gold-Chrome-Ver-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1738193358',
                               description:
-                                  'A limited edition Bearbrick set featuring Garfield in a stunning gold chrome finish. This set includes both 100% and 400% figures, perfect for collectors.',
+                                  'Celebrate one of pop culture’s most iconic characters with the limited-edition BE@RBRICK Garfield 100% & 400% Gold Set. \n\nFeaturing a striking chrome gold finish, this collector’s duo blends playful character design with the signature BE@RBRICK style.\n\n Perfect for display, gifting, or expanding your collection, each figure delivers high-quality craftsmanship, smooth detailing, and a bold visual presence that stands out in any room or shelf.\n\n A must-have collector’s piece for Garfield fans and Bearbrick enthusiasts alike.',
                             ),
                             ProductCard(
                               title: 'Placeholder Product 2',

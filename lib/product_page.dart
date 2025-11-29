@@ -11,6 +11,35 @@ class ProductPage extends StatefulWidget {
 
 class _ProductPageState extends State<ProductPage> {
   int _quantity = 1;
+  // { changed code } State variables for image selection
+  String? _selectedImage;
+  List<String> _productImages = [];
+  bool _isInit = true;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (_isInit) {
+      final args =
+          ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>?;
+      final imageUrl = args?['imageUrl'] ?? '';
+      // { changed code } Get title to check for specific products
+      final title = args?['title'] ?? '';
+
+      _selectedImage = imageUrl;
+      _productImages = [imageUrl];
+
+      // { changed code } Check title or URL for Garfield to add the second image
+      if (title.toString().contains('Garfield') ||
+          imageUrl.toString().contains('garfield.png')) {
+        // { changed code } Use the provided eBay image URL instead of local asset
+        _productImages
+            .add('https://i.ebayimg.com/images/g/hL0AAOSwLtljjLNk/s-l1200.jpg');
+      }
+
+      _isInit = false;
+    }
+  }
 
   void navigateToHome(BuildContext context) {
     Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
@@ -18,6 +47,37 @@ class _ProductPageState extends State<ProductPage> {
 
   void placeholderCallbackForButtons() {
     // This is the event handler for buttons that don't work yet
+  }
+
+  // { changed code } Helper to build image widget
+  Widget _buildImage(String url) {
+    if (url.startsWith('http')) {
+      return Image.network(
+        url,
+        fit: BoxFit.contain,
+        errorBuilder: (context, error, stackTrace) {
+          return Container(
+            color: Colors.grey[300],
+            child: const Center(
+              child: Icon(Icons.image_not_supported, color: Colors.grey),
+            ),
+          );
+        },
+      );
+    } else {
+      return Image.asset(
+        url,
+        fit: BoxFit.contain,
+        errorBuilder: (context, error, stackTrace) {
+          return Container(
+            color: Colors.grey[300],
+            child: const Center(
+              child: Icon(Icons.image_not_supported, color: Colors.grey),
+            ),
+          );
+        },
+      );
+    }
   }
 
   @override
@@ -30,7 +90,7 @@ class _ProductPageState extends State<ProductPage> {
     final title = args?['title'] ?? 'Product Name';
     final price = args?['price'] ?? '£0.00';
     final originalPrice = args?['originalPrice'];
-    final imageUrl = args?['imageUrl'] ?? '';
+    // imageUrl is now handled by state _selectedImage
     final description = args?['description'] ?? 'No description available.';
 
     return Scaffold(
@@ -190,41 +250,50 @@ class _ProductPageState extends State<ProductPage> {
                   ConstrainedBox(
                     constraints: const BoxConstraints(
                       maxWidth: 400, // Limit width
-                      maxHeight: 400, // Limit height
                     ),
-                    child: Align(
-                      alignment: Alignment.topLeft,
-                      child: imageUrl.startsWith('http')
-                          ? Image.network(
-                              imageUrl,
-                              fit: BoxFit.contain,
-                              errorBuilder: (context, error, stackTrace) {
-                                return Container(
-                                  color: Colors.grey[300],
-                                  width: 300,
-                                  height: 300,
-                                  child: const Center(
-                                    child: Icon(Icons.image_not_supported,
-                                        color: Colors.grey),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          height: 400,
+                          width: double.infinity,
+                          child: Align(
+                            alignment: Alignment.topLeft,
+                            child: _buildImage(_selectedImage ?? ''),
+                          ),
+                        ),
+                        const SizedBox(height: 16),
+                        // { changed code } Thumbnails list
+                        if (_productImages.length > 1)
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: _productImages.map((img) {
+                              final isSelected = img == _selectedImage;
+                              return GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    _selectedImage = img;
+                                  });
+                                },
+                                child: Container(
+                                  margin: const EdgeInsets.only(right: 16),
+                                  width: 80,
+                                  height: 80,
+                                  decoration: BoxDecoration(
+                                    border: isSelected
+                                        ? Border.all(
+                                            color: Colors.black, width: 2)
+                                        : Border.all(
+                                            color: Colors.grey.shade300),
+                                    borderRadius: BorderRadius.circular(8),
                                   ),
-                                );
-                              },
-                            )
-                          : Image.asset(
-                              imageUrl,
-                              fit: BoxFit.contain,
-                              errorBuilder: (context, error, stackTrace) {
-                                return Container(
-                                  color: Colors.grey[300],
-                                  width: 300,
-                                  height: 300,
-                                  child: const Center(
-                                    child: Icon(Icons.image_not_supported,
-                                        color: Colors.grey),
-                                  ),
-                                );
-                              },
-                            ),
+                                  padding: const EdgeInsets.all(4),
+                                  child: _buildImage(img),
+                                ),
+                              );
+                            }).toList(),
+                          ),
+                      ],
                     ),
                   ),
 
