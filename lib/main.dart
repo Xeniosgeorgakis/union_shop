@@ -307,8 +307,8 @@ class HomeScreen extends StatelessWidget {
                     // { changed code } Constrain width to make cards smaller, and use 2 columns for "2 up 2 down"
                     Center(
                       child: ConstrainedBox(
-                        // { changed code } Set maxWidth to 700 to keep cards small
-                        constraints: const BoxConstraints(maxWidth: 700),
+                        // { changed code } Increased maxWidth to 900 to make cards bigger
+                        constraints: const BoxConstraints(maxWidth: 900),
                         child: GridView.count(
                           shrinkWrap: true,
                           physics: const NeverScrollableScrollPhysics(),
@@ -424,19 +424,40 @@ class ProductCard extends StatelessWidget {
               child: ClipRRect(
                 borderRadius:
                     const BorderRadius.vertical(top: Radius.circular(12)),
-                child: Image.network(
-                  imageUrl,
-                  fit: BoxFit.cover,
-                  width: double.infinity,
-                  errorBuilder: (context, error, stackTrace) {
-                    return Container(
-                      color: Colors.grey[300],
-                      child: const Center(
-                        child:
-                            Icon(Icons.image_not_supported, color: Colors.grey),
-                      ),
-                    );
-                  },
+                // { changed code } Add padding to make the image smaller inside the card
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: imageUrl.startsWith('http')
+                      ? Image.network(
+                          imageUrl,
+                          // { changed code } Use contain to show the full image without cropping
+                          fit: BoxFit.contain,
+                          width: double.infinity,
+                          errorBuilder: (context, error, stackTrace) {
+                            return Container(
+                              color: Colors.grey[300],
+                              child: const Center(
+                                child: Icon(Icons.image_not_supported,
+                                    color: Colors.grey),
+                              ),
+                            );
+                          },
+                        )
+                      : Image.asset(
+                          imageUrl,
+                          // { changed code } Use contain to show the full image without cropping
+                          fit: BoxFit.contain,
+                          width: double.infinity,
+                          errorBuilder: (context, error, stackTrace) {
+                            return Container(
+                              color: Colors.grey[300],
+                              child: const Center(
+                                child: Icon(Icons.image_not_supported,
+                                    color: Colors.grey),
+                              ),
+                            );
+                          },
+                        ),
                 ),
               ),
             ),
