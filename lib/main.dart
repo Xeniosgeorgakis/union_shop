@@ -307,15 +307,15 @@ class HomeScreen extends StatelessWidget {
                     // { changed code } Constrain width to make cards smaller, and use 2 columns for "2 up 2 down"
                     Center(
                       child: ConstrainedBox(
-                        // Increased maxWidth to make cards a bit bigger
-                        constraints: const BoxConstraints(maxWidth: 800),
+                        // Increased maxWidth slightly and changed columns to 3 for smaller cards
+                        constraints: const BoxConstraints(maxWidth: 900),
                         child: GridView.count(
                           shrinkWrap: true,
                           physics: const NeverScrollableScrollPhysics(),
-                          crossAxisCount: 2,
-                          crossAxisSpacing: 24,
-                          mainAxisSpacing: 24,
-                          childAspectRatio: 0.75,
+                          crossAxisCount: 3,
+                          crossAxisSpacing: 20,
+                          mainAxisSpacing: 20,
+                          childAspectRatio: 0.7,
                           children: const [
                             ProductCard(
                               title:
@@ -323,7 +323,7 @@ class HomeScreen extends StatelessWidget {
                               price: '£112.00',
                               originalPrice: '£140.00',
                               imageUrl:
-                                  'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
+                                  'https://images.stockx.com/images/Bearbrick-Garfield-100-400-Set-Gold-Chrome-Ver-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1738193358',
                               description:
                                   'A limited edition Bearbrick set featuring Garfield in a stunning gold chrome finish. This set includes both 100% and 400% figures, perfect for collectors.',
                             ),
@@ -401,63 +401,112 @@ class ProductCard extends StatelessWidget {
           },
         );
       },
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Expanded(
-            child: Image.network(
-              imageUrl,
-              fit: BoxFit.cover,
-              errorBuilder: (context, error, stackTrace) {
-                return Container(
-                  color: Colors.grey[300],
-                  child: const Center(
-                    child: Icon(Icons.image_not_supported, color: Colors.grey),
-                  ),
-                );
-              },
+      // { changed code } Added styling container with shadow and rounded corners
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(color: Colors.grey.shade200),
+          boxShadow: const [
+            BoxShadow(
+              color: Color.fromARGB(13, 0, 0, 0), // ~0.05 opacity black
+              blurRadius: 10,
+              offset: Offset(0, 4),
             ),
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: 4),
-              Text(
-                title,
-                style: const TextStyle(fontSize: 14, color: Colors.black),
-                maxLines: 2,
-              ),
-              const SizedBox(height: 4),
-              if (originalPrice != null)
-                Row(
-                  children: [
-                    Text(
-                      originalPrice!,
-                      style: const TextStyle(
-                        fontSize: 13,
-                        color: Colors.grey,
-                        decoration: TextDecoration.lineThrough,
+          ],
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              // { changed code } Clip image to match rounded corners
+              child: ClipRRect(
+                borderRadius:
+                    const BorderRadius.vertical(top: Radius.circular(12)),
+                child: imageUrl.startsWith('http')
+                    ? Image.network(
+                        imageUrl,
+                        fit: BoxFit.cover,
+                        width: double.infinity,
+                        errorBuilder: (context, error, stackTrace) {
+                          return Container(
+                            color: Colors.grey[300],
+                            child: const Center(
+                              child: Icon(Icons.image_not_supported,
+                                  color: Colors.grey),
+                            ),
+                          );
+                        },
+                      )
+                    : Image.asset(
+                        imageUrl,
+                        fit: BoxFit.cover,
+                        width: double.infinity,
+                        errorBuilder: (context, error, stackTrace) {
+                          return Container(
+                            color: Colors.grey[300],
+                            child: const Center(
+                              child: Icon(Icons.image_not_supported,
+                                  color: Colors.grey),
+                            ),
+                          );
+                        },
                       ),
+              ),
+            ),
+            // { changed code } Added padding for text content
+            Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: const TextStyle(
+                      fontSize: 14,
+                      color: Colors.black,
+                      fontWeight: FontWeight.w600,
                     ),
-                    const SizedBox(width: 8),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  const SizedBox(height: 8),
+                  if (originalPrice != null)
+                    Row(
+                      children: [
+                        Text(
+                          originalPrice!,
+                          style: const TextStyle(
+                            fontSize: 12,
+                            color: Colors.grey,
+                            decoration: TextDecoration.lineThrough,
+                          ),
+                        ),
+                        const SizedBox(width: 8),
+                        Text(
+                          price,
+                          style: const TextStyle(
+                            fontSize: 14,
+                            color: Colors.red, // Highlight sale price
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    )
+                  else
                     Text(
                       price,
                       style: const TextStyle(
-                        fontSize: 13,
-                        color: Colors.red, // Highlight sale price
+                        fontSize: 14,
+                        color: Colors.black,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                  ],
-                )
-              else
-                Text(
-                  price,
-                  style: const TextStyle(fontSize: 13, color: Colors.grey),
-                ),
-            ],
-          ),
-        ],
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
