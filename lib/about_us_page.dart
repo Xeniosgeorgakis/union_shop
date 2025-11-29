@@ -60,6 +60,20 @@ class AboutUsPage extends StatelessWidget {
                           const SizedBox(width: 24),
                           GestureDetector(
                             onTap: () {
+                              navigateToHome(context);
+                            },
+                            child: const Text(
+                              'Home',
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 24),
+                          GestureDetector(
+                            onTap: () {
                               // Already on About Us page
                             },
                             child: const Text(

@@ -98,6 +98,20 @@ class HomeScreen extends StatelessWidget {
                           const SizedBox(width: 24),
                           GestureDetector(
                             onTap: () {
+                              navigateToHome(context);
+                            },
+                            child: const Text(
+                              'Home',
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 24),
+                          GestureDetector(
+                            onTap: () {
                               Navigator.pushNamed(context, '/about');
                             },
                             child: const Text(
