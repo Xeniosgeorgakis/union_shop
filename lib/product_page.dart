@@ -169,6 +169,21 @@ class _ProductPageState extends State<ProductPage> {
                               ),
                             ),
                           ),
+                          const SizedBox(width: 24),
+                          GestureDetector(
+                            onTap: () {
+                              // { changed code } Navigate to Sale page
+                              Navigator.pushNamed(context, '/sale');
+                            },
+                            child: const Text(
+                              'Sale',
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.red,
+                              ),
+                            ),
+                          ),
                           const Spacer(),
                           ConstrainedBox(
                             constraints: const BoxConstraints(maxWidth: 600),

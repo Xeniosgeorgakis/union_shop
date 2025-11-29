@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:union_shop/product_page.dart';
 import 'package:union_shop/about_us_page.dart';
+import 'package:union_shop/sale_page.dart'; // { changed code } Import SalePage
 import 'package:union_shop/footer.dart';
 
 void main() {
@@ -26,6 +27,8 @@ class UnionShopApp extends StatelessWidget {
       routes: {
         '/product': (context) => const ProductPage(),
         '/about': (context) => const AboutUsPage(),
+        '/sale': (context) =>
+            const SalePage(), // { changed code } Add Sale route
       },
     );
   }
@@ -126,6 +129,21 @@ class HomeScreen extends StatelessWidget {
                                 fontSize: 16,
                                 fontWeight: FontWeight.w600,
                                 color: Colors.black,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 24),
+                          GestureDetector(
+                            onTap: () {
+                              // { changed code } Navigate to Sale page
+                              Navigator.pushNamed(context, '/sale');
+                            },
+                            child: const Text(
+                              'Sale',
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.red,
                               ),
                             ),
                           ),
