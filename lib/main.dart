@@ -66,7 +66,11 @@ class HomeScreen extends StatelessWidget {
                     child: const Text(
                       'BIG SALE! OUR ESSENTIAL RANGE HAS DROPPED IN PRICE! OVER 20% OFF! COME GRAB YOURS WHILE STOCK LASTS!',
                       textAlign: TextAlign.center,
-                      style: TextStyle(color: Colors.white, fontSize: 16),
+                      // { changed code } Make top banner text bold
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold),
                     ),
                   ),
                   // Main header
@@ -96,7 +100,8 @@ class HomeScreen extends StatelessWidget {
                               },
                             ),
                           ),
-                          const SizedBox(width: 24),
+                          // { changed code } Add Spacer to push nav links to center
+                          const Spacer(),
                           GestureDetector(
                             onTap: () {
                               navigateToHome(context);
@@ -124,6 +129,7 @@ class HomeScreen extends StatelessWidget {
                               ),
                             ),
                           ),
+                          // { changed code } Add Spacer to push icons to right
                           const Spacer(),
                           ConstrainedBox(
                             constraints: const BoxConstraints(maxWidth: 600),
@@ -301,6 +307,8 @@ class HomeScreen extends StatelessWidget {
                         fontSize: 20,
                         color: Colors.black,
                         letterSpacing: 1,
+                        // { changed code } Make section header bold
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                     const SizedBox(height: 48),
@@ -472,7 +480,8 @@ class ProductCard extends StatelessWidget {
                     style: const TextStyle(
                       fontSize: 14,
                       color: Colors.black,
-                      fontWeight: FontWeight.w600,
+                      // { changed code } Make product title bold
+                      fontWeight: FontWeight.bold,
                     ),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
