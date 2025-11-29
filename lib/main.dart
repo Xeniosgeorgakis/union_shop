@@ -307,15 +307,16 @@ class HomeScreen extends StatelessWidget {
                     // { changed code } Constrain width to make cards smaller, and use 2 columns for "2 up 2 down"
                     Center(
                       child: ConstrainedBox(
-                        // Increased maxWidth slightly and changed columns to 3 for smaller cards
-                        constraints: const BoxConstraints(maxWidth: 900),
+                        // { changed code } Set maxWidth to 700 to keep cards small
+                        constraints: const BoxConstraints(maxWidth: 700),
                         child: GridView.count(
                           shrinkWrap: true,
                           physics: const NeverScrollableScrollPhysics(),
-                          crossAxisCount: 3,
-                          crossAxisSpacing: 20,
-                          mainAxisSpacing: 20,
-                          childAspectRatio: 0.7,
+                          // { changed code } Keep 2 columns but increase spacing significantly
+                          crossAxisCount: 2,
+                          crossAxisSpacing: 80,
+                          mainAxisSpacing: 80,
+                          childAspectRatio: 0.75,
                           children: const [
                             ProductCard(
                               title:
@@ -423,35 +424,20 @@ class ProductCard extends StatelessWidget {
               child: ClipRRect(
                 borderRadius:
                     const BorderRadius.vertical(top: Radius.circular(12)),
-                child: imageUrl.startsWith('http')
-                    ? Image.network(
-                        imageUrl,
-                        fit: BoxFit.cover,
-                        width: double.infinity,
-                        errorBuilder: (context, error, stackTrace) {
-                          return Container(
-                            color: Colors.grey[300],
-                            child: const Center(
-                              child: Icon(Icons.image_not_supported,
-                                  color: Colors.grey),
-                            ),
-                          );
-                        },
-                      )
-                    : Image.asset(
-                        imageUrl,
-                        fit: BoxFit.cover,
-                        width: double.infinity,
-                        errorBuilder: (context, error, stackTrace) {
-                          return Container(
-                            color: Colors.grey[300],
-                            child: const Center(
-                              child: Icon(Icons.image_not_supported,
-                                  color: Colors.grey),
-                            ),
-                          );
-                        },
+                child: Image.network(
+                  imageUrl,
+                  fit: BoxFit.cover,
+                  width: double.infinity,
+                  errorBuilder: (context, error, stackTrace) {
+                    return Container(
+                      color: Colors.grey[300],
+                      child: const Center(
+                        child:
+                            Icon(Icons.image_not_supported, color: Colors.grey),
                       ),
+                    );
+                  },
+                ),
               ),
             ),
             // { changed code } Added padding for text content
