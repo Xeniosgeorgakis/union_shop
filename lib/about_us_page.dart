@@ -142,27 +142,43 @@ class AboutUsPage extends StatelessWidget {
             // Content
             Container(
               padding: const EdgeInsets.all(40),
+              // { changed code } Ensure full width for centering
+              width: double.infinity,
               child: const Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                // { changed code } Center children horizontally
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
                     'About Us',
                     style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+                    // { changed code } Center the title text
+                    textAlign: TextAlign.center,
                   ),
                   SizedBox(height: 20),
-                  Text(
-                    'Welcome to Bearbrick Shop, your number one source for all things Bearbrick. We\'re dedicated to giving you the best of collectible figures, with a focus on authenticity, customer service, and uniqueness.',
-                    style: TextStyle(fontSize: 16, height: 1.5),
-                  ),
-                  SizedBox(height: 20),
-                  Text(
-                    'Founded in 2023, Bearbrick Shop has come a long way from its beginnings. When we first started out, our passion for eco-friendly cleaning products drove us to do tons of research, so that Bearbrick Shop can offer you the world\'s most advanced collectibles. We now serve customers all over the world, and are thrilled that we\'re able to turn our passion into our own website.',
-                    style: TextStyle(fontSize: 16, height: 1.5),
-                  ),
-                  SizedBox(height: 20),
-                  Text(
-                    'We hope you enjoy our products as much as we enjoy offering them to you. If you have any questions or comments, please don\'t hesitate to contact us.',
-                    style: TextStyle(fontSize: 16, height: 1.5),
+                  // { changed code } Constrain width and center text paragraphs
+                  SizedBox(
+                    width: 800,
+                    child: Column(
+                      children: [
+                        Text(
+                          'Welcome to Bearbrick Shop, your number one source for all things Bearbrick. We\'re dedicated to giving you the best of collectible figures, with a focus on authenticity, customer service, and uniqueness.',
+                          style: TextStyle(fontSize: 16, height: 1.5),
+                          textAlign: TextAlign.center,
+                        ),
+                        SizedBox(height: 20),
+                        Text(
+                          'Founded in 2023, Bearbrick Shop has come a long way from its beginnings. When we first started out, our passion for eco-friendly cleaning products drove us to do tons of research, so that Bearbrick Shop can offer you the world\'s most advanced collectibles. We now serve customers all over the world, and are thrilled that we\'re able to turn our passion into our own website.',
+                          style: TextStyle(fontSize: 16, height: 1.5),
+                          textAlign: TextAlign.center,
+                        ),
+                        SizedBox(height: 20),
+                        Text(
+                          'We hope you enjoy our products as much as we enjoy offering them to you. If you have any questions or comments, please don\'t hesitate to contact us.',
+                          style: TextStyle(fontSize: 16, height: 1.5),
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
