@@ -144,6 +144,12 @@ class _LoginPageState extends State<LoginPage> {
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
+                        Image.asset(
+                          'assets/images/bearbricklogo.png',
+                          height: 80,
+                          fit: BoxFit.contain,
+                        ),
+                        const SizedBox(height: 24),
                         const Text(
                           'Login',
                           style: TextStyle(
