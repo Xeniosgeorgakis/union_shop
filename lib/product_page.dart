@@ -141,7 +141,8 @@ class _ProductPageState extends State<ProductPage> {
                               },
                             ),
                           ),
-                          const SizedBox(width: 24),
+                          // { changed code } Replace SizedBox with Spacer to center nav links like in Home
+                          const Spacer(),
                           GestureDetector(
                             onTap: () {
                               navigateToHome(context);
@@ -180,7 +181,8 @@ class _ProductPageState extends State<ProductPage> {
                               style: TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w600,
-                                color: Colors.red,
+                                // { changed code } Change color to black
+                                color: Colors.black,
                               ),
                             ),
                           ),

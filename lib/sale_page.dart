@@ -99,7 +99,8 @@ class SalePage extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w600,
-                              color: Colors.red,
+                              // { changed code } Change color to black
+                              color: Colors.black,
                             ),
                           ),
                           const Spacer(),
@@ -170,7 +171,8 @@ class SalePage extends StatelessWidget {
                 padding: const EdgeInsets.all(40.0),
                 child: Center(
                   child: ConstrainedBox(
-                    constraints: const BoxConstraints(maxWidth: 900),
+                    // { changed code } Reduce maxWidth to make cards smaller
+                    constraints: const BoxConstraints(maxWidth: 700),
                     child: GridView.count(
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
@@ -183,7 +185,8 @@ class SalePage extends StatelessWidget {
                           title: 'Bearbrick Garfield 100% & 400% Set (Gold)',
                           price: '£112.00',
                           originalPrice: '£140.00',
-                          imageUrl: 'assets/images/garfield.png',
+                          imageUrl:
+                              'https://images.stockx.com/images/Bearbrick-Garfield-100-400-Set-Gold-Chrome-Ver-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1738193358',
                           description:
                               'Celebrate one of pop culture’s most iconic characters with the limited-edition BE@RBRICK Garfield 100% & 400% Gold Set. \n\nFeaturing a striking chrome gold finish, this collector’s duo blends playful character design with the signature BE@RBRICK style.',
                         ),
