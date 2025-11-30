@@ -356,13 +356,50 @@ class HomeScreen extends StatelessWidget {
                                   'Celebrate one of pop culture’s most iconic characters with the limited-edition BE@RBRICK Garfield 100% & 400% Gold Set. \n\nFeaturing a striking chrome gold finish, this collector’s duo blends playful character design with the signature BE@RBRICK style.\n\n Perfect for display, gifting, or expanding your collection, each figure delivers high-quality craftsmanship, smooth detailing, and a bold visual presence that stands out in any room or shelf.\n\n A must-have collector’s piece for Garfield fans and Bearbrick enthusiasts alike.',
                             ),
                             ProductCard(
-                              title: 'Placeholder Product 2',
-                              price: '£15.00',
+                              title: '1000% Bearbrick - Squid Game (Red)',
+                              price: '£160.00',
+                              originalPrice: '£200.00',
                               imageUrl:
-                                  'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
+                                  'https://cdn.webshopapp.com/shops/153/files/431539158/medicom-toy-1000-bearbrick-squid-game-square-guard.jpg',
                               description:
-                                  'A classic Portsmouth city magnet to remember your time at the university. Durable and stylish, perfect for your fridge.',
+                                  'Step into the gripping world of Squid Game with this striking 1000% Bearbrick figure, inspired by the iconic Square Guard—the highest-ranking enforcer in the series’ hierarchy. Standing approximately 70 cm (27.5 inches) tall',
                             ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 48),
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/sale');
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.black,
+                        foregroundColor: Colors.white,
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.zero,
+                        ),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 32, vertical: 20),
+                      ),
+                      child: const Text(
+                        'VIEW ALL SALES',
+                        style: TextStyle(fontSize: 14, letterSpacing: 1),
+                      ),
+                    ),
+                    // { changed code } Add back the other products below the button
+                    const SizedBox(height: 48),
+                    Center(
+                      child: ConstrainedBox(
+                        constraints: const BoxConstraints(maxWidth: 900),
+                        child: GridView.count(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          crossAxisCount: 2,
+                          crossAxisSpacing: 80,
+                          mainAxisSpacing: 80,
+                          childAspectRatio: 0.75,
+                          children: const [
                             ProductCard(
                               title: 'Placeholder Product 3',
                               price: '£20.00',

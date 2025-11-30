@@ -37,6 +37,12 @@ class _ProductPageState extends State<ProductPage> {
             .add('https://i.ebayimg.com/images/g/hL0AAOSwLtljjLNk/s-l1200.jpg');
       }
 
+      // { changed code } Check for Squid Game product to add its second image
+      if (title.toString().contains('Squid Game')) {
+        _productImages.add(
+            'https://cdn.webshopapp.com/shops/153/files/431539156/500x500x2/image.jpg');
+      }
+
       _isInit = false;
     }
   }
