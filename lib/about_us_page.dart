@@ -65,6 +65,7 @@ class AboutUsPage extends StatelessWidget {
                               },
                             ),
                           ),
+
                           const Spacer(),
                           // { changed code } Wrap with MouseRegion for pointer cursor
                           MouseRegion(
@@ -123,7 +124,9 @@ class AboutUsPage extends StatelessWidget {
                                 ),
                                 IconButton(
                                   icon: const Icon(Icons.person_outline,
-                                      size: 18, color: Colors.grey),
+                                      // { changed code } Change color to black
+                                      size: 18,
+                                      color: Colors.black),
                                   onPressed: placeholderCallbackForButtons,
                                 ),
                                 IconButton(
@@ -142,6 +145,29 @@ class AboutUsPage extends StatelessWidget {
                         ],
                       ),
                     ),
+                  ),
+                ],
+              ),
+            ),
+            // { changed code } Add the requested banner
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.all(40),
+              color: const Color.fromARGB(255, 42, 41, 42),
+              child: const Column(
+                children: [
+                  Text(
+                    'About Bearbrick Shop',
+                    style: TextStyle(
+                      fontSize: 40,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                  SizedBox(height: 10),
+                  Text(
+                    'Collectors Choice',
+                    style: TextStyle(fontSize: 18, color: Colors.white),
                   ),
                 ],
               ),

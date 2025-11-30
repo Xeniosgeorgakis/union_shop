@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:union_shop/product_page.dart';
 import 'package:union_shop/about_us_page.dart';
-import 'package:union_shop/sale_page.dart'; // { changed code } Import SalePage
+import 'package:union_shop/sale_page.dart';
+import 'package:union_shop/login_page.dart'; // { changed code } Import LoginPage
 import 'package:union_shop/footer.dart';
 
 void main() {
@@ -27,8 +28,9 @@ class UnionShopApp extends StatelessWidget {
       routes: {
         '/product': (context) => const ProductPage(),
         '/about': (context) => const AboutUsPage(),
-        '/sale': (context) =>
-            const SalePage(), // { changed code } Add Sale route
+        '/sale': (context) => const SalePage(),
+        '/login': (context) =>
+            const LoginPage(), // { changed code } Add Login route
       },
     );
   }
@@ -182,14 +184,18 @@ class HomeScreen extends StatelessWidget {
                                   icon: const Icon(
                                     Icons.person_outline,
                                     size: 18,
-                                    color: Colors.grey,
+                                    // { changed code } Change color to black
+                                    color: Colors.black,
                                   ),
                                   padding: const EdgeInsets.all(8),
                                   constraints: const BoxConstraints(
                                     minWidth: 32,
                                     minHeight: 32,
                                   ),
-                                  onPressed: placeholderCallbackForButtons,
+                                  // { changed code } Navigate to Login page
+                                  onPressed: () {
+                                    Navigator.pushNamed(context, '/login');
+                                  },
                                 ),
                                 IconButton(
                                   icon: const Icon(

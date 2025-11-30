@@ -229,7 +229,8 @@ class _ProductPageState extends State<ProductPage> {
                                   icon: const Icon(
                                     Icons.person_outline,
                                     size: 18,
-                                    color: Colors.grey,
+                                    // { changed code } Change color to black
+                                    color: Colors.black,
                                   ),
                                   padding: const EdgeInsets.all(8),
                                   constraints: const BoxConstraints(

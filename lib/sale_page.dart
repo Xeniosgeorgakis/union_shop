@@ -123,7 +123,9 @@ class SalePage extends StatelessWidget {
                                 ),
                                 IconButton(
                                   icon: const Icon(Icons.person_outline,
-                                      size: 18, color: Colors.grey),
+                                      // { changed code } Change color to black
+                                      size: 18,
+                                      color: Colors.black),
                                   onPressed: placeholderCallbackForButtons,
                                 ),
                                 IconButton(
@@ -178,14 +180,16 @@ class SalePage extends StatelessWidget {
                 padding: const EdgeInsets.all(40.0),
                 child: Center(
                   child: ConstrainedBox(
-                    // { changed code } Reduce maxWidth to make cards smaller
-                    constraints: const BoxConstraints(maxWidth: 700),
+                    // { changed code } Increase maxWidth to fit 3 columns comfortably
+                    constraints: const BoxConstraints(maxWidth: 1100),
                     child: GridView.count(
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
-                      crossAxisCount: 2,
-                      crossAxisSpacing: 80,
-                      mainAxisSpacing: 80,
+                      // { changed code } Change to 3 columns
+                      crossAxisCount: 3,
+                      crossAxisSpacing:
+                          40, // Reduced spacing slightly for 3 cols
+                      mainAxisSpacing: 40,
                       childAspectRatio: 0.75,
                       children: const [
                         // { changed code } Renamed to SaleProductCard
@@ -207,6 +211,36 @@ class SalePage extends StatelessWidget {
                               'https://cdn.webshopapp.com/shops/153/files/431539158/medicom-toy-1000-bearbrick-squid-game-square-guard.jpg',
                           description:
                               'Step into the gripping world of Squid Game with this striking 1000% Bearbrick figure, inspired by the iconic Square Guard—the highest-ranking enforcer in the series’ hierarchy. Standing approximately 70 cm (27.5 inches) tall',
+                        ),
+                        SaleProductCard(
+                          title:
+                              'BEARBRICK Steven Harrington -Magic Hour 400% & 100%(Blue)',
+                          price: '£112.00',
+                          originalPrice: '£140.00',
+                          imageUrl:
+                              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYU2LL4F-Vf2TAKMJJrZT68wQl35a1dPfWUg&s',
+                          description:
+                              'Step into Steven Harrington’s vibrant, psychedelic world with the “Magic Hour” Bearbrick set, featuring both the 400% (28 cm) and 100% (7 cm) figures. Known for his playful, California-inspired pop-art style, Harrington brings his signature characters, bold linework, and surreal color palettes to the iconic Bearbrick silhouette.',
+                        ),
+                        SaleProductCard(
+                          title:
+                              'Bearbrick Sesame Street Elmo 100% & 400% Set (Red)',
+                          price: '£112.00',
+                          originalPrice: '£140.00',
+                          imageUrl:
+                              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyr6-IoGvAsyZM7ImVK5gFN7h9UtnCGWslfA&s',
+                          description:
+                              'Bring a touch of nostalgia and playful charm to your collection with the Bearbrick Sesame Street Elmo Set, featuring both the 100% (7 cm) and 400% (28 cm) figures. Designed with Elmo’s bright red fur, cheerful expression, and lovable character, this set captures the heartwarming spirit of the iconic Sesame Street star.',
+                        ),
+                        SaleProductCard(
+                          title:
+                              '400% & 100% Bearbrick set - Camo Tiger by BAPE(Orange)',
+                          price: '£112.00',
+                          originalPrice: '£140.00',
+                          imageUrl:
+                              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1KIOJcTyN0CcpZTQ0zcoB_6TMEx3nE8C3Ig&s',
+                          description:
+                              'Elevate your collection with the iconic BAPE Camo Tiger Bearbrick Set, featuring the 400% (28 cm) and 100% (7 cm) figures. Wrapped in BAPE’s legendary Tiger Camo pattern, this set delivers the bold, high-energy aesthetic that has defined A Bathing Ape’s streetwear legacy.',
                         ),
                       ],
                     ),
