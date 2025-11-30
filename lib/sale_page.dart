@@ -181,7 +181,8 @@ class SalePage extends StatelessWidget {
                       mainAxisSpacing: 80,
                       childAspectRatio: 0.75,
                       children: const [
-                        ProductCard(
+                        // { changed code } Renamed to SaleProductCard
+                        SaleProductCard(
                           title: 'Bearbrick Garfield 100% & 400% Set (Gold)',
                           price: '£112.00',
                           originalPrice: '£140.00',
@@ -190,14 +191,15 @@ class SalePage extends StatelessWidget {
                           description:
                               'Celebrate one of pop culture’s most iconic characters with the limited-edition BE@RBRICK Garfield 100% & 400% Gold Set. \n\nFeaturing a striking chrome gold finish, this collector’s duo blends playful character design with the signature BE@RBRICK style.',
                         ),
-                        ProductCard(
-                          title: 'Bearbrick 1000% Plain White (Sale)',
-                          price: '£250.00',
-                          originalPrice: '£350.00',
+                        // { changed code } Renamed to SaleProductCard and replaced with Squid Game product
+                        SaleProductCard(
+                          title: '1000% Bearbrick - Squid Game (Red)',
+                          price: '£160.00',
+                          originalPrice: '£200.00',
                           imageUrl:
-                              'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282', // Placeholder image
+                              'https://cdn.webshopapp.com/shops/153/files/431539158/medicom-toy-1000-bearbrick-squid-game-square-guard.jpg',
                           description:
-                              'A massive 1000% Bearbrick in plain white, perfect for customisation or minimalist display. Now on sale!',
+                              'Step into the gripping world of Squid Game with this striking 1000% Bearbrick figure, inspired by the iconic Square Guard—the highest-ranking enforcer in the series’ hierarchy. Standing approximately 70 cm (27.5 inches) tall',
                         ),
                       ],
                     ),
@@ -215,14 +217,15 @@ class SalePage extends StatelessWidget {
   }
 }
 
-class ProductCard extends StatelessWidget {
+// { changed code } Renamed class to SaleProductCard to avoid conflict with main.dart
+class SaleProductCard extends StatelessWidget {
   final String title;
   final String price;
   final String? originalPrice;
   final String imageUrl;
   final String description;
 
-  const ProductCard({
+  const SaleProductCard({
     super.key,
     required this.title,
     required this.price,

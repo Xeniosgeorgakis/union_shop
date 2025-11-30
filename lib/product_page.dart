@@ -42,6 +42,10 @@ class _ProductPageState extends State<ProductPage> {
         _productImages.add(
             'https://cdn.webshopapp.com/shops/153/files/431539156/500x500x2/image.jpg');
       }
+      if (title.toString().contains('Nike Tech Fleece')) {
+        _productImages.add(
+            'https://katanakicks.store/cdn/shop/files/IMG_4634_f4c96d33-3652-4f58-94a6-f923e27934e7.jpg?v=1697551016&width=1445');
+      }
 
       _isInit = false;
     }

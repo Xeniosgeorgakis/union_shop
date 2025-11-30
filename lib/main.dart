@@ -387,6 +387,17 @@ class HomeScreen extends StatelessWidget {
                         style: TextStyle(fontSize: 14, letterSpacing: 1),
                       ),
                     ),
+                    // { changed code } Add "December drop" text with spacing
+                    const SizedBox(height: 48),
+                    const Text(
+                      '🔥DECEMBER DROP🔥',
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.black,
+                        letterSpacing: 1,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                     // { changed code } Add back the other products below the button
                     const SizedBox(height: 48),
                     Center(
@@ -401,12 +412,12 @@ class HomeScreen extends StatelessWidget {
                           childAspectRatio: 0.75,
                           children: const [
                             ProductCard(
-                              title: 'Placeholder Product 3',
-                              price: '£20.00',
+                              title: 'Bearbrick x Nike Tech Fleece N98 100% & 400% Set',
+                              price: '£140.00',
                               imageUrl:
-                                  'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
+                                  'https://images.stockx.com/images/Bearbrick-x-Nike-Tech-Fleece-N98-100-400-Set-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1738193358',
                               description:
-                                  'Essential university hoodie in navy blue. Comfortable, warm, and perfect for lectures or lounging at home.',
+                                  'The perfect fusion of streetwear and designer art toys, the Bearbrick x Nike Tech Fleece N98 Set brings Nike’s classic sportswear aesthetic into the world of collectible design. This limited-edition duo includes both the 100% (7 cm) and 400% (28 cm) Bearbrick figures, each dressed in the iconic Nike Tech Fleece N98 jacket',
                             ),
                             ProductCard(
                               title: 'Placeholder Product 4',
