@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:union_shop/product_page.dart';
 import 'package:union_shop/about_us_page.dart';
 import 'package:union_shop/sale_page.dart';
-import 'package:union_shop/login_page.dart'; // { changed code } Import LoginPage
+import 'package:union_shop/login_page.dart';
 import 'package:union_shop/footer.dart';
 
 void main() {
@@ -21,16 +21,12 @@ class UnionShopApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
       ),
       home: const HomeScreen(),
-      // By default, the app starts at the '/' route, which is the HomeScreen
       initialRoute: '/',
-      // When navigating to '/product', build and return the ProductPage
-      // In your browser, try this link: http://localhost:49856/#/product
       routes: {
         '/product': (context) => const ProductPage(),
         '/about': (context) => const AboutUsPage(),
         '/sale': (context) => const SalePage(),
-        '/login': (context) =>
-            const LoginPage(), // { changed code } Add Login route
+        '/login': (context) => const LoginPage(),
       },
     );
   }
@@ -71,7 +67,6 @@ class HomeScreen extends StatelessWidget {
                     child: const Text(
                       '🔥 Massive BE@RBRICK Sale Live Now — Limited Editions, Exclusive Drops, and Up to 20% Off While Stock Lasts!',
                       textAlign: TextAlign.center,
-                      // { changed code } Make top banner text bold
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 16,
@@ -105,9 +100,7 @@ class HomeScreen extends StatelessWidget {
                               },
                             ),
                           ),
-                          // { changed code } Add Spacer to push nav links to center
                           const Spacer(),
-                          // { changed code } Wrap with MouseRegion for pointer cursor
                           MouseRegion(
                             cursor: SystemMouseCursors.click,
                             child: GestureDetector(
@@ -125,7 +118,6 @@ class HomeScreen extends StatelessWidget {
                             ),
                           ),
                           const SizedBox(width: 24),
-                          // { changed code } Wrap with MouseRegion for pointer cursor
                           MouseRegion(
                             cursor: SystemMouseCursors.click,
                             child: GestureDetector(
@@ -143,7 +135,6 @@ class HomeScreen extends StatelessWidget {
                             ),
                           ),
                           const SizedBox(width: 24),
-                          // { changed code } Wrap with MouseRegion for pointer cursor
                           MouseRegion(
                             cursor: SystemMouseCursors.click,
                             child: GestureDetector(
@@ -160,7 +151,6 @@ class HomeScreen extends StatelessWidget {
                               ),
                             ),
                           ),
-                          // { changed code } Add Spacer to push icons to right
                           const Spacer(),
                           ConstrainedBox(
                             constraints: const BoxConstraints(maxWidth: 600),
@@ -184,7 +174,6 @@ class HomeScreen extends StatelessWidget {
                                   icon: const Icon(
                                     Icons.person_outline,
                                     size: 18,
-                                    // { changed code } Change color to black
                                     color: Colors.black,
                                   ),
                                   padding: const EdgeInsets.all(8),
@@ -192,7 +181,6 @@ class HomeScreen extends StatelessWidget {
                                     minWidth: 32,
                                     minHeight: 32,
                                   ),
-                                  // { changed code } Navigate to Login page
                                   onPressed: () {
                                     Navigator.pushNamed(context, '/login');
                                   },
@@ -252,7 +240,6 @@ class HomeScreen extends StatelessWidget {
                         ),
                       ),
                       child: Container(
-                        // { changed code } Use const BoxDecoration with Color.fromARGB for performance
                         decoration: const BoxDecoration(
                           color: Color.fromARGB(115, 0, 0, 0),
                         ),
@@ -267,7 +254,6 @@ class HomeScreen extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        // { changed code } larger, bolder, with letter spacing and shadow for better visibility
                         const Text(
                           'OVER 20% OFF!',
                           style: TextStyle(
@@ -287,7 +273,6 @@ class HomeScreen extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: 16),
-                        // { changed code } slightly larger subtitle with subtle shadow
                         const Text(
                           "Buy yours before they are gone!",
                           textAlign: TextAlign.center,
@@ -342,20 +327,16 @@ class HomeScreen extends StatelessWidget {
                         fontSize: 20,
                         color: Colors.black,
                         letterSpacing: 1,
-                        // { changed code } Make section header bold
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     const SizedBox(height: 48),
-                    // { changed code } Constrain width to make cards smaller, and use 2 columns for "2 up 2 down"
                     Center(
                       child: ConstrainedBox(
-                        // { changed code } Increased maxWidth to 900 to make cards bigger
                         constraints: const BoxConstraints(maxWidth: 900),
                         child: GridView.count(
                           shrinkWrap: true,
                           physics: const NeverScrollableScrollPhysics(),
-                          // { changed code } Keep 2 columns but increase spacing significantly
                           crossAxisCount: 2,
                           crossAxisSpacing: 80,
                           mainAxisSpacing: 80,
@@ -403,7 +384,6 @@ class HomeScreen extends StatelessWidget {
                         style: TextStyle(fontSize: 14, letterSpacing: 1),
                       ),
                     ),
-                    // { changed code } Add "December drop" text with spacing
                     const SizedBox(height: 48),
                     const Text(
                       '🔥DECEMBER DROP🔥',
@@ -414,7 +394,6 @@ class HomeScreen extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    // { changed code } Add back the other products below the button
                     const SizedBox(height: 48),
                     Center(
                       child: ConstrainedBox(
@@ -429,7 +408,7 @@ class HomeScreen extends StatelessWidget {
                           children: const [
                             ProductCard(
                               title:
-                                  'Bearbrick x Nike Tech Fleece N98 100% & 400% Set(Grey)',
+                                  'Bearbrick x Nike Tech Fleece N98 100% & 400% Set (Grey)',
                               price: '£140.00',
                               imageUrl:
                                   'https://images.stockx.com/images/Bearbrick-x-Nike-Tech-Fleece-N98-100-400-Set-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1738193358',
@@ -438,7 +417,7 @@ class HomeScreen extends StatelessWidget {
                             ),
                             ProductCard(
                               title:
-                                  '400% & 100% Bearbrick Set – LBWK x BAPE Green Camo(Black)',
+                                  '400% & 100% Bearbrick Set – LBWK x BAPE Green Camo (Black)',
                               price: '£140.00',
                               imageUrl:
                                   'https://szopex.blob.core.windows.net/shops/media/f1000/2024/medicom-toy/231848/medicom-bearbricks-100-400-set-anever-black-anever-black-2pack-6666f34da73b5.webp',
@@ -495,7 +474,6 @@ class ProductCard extends StatelessWidget {
           },
         );
       },
-      // { changed code } Added styling container with shadow and rounded corners
       child: Container(
         decoration: BoxDecoration(
           color: Colors.white,
@@ -503,7 +481,7 @@ class ProductCard extends StatelessWidget {
           border: Border.all(color: Colors.grey.shade200),
           boxShadow: const [
             BoxShadow(
-              color: Color.fromARGB(13, 0, 0, 0), // ~0.05 opacity black
+              color: Color.fromARGB(13, 0, 0, 0),
               blurRadius: 10,
               offset: Offset(0, 4),
             ),
@@ -513,17 +491,14 @@ class ProductCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Expanded(
-              // { changed code } Clip image to match rounded corners
               child: ClipRRect(
                 borderRadius:
                     const BorderRadius.vertical(top: Radius.circular(12)),
-                // { changed code } Add padding to make the image smaller inside the card
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: imageUrl.startsWith('http')
                       ? Image.network(
                           imageUrl,
-                          // { changed code } Use contain to show the full image without cropping
                           fit: BoxFit.contain,
                           width: double.infinity,
                           errorBuilder: (context, error, stackTrace) {
@@ -538,7 +513,6 @@ class ProductCard extends StatelessWidget {
                         )
                       : Image.asset(
                           imageUrl,
-                          // { changed code } Use contain to show the full image without cropping
                           fit: BoxFit.contain,
                           width: double.infinity,
                           errorBuilder: (context, error, stackTrace) {
@@ -554,7 +528,6 @@ class ProductCard extends StatelessWidget {
                 ),
               ),
             ),
-            // { changed code } Added padding for text content
             Padding(
               padding: const EdgeInsets.all(12.0),
               child: Column(
@@ -565,7 +538,6 @@ class ProductCard extends StatelessWidget {
                     style: const TextStyle(
                       fontSize: 14,
                       color: Colors.black,
-                      // { changed code } Make product title bold
                       fontWeight: FontWeight.bold,
                     ),
                     maxLines: 2,

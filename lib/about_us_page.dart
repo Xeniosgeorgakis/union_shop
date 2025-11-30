@@ -149,7 +149,6 @@ class AboutUsPage extends StatelessWidget {
                 ],
               ),
             ),
-            // { changed code } Add the requested banner
             Container(
               width: double.infinity,
               padding: const EdgeInsets.all(40),
@@ -175,20 +174,16 @@ class AboutUsPage extends StatelessWidget {
             // Content
             Container(
               padding: const EdgeInsets.all(40),
-              // { changed code } Ensure full width for centering
               width: double.infinity,
               child: const Column(
-                // { changed code } Center children horizontally
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
                     'About Us',
                     style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
-                    // { changed code } Center the title text
                     textAlign: TextAlign.center,
                   ),
                   SizedBox(height: 20),
-                  // { changed code } Constrain width and center text paragraphs
                   SizedBox(
                     width: 800,
                     child: Column(

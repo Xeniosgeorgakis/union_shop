@@ -66,7 +66,6 @@ class SalePage extends StatelessWidget {
                             ),
                           ),
                           const Spacer(),
-                          // { changed code } Wrap with MouseRegion for pointer cursor
                           MouseRegion(
                             cursor: SystemMouseCursors.click,
                             child: GestureDetector(
@@ -84,7 +83,6 @@ class SalePage extends StatelessWidget {
                             ),
                           ),
                           const SizedBox(width: 24),
-                          // { changed code } Wrap with MouseRegion for pointer cursor
                           MouseRegion(
                             cursor: SystemMouseCursors.click,
                             child: GestureDetector(
@@ -123,9 +121,7 @@ class SalePage extends StatelessWidget {
                                 ),
                                 IconButton(
                                   icon: const Icon(Icons.person_outline,
-                                      // { changed code } Change color to black
-                                      size: 18,
-                                      color: Colors.black),
+                                      size: 18, color: Colors.black),
                                   onPressed: placeholderCallbackForButtons,
                                 ),
                                 IconButton(
@@ -180,19 +176,15 @@ class SalePage extends StatelessWidget {
                 padding: const EdgeInsets.all(40.0),
                 child: Center(
                   child: ConstrainedBox(
-                    // { changed code } Increase maxWidth to fit 3 columns comfortably
                     constraints: const BoxConstraints(maxWidth: 1100),
                     child: GridView.count(
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
-                      // { changed code } Change to 3 columns
                       crossAxisCount: 3,
-                      crossAxisSpacing:
-                          40, // Reduced spacing slightly for 3 cols
+                      crossAxisSpacing: 40,
                       mainAxisSpacing: 40,
                       childAspectRatio: 0.75,
                       children: const [
-                        // { changed code } Renamed to SaleProductCard
                         SaleProductCard(
                           title: 'Bearbrick Garfield 100% & 400% Set (Gold)',
                           price: '£112.00',
@@ -202,7 +194,6 @@ class SalePage extends StatelessWidget {
                           description:
                               'Celebrate one of pop culture’s most iconic characters with the limited-edition BE@RBRICK Garfield 100% & 400% Gold Set. \n\nFeaturing a striking chrome gold finish, this collector’s duo blends playful character design with the signature BE@RBRICK style.',
                         ),
-                        // { changed code } Renamed to SaleProductCard and replaced with Squid Game product
                         SaleProductCard(
                           title: '1000% Bearbrick - Squid Game (Red)',
                           price: '£160.00',
@@ -258,7 +249,6 @@ class SalePage extends StatelessWidget {
   }
 }
 
-// { changed code } Renamed class to SaleProductCard to avoid conflict with main.dart
 class SaleProductCard extends StatelessWidget {
   final String title;
   final String price;

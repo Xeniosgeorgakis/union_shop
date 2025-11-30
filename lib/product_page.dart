@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:union_shop/footer.dart';
 
-// { changed code } Convert to StatefulWidget to handle quantity state
 class ProductPage extends StatefulWidget {
   const ProductPage({super.key});
 
@@ -11,7 +10,6 @@ class ProductPage extends StatefulWidget {
 
 class _ProductPageState extends State<ProductPage> {
   int _quantity = 1;
-  // { changed code } State variables for image selection
   String? _selectedImage;
   List<String> _productImages = [];
   bool _isInit = true;
@@ -23,21 +21,17 @@ class _ProductPageState extends State<ProductPage> {
       final args =
           ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>?;
       final imageUrl = args?['imageUrl'] ?? '';
-      // { changed code } Get title to check for specific products
       final title = args?['title'] ?? '';
 
       _selectedImage = imageUrl;
       _productImages = [imageUrl];
 
-      // { changed code } Check title or URL for Garfield to add the second image
       if (title.toString().contains('Garfield') ||
           imageUrl.toString().contains('garfield.png')) {
-        // { changed code } Use the provided eBay image URL instead of local asset
         _productImages
             .add('https://i.ebayimg.com/images/g/hL0AAOSwLtljjLNk/s-l1200.jpg');
       }
 
-      // { changed code } Check for Squid Game product to add its second image
       if (title.toString().contains('Squid Game')) {
         _productImages.add(
             'https://cdn.webshopapp.com/shops/153/files/431539156/500x500x2/image.jpg');
@@ -59,7 +53,6 @@ class _ProductPageState extends State<ProductPage> {
     // This is the event handler for buttons that don't work yet
   }
 
-  // { changed code } Helper to build image widget
   Widget _buildImage(String url) {
     if (url.startsWith('http')) {
       return Image.network(
@@ -151,9 +144,7 @@ class _ProductPageState extends State<ProductPage> {
                               },
                             ),
                           ),
-                          // { changed code } Replace SizedBox with Spacer to center nav links like in Home
                           const Spacer(),
-                          // { changed code } Wrap with MouseRegion for pointer cursor
                           MouseRegion(
                             cursor: SystemMouseCursors.click,
                             child: GestureDetector(
@@ -171,7 +162,6 @@ class _ProductPageState extends State<ProductPage> {
                             ),
                           ),
                           const SizedBox(width: 24),
-                          // { changed code } Wrap with MouseRegion for pointer cursor
                           MouseRegion(
                             cursor: SystemMouseCursors.click,
                             child: GestureDetector(
@@ -189,7 +179,6 @@ class _ProductPageState extends State<ProductPage> {
                             ),
                           ),
                           const SizedBox(width: 24),
-                          // { changed code } Wrap with MouseRegion for pointer cursor
                           MouseRegion(
                             cursor: SystemMouseCursors.click,
                             child: GestureDetector(
@@ -229,7 +218,6 @@ class _ProductPageState extends State<ProductPage> {
                                   icon: const Icon(
                                     Icons.person_outline,
                                     size: 18,
-                                    // { changed code } Change color to black
                                     color: Colors.black,
                                   ),
                                   padding: const EdgeInsets.all(8),
@@ -280,7 +268,6 @@ class _ProductPageState extends State<ProductPage> {
             Container(
               color: Colors.white,
               padding: const EdgeInsets.all(40.0), // Increased padding
-              // { changed code } Use Row to put image on left and details on right
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

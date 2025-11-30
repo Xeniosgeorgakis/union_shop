@@ -10,7 +10,6 @@ class Footer extends StatelessWidget {
       color: Colors.grey[100],
       padding: const EdgeInsets.symmetric(vertical: 48, horizontal: 24),
       child: const Column(
-        // { changed code } Use const for the list of children to improve performance
         children: [
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
