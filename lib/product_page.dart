@@ -153,46 +153,56 @@ class _ProductPageState extends State<ProductPage> {
                           ),
                           // { changed code } Replace SizedBox with Spacer to center nav links like in Home
                           const Spacer(),
-                          GestureDetector(
-                            onTap: () {
-                              navigateToHome(context);
-                            },
-                            child: const Text(
-                              'Home',
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.black,
+                          // { changed code } Wrap with MouseRegion for pointer cursor
+                          MouseRegion(
+                            cursor: SystemMouseCursors.click,
+                            child: GestureDetector(
+                              onTap: () {
+                                navigateToHome(context);
+                              },
+                              child: const Text(
+                                'Home',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.black,
+                                ),
                               ),
                             ),
                           ),
                           const SizedBox(width: 24),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.pushNamed(context, '/about');
-                            },
-                            child: const Text(
-                              'About Us',
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.black,
+                          // { changed code } Wrap with MouseRegion for pointer cursor
+                          MouseRegion(
+                            cursor: SystemMouseCursors.click,
+                            child: GestureDetector(
+                              onTap: () {
+                                Navigator.pushNamed(context, '/about');
+                              },
+                              child: const Text(
+                                'About Us',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.black,
+                                ),
                               ),
                             ),
                           ),
                           const SizedBox(width: 24),
-                          GestureDetector(
-                            onTap: () {
-                              // { changed code } Navigate to Sale page
-                              Navigator.pushNamed(context, '/sale');
-                            },
-                            child: const Text(
-                              'Sale',
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w600,
-                                // { changed code } Change color to black
-                                color: Colors.black,
+                          // { changed code } Wrap with MouseRegion for pointer cursor
+                          MouseRegion(
+                            cursor: SystemMouseCursors.click,
+                            child: GestureDetector(
+                              onTap: () {
+                                Navigator.pushNamed(context, '/sale');
+                              },
+                              child: const Text(
+                                'Sale',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.black,
+                                ),
                               ),
                             ),
                           ),

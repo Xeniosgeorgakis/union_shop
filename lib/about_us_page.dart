@@ -66,16 +66,20 @@ class AboutUsPage extends StatelessWidget {
                             ),
                           ),
                           const Spacer(),
-                          GestureDetector(
-                            onTap: () {
-                              navigateToHome(context);
-                            },
-                            child: const Text(
-                              'Home',
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.black,
+                          // { changed code } Wrap with MouseRegion for pointer cursor
+                          MouseRegion(
+                            cursor: SystemMouseCursors.click,
+                            child: GestureDetector(
+                              onTap: () {
+                                navigateToHome(context);
+                              },
+                              child: const Text(
+                                'Home',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.black,
+                                ),
                               ),
                             ),
                           ),
@@ -89,17 +93,20 @@ class AboutUsPage extends StatelessWidget {
                             ),
                           ),
                           const SizedBox(width: 24),
-                          // { changed code } Add Sale button
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.pushNamed(context, '/sale');
-                            },
-                            child: const Text(
-                              'Sale',
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.black,
+                          // { changed code } Wrap with MouseRegion for pointer cursor
+                          MouseRegion(
+                            cursor: SystemMouseCursors.click,
+                            child: GestureDetector(
+                              onTap: () {
+                                Navigator.pushNamed(context, '/sale');
+                              },
+                              child: const Text(
+                                'Sale',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.black,
+                                ),
                               ),
                             ),
                           ),
