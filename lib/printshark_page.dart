@@ -180,6 +180,23 @@ class PrintsharkPage extends StatelessWidget {
                 ],
               ),
             ),
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.all(40),
+              color: Colors.black,
+              child: const Column(
+                children: [
+                  Text(
+                    'ABOUT PRINT SHACK',
+                    style: TextStyle(
+                      fontSize: 40,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                ],
+              ),
+            ),
             // Content
             Container(
               padding: const EdgeInsets.all(40),
