@@ -283,23 +283,31 @@ class _CollectionTwoPageState extends State<CollectionTwoPage> {
               padding:
                   const EdgeInsets.symmetric(horizontal: 40.0, vertical: 20.0),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text('Sort by:'),
-                  const SizedBox(width: 10),
-                  DropdownButton<String>(
-                    value: _sortOption,
-                    items: <String>[
-                      'Default',
-                      'Price: Low to High',
-                      'Price: High to Low'
-                    ].map<DropdownMenuItem<String>>((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(value),
-                      );
-                    }).toList(),
-                    onChanged: _sortProducts,
+                  const Text(
+                    '6 products',
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                  ),
+                  Row(
+                    children: [
+                      const Text('Sort by:'),
+                      const SizedBox(width: 10),
+                      DropdownButton<String>(
+                        value: _sortOption,
+                        items: <String>[
+                          'Default',
+                          'Price: Low to High',
+                          'Price: High to Low'
+                        ].map<DropdownMenuItem<String>>((String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(value),
+                          );
+                        }).toList(),
+                        onChanged: _sortProducts,
+                      ),
+                    ],
                   ),
                 ],
               ),
