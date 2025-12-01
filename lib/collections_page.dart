@@ -205,20 +205,20 @@ class CollectionsPage extends StatelessWidget {
                       childAspectRatio: 0.8,
                       children: const [
                         CollectionCard(
-                          title: '1',
+                          title: '1000% BEAARBRICKS',
                           imageUrl:
                               'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxrfumRH3x_TzW-P0tAg8gjIMhJh1pCP-UWw&s',
                           route: '/collection/1', // Add route
                         ),
                         CollectionCard(
-                          title: '2',
+                          title: '400% AND 100% BE@RBRICKS',
                           imageUrl:
-                              'https://images.stockx.com/images/Bearbrick-The-Joker-Batman-The-Animated-Series-100-400-Set.jpg?fit=fill&bg=FFFFFF&w=700&h=500&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1648201898',
+                              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTg2iEwX6e2TPABSAjaR0oMneYN4D2thD6Fl4QkuV9GKg&s',
                         ),
                         CollectionCard(
-                          title: '3',
+                          title: 'Bearbrick Merch',
                           imageUrl:
-                              'https://images.stockx.com/images/Bearbrick-BAPE-x-Levi-s-100-400-Set-Multi.jpg?fit=fill&bg=FFFFFF&w=700&h=500&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1641407898',
+                              'https://images.teepublic.com/derived/production/designs/63473609_0/1721896748/i_m:bi_production_blanks_mtl53ofohwq5goqjo9ke_1462829015,c_0_0_470x,s_313,q_90.jpg',
                         ),
                       ],
                     ),

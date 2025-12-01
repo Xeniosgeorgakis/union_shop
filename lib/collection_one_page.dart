@@ -213,13 +213,13 @@ class CollectionOnePage extends StatelessWidget {
                       childAspectRatio: 0.75,
                       children: const [
                         CollectionProductCard(
-                          title: 'Bearbrick Garfield 100% & 400% Set (Gold)',
-                          price: '£112.00',
-                          originalPrice: '£140.00',
+                          title: 'KAWS Companion Bearbrick 1000% (Blue)',
+                          price: '£200.00',
+                          
                           imageUrl:
-                              'https://images.stockx.com/images/Bearbrick-Garfield-100-400-Set-Gold-Chrome-Ver-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1738193358',
+                              'https://images.stockx.com/images/KAWS-Companion-Bearbrick-1000-Grey-Blue.jpg?fit=fill&bg=FFFFFF&w=700&h=500&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1620338070',
                           description:
-                              'Celebrate one of pop culture’s most iconic characters with the limited-edition BE@RBRICK Garfield 100% & 400% Gold Set. \n\nFeaturing a striking chrome gold finish, this collector’s duo blends playful character design with the signature BE@RBRICK style.\n\n Perfect for display, gifting, or expanding your collection, each figure delivers high-quality craftsmanship, smooth detailing, and a bold visual presence that stands out in any room or shelf.\n\n A must-have collector’s piece for Garfield fans and Bearbrick enthusiasts alike.',
+                              'The KAWS Companion Bearbrick 1000% Grey/Blue – GB is a standout collectible that merges the iconic Bearbrick silhouette with the unmistakable artistry of KAWS. Standing at an impressive 70 cm (27.5 inches), this oversized figure showcases the classic Companion character with its signature crossed-out eyes, detailed sculpting, and expressive posture.',
                         ),
                         CollectionProductCard(
                           title: '1000% Bearbrick - Squid Game (Red)',
@@ -229,6 +229,15 @@ class CollectionOnePage extends StatelessWidget {
                               'https://cdn.webshopapp.com/shops/153/files/431539158/medicom-toy-1000-bearbrick-squid-game-square-guard.jpg',
                           description:
                               'Step into the gripping world of Squid Game with this striking 1000% Bearbrick figure, inspired by the iconic Square Guard—the highest-ranking enforcer in the series’ hierarchy. Standing approximately 70 cm (27.5 inches) tall',
+                        ),
+                        CollectionProductCard(
+                          title: 'Bearbrick PAC-MAN 1000% (Black)',
+                          price: '£200.00',
+                          
+                          imageUrl:
+                              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOssIj6bikkRwl1sBE0u0ZK22FUihgjtlaPw&s',
+                          description:
+                              'The Bearbrick PAC-MAN 1000% – GB pays tribute to one of the most iconic video games of all time, blending nostalgic arcade culture with the modern collectible design of Bearbrick. Standing at approximately 70 cm tall, this oversized figure showcases vibrant PAC-MAN graphics wrapped around the classic Bearbrick form.',
                         ),
                       ],
                     ),
