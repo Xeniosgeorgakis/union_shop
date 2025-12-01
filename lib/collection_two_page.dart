@@ -26,7 +26,7 @@ class CollectionTwoPage extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(vertical: 8),
                     color: Colors.black,
                     child: const Text(
-                      '🔥 Massive BE@RBRICK Sale Live Now!',
+                      '🔥 Massive BE@RBRICK Sale Live Now — Limited Editions, Exclusive Drops, and Up to 20% Off While Stock Lasts!',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           color: Colors.white,
@@ -97,7 +97,36 @@ class CollectionTwoPage extends StatelessWidget {
                             ),
                           ),
                           const Spacer(),
-                          const SizedBox(width: 150),
+                          ConstrainedBox(
+                            constraints: const BoxConstraints(maxWidth: 600),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                IconButton(
+                                  icon: const Icon(Icons.search,
+                                      size: 18, color: Colors.grey),
+                                  onPressed: () {},
+                                ),
+                                IconButton(
+                                  icon: const Icon(Icons.person_outline,
+                                      size: 18, color: Colors.black),
+                                  onPressed: () {
+                                    Navigator.pushNamed(context, '/login');
+                                  },
+                                ),
+                                IconButton(
+                                  icon: const Icon(Icons.shopping_bag_outlined,
+                                      size: 18, color: Colors.grey),
+                                  onPressed: () {},
+                                ),
+                                IconButton(
+                                  icon: const Icon(Icons.menu,
+                                      size: 18, color: Colors.grey),
+                                  onPressed: () {},
+                                ),
+                              ],
+                            ),
+                          ),
                         ],
                       ),
                     ),

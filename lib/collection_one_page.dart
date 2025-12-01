@@ -215,7 +215,6 @@ class CollectionOnePage extends StatelessWidget {
                         CollectionProductCard(
                           title: 'KAWS Companion Bearbrick 1000% (Blue)',
                           price: '£200.00',
-                          
                           imageUrl:
                               'https://images.stockx.com/images/KAWS-Companion-Bearbrick-1000-Grey-Blue.jpg?fit=fill&bg=FFFFFF&w=700&h=500&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1620338070',
                           description:
@@ -233,7 +232,6 @@ class CollectionOnePage extends StatelessWidget {
                         CollectionProductCard(
                           title: 'Bearbrick PAC-MAN 1000% (Black)',
                           price: '£200.00',
-                          
                           imageUrl:
                               'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOssIj6bikkRwl1sBE0u0ZK22FUihgjtlaPw&s',
                           description:
