@@ -122,7 +122,9 @@ class SalePage extends StatelessWidget {
                                 IconButton(
                                   icon: const Icon(Icons.person_outline,
                                       size: 18, color: Colors.black),
-                                  onPressed: placeholderCallbackForButtons,
+                                  onPressed: () {
+                                    Navigator.pushNamed(context, '/login');
+                                  },
                                 ),
                                 IconButton(
                                   icon: const Icon(Icons.shopping_bag_outlined,

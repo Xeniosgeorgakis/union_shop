@@ -124,10 +124,10 @@ class AboutUsPage extends StatelessWidget {
                                 ),
                                 IconButton(
                                   icon: const Icon(Icons.person_outline,
-                                      //  Change color to black
-                                      size: 18,
-                                      color: Colors.black),
-                                  onPressed: placeholderCallbackForButtons,
+                                      size: 18, color: Colors.black),
+                                  onPressed: () {
+                                    Navigator.pushNamed(context, '/login');
+                                  },
                                 ),
                                 IconButton(
                                   icon: const Icon(Icons.shopping_bag_outlined,
