@@ -3,6 +3,7 @@ import 'package:union_shop/product_page.dart';
 import 'package:union_shop/about_us_page.dart';
 import 'package:union_shop/sale_page.dart';
 import 'package:union_shop/login_page.dart';
+import 'package:union_shop/collections_page.dart';
 import 'package:union_shop/footer.dart';
 
 void main() {
@@ -27,6 +28,7 @@ class UnionShopApp extends StatelessWidget {
         '/about': (context) => const AboutUsPage(),
         '/sale': (context) => const SalePage(),
         '/login': (context) => const LoginPage(),
+        '/collections': (context) => const CollectionsPage(),
       },
     );
   }
@@ -143,6 +145,23 @@ class HomeScreen extends StatelessWidget {
                               },
                               child: const Text(
                                 'Sale',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 24),
+                          MouseRegion(
+                            cursor: SystemMouseCursors.click,
+                            child: GestureDetector(
+                              onTap: () {
+                                Navigator.pushNamed(context, '/collections');
+                              },
+                              child: const Text(
+                                'Collections',
                                 style: TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.w600,
