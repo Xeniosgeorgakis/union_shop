@@ -317,7 +317,9 @@ class HomeScreen extends StatelessWidget {
                         ),
                         const SizedBox(height: 32),
                         ElevatedButton(
-                          onPressed: placeholderCallbackForButtons,
+                          onPressed: () {
+                            Navigator.pushNamed(context, '/collections');
+                          },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.black,
                             foregroundColor: Colors.white,
@@ -326,7 +328,7 @@ class HomeScreen extends StatelessWidget {
                             ),
                           ),
                           child: const Text(
-                            'BROWSE PRODUCTS',
+                            'BROWSE OUR COLLECTIONS',
                             style: TextStyle(fontSize: 14, letterSpacing: 1),
                           ),
                         ),

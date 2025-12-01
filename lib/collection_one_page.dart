@@ -180,7 +180,7 @@ class CollectionOnePage extends StatelessWidget {
               child: const Column(
                 children: [
                   Text(
-                    'COLLECTION 1',
+                    '1000% BE@RBRICKS',
                     style: TextStyle(
                       fontSize: 40,
                       fontWeight: FontWeight.bold,
@@ -189,7 +189,7 @@ class CollectionOnePage extends StatelessWidget {
                   ),
                   SizedBox(height: 10),
                   Text(
-                    'Exclusive Selection',
+                    'Exclusive BE@RBRICKS',
                     style: TextStyle(fontSize: 18, color: Colors.black87),
                   ),
                 ],
