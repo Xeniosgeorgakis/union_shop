@@ -104,10 +104,10 @@ class CollectionOnePage extends StatelessWidget {
                             cursor: SystemMouseCursors.click,
                             child: GestureDetector(
                               onTap: () {
-                                Navigator.pushNamed(context, '/sale');
+                                Navigator.pushNamed(context, '/collections');
                               },
                               child: const Text(
-                                'Sale',
+                                'Collections',
                                 style: TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.w600,
@@ -121,10 +121,10 @@ class CollectionOnePage extends StatelessWidget {
                             cursor: SystemMouseCursors.click,
                             child: GestureDetector(
                               onTap: () {
-                                Navigator.pushNamed(context, '/collections');
+                                Navigator.pushNamed(context, '/sale');
                               },
                               child: const Text(
-                                'Collections',
+                                'Sale',
                                 style: TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.w600,
