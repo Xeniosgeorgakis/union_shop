@@ -213,21 +213,17 @@ class _ProductPageState extends State<ProductPage> {
                             ),
                           ),
                           const SizedBox(width: 24),
-                          PopupMenuButton<int>(
+                          PopupMenuButton<String>(
                             onSelected: (value) {
-                              Navigator.pushNamed(
-                                context,
-                                '/printshark',
-                                arguments: {'initialTabIndex': value},
-                              );
+                              Navigator.pushNamed(context, value);
                             },
                             itemBuilder: (context) => [
                               const PopupMenuItem(
-                                value: 0,
+                                value: '/printshark',
                                 child: Text('About Print Shack'),
                               ),
                               const PopupMenuItem(
-                                value: 1,
+                                value: '/personalise',
                                 child: Text('Personalise'),
                               ),
                             ],
