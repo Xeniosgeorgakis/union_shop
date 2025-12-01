@@ -202,12 +202,12 @@ class CollectionsPage extends StatelessWidget {
                       crossAxisCount: 3,
                       crossAxisSpacing: 40,
                       mainAxisSpacing: 40,
-                      childAspectRatio: 1.2,
+                      childAspectRatio: 0.8,
                       children: const [
                         CollectionCard(
                           title: '1',
                           imageUrl:
-                              'https://images.stockx.com/images/Bearbrick-x-Jean-Michel-Basquiat-9-100-400-Set.jpg?fit=fill&bg=FFFFFF&w=700&h=500&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1691741569',
+                              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxrfumRH3x_TzW-P0tAg8gjIMhJh1pCP-UWw&s',
                           route: '/collection/1', // Add route
                         ),
                         CollectionCard(
