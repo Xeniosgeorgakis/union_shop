@@ -51,7 +51,7 @@ class _LoginPageState extends State<LoginPage> {
                     padding: const EdgeInsets.symmetric(vertical: 8),
                     color: Colors.black,
                     child: const Text(
-                      '🔥 Massive BE@RBRICK Sale Live Now!',
+                      '🔥 Massive BE@RBRICK Sale Live Now — Limited Editions, Exclusive Drops, and Up to 20% Off While Stock Lasts!',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           color: Colors.white,
