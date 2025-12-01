@@ -213,7 +213,8 @@ class CollectionsPage extends StatelessWidget {
                         CollectionCard(
                           title: '400% AND 100% BE@RBRICKS',
                           imageUrl:
-                              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTg2iEwX6e2TPABSAjaR0oMneYN4D2thD6Fl4QkuV9GKg&s',
+                              'https://bearbrickz.com/cdn/shop/files/400_-_-100_-Bearbrick-S_t-E.T.-114182579_1000x.webp?v=1742649369',
+                          route: '/collection/2',
                         ),
                         CollectionCard(
                           title: 'Bearbrick Merch',
