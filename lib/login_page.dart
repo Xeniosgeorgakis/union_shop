@@ -121,6 +121,18 @@ class _LoginPageState extends State<LoginPage> {
                                       fontWeight: FontWeight.w600)),
                             ),
                           ),
+                          const SizedBox(width: 24),
+                          MouseRegion(
+                            cursor: SystemMouseCursors.click,
+                            child: GestureDetector(
+                              onTap: () =>
+                                  Navigator.pushNamed(context, '/printshark'),
+                              child: const Text('Printshark',
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w600)),
+                            ),
+                          ),
                           const Spacer(),
                           // Placeholder for right side icons alignment
                           const SizedBox(width: 150),

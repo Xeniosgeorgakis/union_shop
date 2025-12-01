@@ -7,6 +7,7 @@ import 'package:union_shop/collections_page.dart';
 import 'package:union_shop/footer.dart';
 import 'package:union_shop/collection_one_page.dart'; // Import the new page
 import 'package:union_shop/collection_two_page.dart';
+import 'package:union_shop/printshark_page.dart';
 
 void main() {
   runApp(const UnionShopApp());
@@ -33,6 +34,7 @@ class UnionShopApp extends StatelessWidget {
         '/collections': (context) => const CollectionsPage(),
         '/collection/1': (context) => const CollectionOnePage(), // Add route
         '/collection/2': (context) => const CollectionTwoPage(),
+        '/printshark': (context) => const PrintsharkPage(),
       },
     );
   }
@@ -166,6 +168,23 @@ class HomeScreen extends StatelessWidget {
                               },
                               child: const Text(
                                 'Sale',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 24),
+                          MouseRegion(
+                            cursor: SystemMouseCursors.click,
+                            child: GestureDetector(
+                              onTap: () {
+                                Navigator.pushNamed(context, '/printshark');
+                              },
+                              child: const Text(
+                                'Printshark',
                                 style: TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.w600,

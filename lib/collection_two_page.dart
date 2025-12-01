@@ -114,7 +114,7 @@ class _CollectionTwoPageState extends State<CollectionTwoPage> {
                     padding: const EdgeInsets.symmetric(vertical: 8),
                     color: Colors.black,
                     child: const Text(
-                      '🔥 Massive BE@RBRICK Sale Live Now!',
+                      '🔥 Massive BE@RBRICK Sale Live Now — Limited Editions, Exclusive Drops, and Up to 20% Off While Stock Lasts!',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           color: Colors.white,
@@ -179,6 +179,19 @@ class _CollectionTwoPageState extends State<CollectionTwoPage> {
                               onTap: () =>
                                   Navigator.pushNamed(context, '/sale'),
                               child: const Text('Sale',
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w600)),
+                            ),
+                          ),
+                          const SizedBox(width: 24),
+                          MouseRegion(
+                            cursor: SystemMouseCursors.click,
+                            child: GestureDetector(
+                              onTap: () {
+                                Navigator.pushNamed(context, '/printshark');
+                              },
+                              child: const Text('Printshark',
                                   style: TextStyle(
                                       fontSize: 16,
                                       fontWeight: FontWeight.w600)),

@@ -194,6 +194,23 @@ class _CollectionOnePageState extends State<CollectionOnePage> {
                               ),
                             ),
                           ),
+                          const SizedBox(width: 24),
+                          MouseRegion(
+                            cursor: SystemMouseCursors.click,
+                            child: GestureDetector(
+                              onTap: () {
+                                Navigator.pushNamed(context, '/printshark');
+                              },
+                              child: const Text(
+                                'Printshark',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ),
+                          ),
                           const Spacer(),
                           ConstrainedBox(
                             constraints: const BoxConstraints(maxWidth: 600),
@@ -241,7 +258,7 @@ class _CollectionOnePageState extends State<CollectionOnePage> {
               child: const Column(
                 children: [
                   Text(
-                    '1000% BEAARBRICKS',
+                    '1000% BEARBRICKS',
                     style: TextStyle(
                       fontSize: 40,
                       fontWeight: FontWeight.bold,
