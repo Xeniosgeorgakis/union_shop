@@ -67,7 +67,7 @@ class AboutUsPage extends StatelessWidget {
                           ),
 
                           const Spacer(),
-                          // { changed code } Wrap with MouseRegion for pointer cursor
+                          //  Wrap with MouseRegion for pointer cursor
                           MouseRegion(
                             cursor: SystemMouseCursors.click,
                             child: GestureDetector(
@@ -94,7 +94,7 @@ class AboutUsPage extends StatelessWidget {
                             ),
                           ),
                           const SizedBox(width: 24),
-                          // { changed code } Wrap with MouseRegion for pointer cursor
+                          //  Wrap with MouseRegion for pointer cursor
                           MouseRegion(
                             cursor: SystemMouseCursors.click,
                             child: GestureDetector(
@@ -124,7 +124,7 @@ class AboutUsPage extends StatelessWidget {
                                 ),
                                 IconButton(
                                   icon: const Icon(Icons.person_outline,
-                                      // { changed code } Change color to black
+                                      //  Change color to black
                                       size: 18,
                                       color: Colors.black),
                                   onPressed: placeholderCallbackForButtons,
