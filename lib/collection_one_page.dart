@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:union_shop/footer.dart';
 
-class CollectionsPage extends StatelessWidget {
-  const CollectionsPage({super.key});
+class CollectionOnePage extends StatelessWidget {
+  const CollectionOnePage({super.key});
 
   void navigateToHome(BuildContext context) {
     Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
@@ -100,15 +100,6 @@ class CollectionsPage extends StatelessWidget {
                             ),
                           ),
                           const SizedBox(width: 24),
-                          const Text(
-                            'Collections',
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.black,
-                            ),
-                          ),
-                          const SizedBox(width: 24),
                           MouseRegion(
                             cursor: SystemMouseCursors.click,
                             child: GestureDetector(
@@ -117,6 +108,23 @@ class CollectionsPage extends StatelessWidget {
                               },
                               child: const Text(
                                 'Sale',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 24),
+                          MouseRegion(
+                            cursor: SystemMouseCursors.click,
+                            child: GestureDetector(
+                              onTap: () {
+                                Navigator.pushNamed(context, '/collections');
+                              },
+                              child: const Text(
+                                'Collections',
                                 style: TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.w600,
@@ -164,7 +172,7 @@ class CollectionsPage extends StatelessWidget {
               ),
             ),
 
-            // Collections Banner
+            // Collection Banner
             Container(
               width: double.infinity,
               padding: const EdgeInsets.all(40),
@@ -172,7 +180,7 @@ class CollectionsPage extends StatelessWidget {
               child: const Column(
                 children: [
                   Text(
-                    'OUR COLLECTIONS',
+                    'COLLECTION 1',
                     style: TextStyle(
                       fontSize: 40,
                       fontWeight: FontWeight.bold,
@@ -181,44 +189,46 @@ class CollectionsPage extends StatelessWidget {
                   ),
                   SizedBox(height: 10),
                   Text(
-                    'Explore our curated Bearbrick collections.',
+                    'Exclusive Selection',
                     style: TextStyle(fontSize: 18, color: Colors.black87),
                   ),
                 ],
               ),
             ),
 
-            // Collections Grid
+            // Products Grid
             Container(
               color: Colors.white,
               child: Padding(
                 padding: const EdgeInsets.all(40.0),
                 child: Center(
                   child: ConstrainedBox(
-                    constraints: const BoxConstraints(maxWidth: 1100),
+                    constraints: const BoxConstraints(maxWidth: 900),
                     child: GridView.count(
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
-                      crossAxisCount: 3,
-                      crossAxisSpacing: 40,
-                      mainAxisSpacing: 40,
-                      childAspectRatio: 1.2,
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 80,
+                      mainAxisSpacing: 80,
+                      childAspectRatio: 0.75,
                       children: const [
-                        CollectionCard(
-                          title: '1',
+                        CollectionProductCard(
+                          title: 'Bearbrick Garfield 100% & 400% Set (Gold)',
+                          price: '£112.00',
+                          originalPrice: '£140.00',
                           imageUrl:
-                              'https://images.stockx.com/images/Bearbrick-x-Jean-Michel-Basquiat-9-100-400-Set.jpg?fit=fill&bg=FFFFFF&w=700&h=500&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1691741569',
-                          route: '/collection/1', // Add route
+                              'https://images.stockx.com/images/Bearbrick-Garfield-100-400-Set-Gold-Chrome-Ver-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1738193358',
+                          description:
+                              'Celebrate one of pop culture’s most iconic characters with the limited-edition BE@RBRICK Garfield 100% & 400% Gold Set. \n\nFeaturing a striking chrome gold finish, this collector’s duo blends playful character design with the signature BE@RBRICK style.\n\n Perfect for display, gifting, or expanding your collection, each figure delivers high-quality craftsmanship, smooth detailing, and a bold visual presence that stands out in any room or shelf.\n\n A must-have collector’s piece for Garfield fans and Bearbrick enthusiasts alike.',
                         ),
-                        CollectionCard(
-                          title: '2',
+                        CollectionProductCard(
+                          title: '1000% Bearbrick - Squid Game (Red)',
+                          price: '£160.00',
+                          originalPrice: '£200.00',
                           imageUrl:
-                              'https://images.stockx.com/images/Bearbrick-The-Joker-Batman-The-Animated-Series-100-400-Set.jpg?fit=fill&bg=FFFFFF&w=700&h=500&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1648201898',
-                        ),
-                        CollectionCard(
-                          title: '3',
-                          imageUrl:
-                              'https://images.stockx.com/images/Bearbrick-BAPE-x-Levi-s-100-400-Set-Multi.jpg?fit=fill&bg=FFFFFF&w=700&h=500&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1641407898',
+                              'https://cdn.webshopapp.com/shops/153/files/431539158/medicom-toy-1000-bearbrick-squid-game-square-guard.jpg',
+                          description:
+                              'Step into the gripping world of Squid Game with this striking 1000% Bearbrick figure, inspired by the iconic Square Guard—the highest-ranking enforcer in the series’ hierarchy. Standing approximately 70 cm (27.5 inches) tall',
                         ),
                       ],
                     ),
@@ -226,7 +236,6 @@ class CollectionsPage extends StatelessWidget {
                 ),
               ),
             ),
-
             const Footer(),
           ],
         ),
@@ -235,25 +244,37 @@ class CollectionsPage extends StatelessWidget {
   }
 }
 
-class CollectionCard extends StatelessWidget {
+class CollectionProductCard extends StatelessWidget {
   final String title;
+  final String price;
+  final String? originalPrice;
   final String imageUrl;
-  final String? route; // Add route parameter
+  final String description;
 
-  const CollectionCard({
+  const CollectionProductCard({
     super.key,
     required this.title,
+    required this.price,
+    this.originalPrice,
     required this.imageUrl,
-    this.route, // Initialize route
+    required this.description,
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        if (route != null) {
-          Navigator.pushNamed(context, route!);
-        }
+        Navigator.pushNamed(
+          context,
+          '/product',
+          arguments: {
+            'title': title,
+            'price': price,
+            'originalPrice': originalPrice,
+            'imageUrl': imageUrl,
+            'description': description,
+          },
+        );
       },
       child: Container(
         decoration: BoxDecoration(
@@ -268,50 +289,95 @@ class CollectionCard extends StatelessWidget {
             ),
           ],
         ),
-        child: Stack(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Positioned.fill(
+            Expanded(
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(12),
-                child: Image.network(
-                  imageUrl,
-                  fit: BoxFit.cover,
-                  errorBuilder: (context, error, stackTrace) {
-                    return Container(
-                      color: Colors.grey[300],
-                      child: const Center(
-                        child:
-                            Icon(Icons.image_not_supported, color: Colors.grey),
-                      ),
-                    );
-                  },
+                borderRadius:
+                    const BorderRadius.vertical(top: Radius.circular(12)),
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: imageUrl.startsWith('http')
+                      ? Image.network(
+                          imageUrl,
+                          fit: BoxFit.contain,
+                          width: double.infinity,
+                          errorBuilder: (context, error, stackTrace) {
+                            return Container(
+                              color: Colors.grey[300],
+                              child: const Center(
+                                child: Icon(Icons.image_not_supported,
+                                    color: Colors.grey),
+                              ),
+                            );
+                          },
+                        )
+                      : Image.asset(
+                          imageUrl,
+                          fit: BoxFit.contain,
+                          width: double.infinity,
+                          errorBuilder: (context, error, stackTrace) {
+                            return Container(
+                              color: Colors.grey[300],
+                              child: const Center(
+                                child: Icon(Icons.image_not_supported,
+                                    color: Colors.grey),
+                              ),
+                            );
+                          },
+                        ),
                 ),
               ),
             ),
-            Positioned.fill(
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
-                  gradient: const LinearGradient(
-                    colors: [Colors.transparent, Colors.black],
-                    begin: Alignment.center,
-                    end: Alignment.bottomCenter,
+            Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: const TextStyle(
+                      fontSize: 14,
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
                   ),
-                ),
-              ),
-            ),
-            Positioned(
-              bottom: 20,
-              left: 20,
-              right: 20,
-              child: Text(
-                title,
-                style: const TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
-                textAlign: TextAlign.center,
+                  const SizedBox(height: 8),
+                  if (originalPrice != null)
+                    Row(
+                      children: [
+                        Text(
+                          originalPrice!,
+                          style: const TextStyle(
+                            fontSize: 12,
+                            color: Colors.grey,
+                            decoration: TextDecoration.lineThrough,
+                          ),
+                        ),
+                        const SizedBox(width: 8),
+                        Text(
+                          price,
+                          style: const TextStyle(
+                            fontSize: 14,
+                            color: Colors.red,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    )
+                  else
+                    Text(
+                      price,
+                      style: const TextStyle(
+                        fontSize: 14,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                ],
               ),
             ),
           ],
