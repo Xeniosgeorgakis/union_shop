@@ -183,6 +183,23 @@ class _ProductPageState extends State<ProductPage> {
                             cursor: SystemMouseCursors.click,
                             child: GestureDetector(
                               onTap: () {
+                                Navigator.pushNamed(context, '/collections');
+                              },
+                              child: const Text(
+                                'Collections',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 24),
+                          MouseRegion(
+                            cursor: SystemMouseCursors.click,
+                            child: GestureDetector(
+                              onTap: () {
                                 Navigator.pushNamed(context, '/sale');
                               },
                               child: const Text(
