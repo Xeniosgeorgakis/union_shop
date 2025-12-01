@@ -184,30 +184,118 @@ class PrintsharkPage extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(40),
               width: double.infinity,
-              child: const Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    'Printshark Page',
-                    style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
-                    textAlign: TextAlign.center,
+              child: Center(
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 800),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        'What Is Print Shack?',
+                        style: TextStyle(
+                            fontSize: 32, fontWeight: FontWeight.bold),
+                      ),
+                      const SizedBox(height: 20),
+                      const Text(
+                        'Print Shack is our personalised T-shirt service that lets you create unique, made-to-order shirts with your own text, artwork, or branding.',
+                        style: TextStyle(fontSize: 16, height: 1.5),
+                      ),
+                      const SizedBox(height: 40),
+                      const Text(
+                        'What We Offer',
+                        style: TextStyle(
+                            fontSize: 24, fontWeight: FontWeight.bold),
+                      ),
+                      const SizedBox(height: 20),
+                      _buildFeatureRow(
+                        'Text Personalisation',
+                        'Add names, slogans, quotes, or any custom text using your choice of fonts and styles.',
+                      ),
+                      const SizedBox(height: 16),
+                      _buildFeatureRow(
+                        'Multiple Font Options',
+                        'Choose from a selection of clean, professional fonts to match your design aesthetic.',
+                      ),
+                      const SizedBox(height: 16),
+                      _buildFeatureRow(
+                        'Flexible Placement',
+                        'Select from chest print, full-width front print, small logo placement, oversized back print, or sleeve printing.',
+                      ),
+                      const SizedBox(height: 16),
+                      _buildFeatureRow(
+                        'Premium T-Shirt Quality',
+                        'Soft, comfortable cotton shirts available in multiple colours and sizes.',
+                      ),
+                      const SizedBox(height: 40),
+                      const Text(
+                        'How It Works',
+                        style: TextStyle(
+                            fontSize: 24, fontWeight: FontWeight.bold),
+                      ),
+                      const SizedBox(height: 20),
+                      _buildStepRow(
+                          '1️⃣', 'Choose your T-shirt style and colour'),
+                      const SizedBox(height: 16),
+                      _buildStepRow(
+                          '2️⃣', 'Enter your text or upload your design'),
+                      const SizedBox(height: 16),
+                      _buildStepRow('3️⃣',
+                          'Pick your preferred font, size, and placement'),
+                      const SizedBox(height: 16),
+                      _buildStepRow(
+                          '4️⃣', 'Review your preview and place your order'),
+                    ],
                   ),
-                  SizedBox(height: 20),
-                  SizedBox(
-                    width: 800,
-                    child: Text(
-                      'This is the Printshark page. You can add your content here.',
-                      style: TextStyle(fontSize: 16, height: 1.5),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                ],
+                ),
               ),
             ),
             const Footer(),
           ],
         ),
       ),
+    );
+  }
+
+  Widget _buildFeatureRow(String title, String description) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Text('✔', style: TextStyle(fontSize: 16, color: Colors.green)),
+        const SizedBox(width: 12),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                title,
+                style:
+                    const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 4),
+              Text(
+                description,
+                style: const TextStyle(fontSize: 16, height: 1.5),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildStepRow(String emoji, String text) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(emoji, style: const TextStyle(fontSize: 16)),
+        const SizedBox(width: 12),
+        Expanded(
+          child: Text(
+            text,
+            style: const TextStyle(fontSize: 16, height: 1.5),
+          ),
+        ),
+      ],
     );
   }
 }
