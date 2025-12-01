@@ -185,16 +185,38 @@ class _CollectionTwoPageState extends State<CollectionTwoPage> {
                             ),
                           ),
                           const SizedBox(width: 24),
-                          MouseRegion(
-                            cursor: SystemMouseCursors.click,
-                            child: GestureDetector(
-                              onTap: () {
-                                Navigator.pushNamed(context, '/printshark');
-                              },
-                              child: const Text('Printshark',
-                                  style: TextStyle(
+                          PopupMenuButton<int>(
+                            onSelected: (value) {
+                              Navigator.pushNamed(
+                                context,
+                                '/printshark',
+                                arguments: {'initialTabIndex': value},
+                              );
+                            },
+                            itemBuilder: (context) => [
+                              const PopupMenuItem(
+                                value: 0,
+                                child: Text('About Print Shack'),
+                              ),
+                              const PopupMenuItem(
+                                value: 1,
+                                child: Text('Personalise'),
+                              ),
+                            ],
+                            child: const MouseRegion(
+                              cursor: SystemMouseCursors.click,
+                              child: Row(
+                                children: [
+                                  Text(
+                                    'Printshark',
+                                    style: TextStyle(
                                       fontSize: 16,
-                                      fontWeight: FontWeight.w600)),
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                  Icon(Icons.arrow_drop_down),
+                                ],
+                              ),
                             ),
                           ),
                           const Spacer(),

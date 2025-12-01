@@ -11,6 +11,22 @@ class PrintsharkPage extends StatefulWidget {
 
 class _PrintsharkPageState extends State<PrintsharkPage> {
   int _selectedTabIndex = 0;
+  bool _isInit = true;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (_isInit) {
+      final args =
+          ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>?;
+      if (args != null && args.containsKey('initialTabIndex')) {
+        setState(() {
+          _selectedTabIndex = args['initialTabIndex'];
+        });
+      }
+      _isInit = false;
+    }
+  }
 
   void navigateToHome(BuildContext context) {
     Navigator.pushNamed(context, '/');
@@ -142,13 +158,38 @@ class _PrintsharkPageState extends State<PrintsharkPage> {
                             ),
                           ),
                           const SizedBox(width: 24),
-                          const Text(
-                            'Printshark',
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.black,
-                            ),
+                          PopupMenuButton<int>(
+                            icon: const Icon(Icons.arrow_drop_down,
+                                size: 18, color: Colors.black),
+                            onSelected: (int index) {
+                              setState(() {
+                                _selectedTabIndex = index;
+                              });
+                            },
+                            itemBuilder: (BuildContext context) => [
+                              const PopupMenuItem<int>(
+                                value: 0,
+                                child: Text(
+                                  'About Print Shack',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ),
+                              const PopupMenuItem<int>(
+                                value: 1,
+                                child: Text(
+                                  'Personalise',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                           const Spacer(),
                           ConstrainedBox(
