@@ -161,17 +161,34 @@ void main() {
           Builder(
             builder: (context) {
               cartProvider = Provider.of<CartProvider>(context, listen: false);
-              return const ProductPage();
+              // Navigate to the product page with arguments to properly initialize it.
+              return Scaffold(
+                body: Center(
+                  child: ElevatedButton(
+                    onPressed: () => Navigator.pushNamed(context, '/product',
+                        arguments: productArgs),
+                    child: const Text('Go to Product'),
+                  ),
+                ),
+              );
             },
           ),
         ),
       );
 
+      // Go to product page
+      await tester.tap(find.text('Go to Product'));
+      await tester.pumpAndSettle();
+
       // Check that cart is initially empty
       expect(cartProvider.itemCount, 0);
 
-      // Tap 'ADD TO CART' button
-      await tester.tap(find.widgetWithText(ElevatedButton, 'ADD TO CART'));
+      // Scroll the "ADD TO CART" button into view and tap it
+      final addToCartButton =
+          find.widgetWithText(ElevatedButton, 'ADD TO CART');
+      await tester.ensureVisible(addToCartButton);
+      await tester.pumpAndSettle();
+      await tester.tap(addToCartButton);
       await tester.pump(); // Let the SnackBar appear
 
       // Verify SnackBar is shown
@@ -194,31 +211,52 @@ void main() {
         'description': 'A Garfield Bearbrick.',
       };
 
-      await tester.pumpWidget(createTestableWidget(
-        const ProductPage(),
-        arguments: garfieldArgs,
-      ));
+      await tester.pumpWidget(
+        createTestableWidget(
+          Builder(
+            builder: (context) => Scaffold(
+              body: Center(
+                child: ElevatedButton(
+                  onPressed: () => Navigator.pushNamed(context, '/product',
+                      arguments: garfieldArgs),
+                  child: const Text('Go to Product'),
+                ),
+              ),
+            ),
+          ),
+          arguments: garfieldArgs,
+        ),
+      );
+
+      await tester.tap(find.text('Go to Product'));
       await tester.pumpAndSettle();
 
-      // Find thumbnails
-      final thumbnails = find.byType(GestureDetector).evaluate().where((e) {
-        final widget = e.widget as GestureDetector;
-        return widget.child is Container &&
-            (widget.child as Container).child is Image;
-      }).toList();
+      // Find thumbnails by looking for the GestureDetector wrapping the thumbnail Container.
+      final thumbnailGestureDetectors = find.byWidgetPredicate((widget) {
+        if (widget is! GestureDetector) return false;
+        final container = widget.child;
+        if (container is! Container) return false;
 
-      expect(thumbnails.length, 2);
+        // Check for properties specific to the thumbnail containers
+        return container.margin == const EdgeInsets.only(right: 16);
+      });
+
+      expect(thumbnailGestureDetectors, findsNWidgets(2));
 
       // Tap the second thumbnail
-      await tester.tap(find.byWidget(thumbnails.last.widget));
+      await tester.tap(thumbnailGestureDetectors.last);
       await tester.pump();
 
-      // Verify the second thumbnail is now selected (has a border)
+      // Verify the second thumbnail is now selected (has a black border)
+      final secondThumbnailGestureDetector =
+          tester.widget<GestureDetector>(thumbnailGestureDetectors.last);
       final secondThumbnailContainer =
-          (thumbnails.last.widget as GestureDetector).child as Container;
+          secondThumbnailGestureDetector.child as Container;
       final decoration = secondThumbnailContainer.decoration as BoxDecoration;
-      expect(decoration.border, isNotNull);
-      expect((decoration.border as Border).top.color, Colors.black);
+      expect(decoration.border, isA<Border>());
+      final border = decoration.border as Border;
+      expect(border.top.color, Colors.black);
+      expect(border.top.width, 2);
     });
 
     testWidgets('should display footer', (tester) async {
