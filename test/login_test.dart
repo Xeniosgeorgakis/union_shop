@@ -33,12 +33,17 @@ void main() {
       expect(find.widgetWithText(TextFormField, 'Email'), findsOneWidget);
       expect(find.widgetWithText(TextFormField, 'Password'), findsOneWidget);
 
-      // Check for search field
-      expect(
-          find.byType(TextField), findsNWidgets(3)); // email, password, search
+      // Check for search field (not visible initially)
+      expect(find.byType(TextField), findsNWidgets(2)); // email, password
 
       // Check for Sign In Button
       expect(find.widgetWithText(ElevatedButton, 'SIGN IN'), findsOneWidget);
+
+      // Tap search icon and verify text field appears
+      await tester.tap(find.byIcon(Icons.search));
+      await tester.pump();
+      expect(
+          find.byType(TextField), findsNWidgets(3)); // email, password, search
     });
 
     testWidgets('should show validation errors for empty fields',

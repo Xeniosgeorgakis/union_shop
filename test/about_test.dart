@@ -50,11 +50,18 @@ void main() {
       expect(find.text('Printshark'), findsOneWidget);
 
       // Check for Header Icons
-      expect(find.byType(TextField), findsOneWidget);
       expect(find.byIcon(Icons.search), findsOneWidget);
       expect(find.byIcon(Icons.person_outline), findsOneWidget);
       expect(find.byIcon(Icons.shopping_bag_outlined), findsOneWidget);
       expect(find.byIcon(Icons.menu), findsOneWidget);
+
+      // Check that search field is not visible initially
+      expect(find.byType(TextField), findsNothing);
+
+      // Tap search icon and verify text field appears
+      await tester.tap(find.byIcon(Icons.search));
+      await tester.pump();
+      expect(find.byType(TextField), findsOneWidget);
     });
 
     testWidgets('should display main content of About Us page', (tester) async {

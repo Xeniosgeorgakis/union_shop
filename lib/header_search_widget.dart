@@ -11,6 +11,7 @@ class HeaderSearchWidget extends StatefulWidget {
 
 class _HeaderSearchWidgetState extends State<HeaderSearchWidget> {
   final _searchController = TextEditingController();
+  bool _isSearching = false;
 
   @override
   void dispose() {
@@ -54,27 +55,46 @@ class _HeaderSearchWidgetState extends State<HeaderSearchWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        SizedBox(
-          width: 150,
-          height: 36,
-          child: TextField(
-            controller: _searchController,
-            decoration: const InputDecoration(
-              hintText: 'Search...',
-              contentPadding: EdgeInsets.symmetric(horizontal: 10),
-              border: OutlineInputBorder(),
-            ),
-            onSubmitted: (_) => _performSearch(),
-          ),
-        ),
-        IconButton(
-          icon: const Icon(Icons.search, size: 18, color: Colors.grey),
-          onPressed: _performSearch,
-        ),
-      ],
-    );
+    return _isSearching
+        ? Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              SizedBox(
+                width: 150,
+                height: 36,
+                child: TextField(
+                  controller: _searchController,
+                  autofocus: true,
+                  decoration: const InputDecoration(
+                    hintText: 'Search...',
+                    contentPadding: EdgeInsets.symmetric(horizontal: 10),
+                    border: OutlineInputBorder(),
+                  ),
+                  onSubmitted: (_) => _performSearch(),
+                ),
+              ),
+              IconButton(
+                icon: const Icon(Icons.search, size: 18, color: Colors.grey),
+                onPressed: _performSearch,
+              ),
+              IconButton(
+                icon: const Icon(Icons.close, size: 18, color: Colors.grey),
+                onPressed: () {
+                  setState(() {
+                    _isSearching = false;
+                    _searchController.clear();
+                  });
+                },
+              ),
+            ],
+          )
+        : IconButton(
+            icon: const Icon(Icons.search, size: 18, color: Colors.grey),
+            onPressed: () {
+              setState(() {
+                _isSearching = true;
+              });
+            },
+          );
   }
 }
