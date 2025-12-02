@@ -81,7 +81,7 @@ class Footer extends StatelessWidget {
                         },
                         child: const Text(
                           'About Us',
-                          style: TextStyle(color: Colors.black, height: 1.5),
+                          style: TextStyle(color: Colors.grey, height: 1.5),
                         ),
                       ),
                     ),
@@ -90,11 +90,11 @@ class Footer extends StatelessWidget {
               ),
               const SizedBox(width: 24),
               // Help Column
-              const Expanded(
+              Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    const Text(
                       'HELP',
                       style: TextStyle(
                         fontSize: 16,
@@ -103,22 +103,54 @@ class Footer extends StatelessWidget {
                         letterSpacing: 1.0,
                       ),
                     ),
-                    SizedBox(height: 16),
-                    Text(
-                      'Shipping & Returns',
-                      style: TextStyle(color: Colors.grey, height: 1.5),
+                    const SizedBox(height: 16),
+                    MouseRegion(
+                      cursor: SystemMouseCursors.click,
+                      child: GestureDetector(
+                        onTap: () {
+                          // TODO: Implement navigation
+                        },
+                        child: const Text(
+                          'Shipping & Returns',
+                          style: TextStyle(color: Colors.grey, height: 1.5),
+                        ),
+                      ),
                     ),
-                    Text(
-                      'FAQ',
-                      style: TextStyle(color: Colors.grey, height: 1.5),
+                    MouseRegion(
+                      cursor: SystemMouseCursors.click,
+                      child: GestureDetector(
+                        onTap: () {
+                          // TODO: Implement navigation
+                        },
+                        child: const Text(
+                          'FAQ',
+                          style: TextStyle(color: Colors.grey, height: 1.5),
+                        ),
+                      ),
                     ),
-                    Text(
-                      'Contact Us',
-                      style: TextStyle(color: Colors.grey, height: 1.5),
+                    MouseRegion(
+                      cursor: SystemMouseCursors.click,
+                      child: GestureDetector(
+                        onTap: () {
+                          // TODO: Implement navigation
+                        },
+                        child: const Text(
+                          'Contact Us',
+                          style: TextStyle(color: Colors.grey, height: 1.5),
+                        ),
+                      ),
                     ),
-                    Text(
-                      'Terms & Conditions',
-                      style: TextStyle(color: Colors.grey, height: 1.5),
+                    MouseRegion(
+                      cursor: SystemMouseCursors.click,
+                      child: GestureDetector(
+                        onTap: () {
+                          // TODO: Implement navigation
+                        },
+                        child: const Text(
+                          'Terms & Conditions',
+                          style: TextStyle(color: Colors.grey, height: 1.5),
+                        ),
+                      ),
                     ),
                   ],
                 ),

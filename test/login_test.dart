@@ -4,14 +4,8 @@ import 'package:union_shop/login_page.dart';
 
 void main() {
   group('LoginPage Tests', () {
-    Widget createTestWidget() {
-      return const MaterialApp(
-        home: LoginPage(),
-      );
-    }
-
     testWidgets('should display login page elements', (tester) async {
-      await tester.pumpWidget(createTestWidget());
+      await tester.pumpWidget(const MaterialApp(home: LoginPage()));
       await tester.pump();
 
       // Check for Header text
@@ -36,7 +30,7 @@ void main() {
 
     testWidgets('should show validation errors for empty fields',
         (tester) async {
-      await tester.pumpWidget(createTestWidget());
+      await tester.pumpWidget(const MaterialApp(home: LoginPage()));
       await tester.pump();
 
       // Tap Sign In button without entering data
@@ -50,7 +44,7 @@ void main() {
 
     testWidgets('should show validation error for invalid email domain',
         (tester) async {
-      await tester.pumpWidget(createTestWidget());
+      await tester.pumpWidget(const MaterialApp(home: LoginPage()));
       await tester.pump();
 
       // Enter invalid email
@@ -68,7 +62,14 @@ void main() {
     });
 
     testWidgets('should allow login with valid gmail', (tester) async {
-      await tester.pumpWidget(createTestWidget());
+      await tester.pumpWidget(MaterialApp(
+        initialRoute: '/login',
+        routes: {
+          '/': (context) =>
+              const Scaffold(body: Center(child: Text('Home Screen'))),
+          '/login': (context) => const LoginPage(),
+        },
+      ));
       await tester.pump();
 
       // Enter valid gmail
@@ -79,18 +80,26 @@ void main() {
 
       // Tap Sign In button
       await tester.tap(find.widgetWithText(ElevatedButton, 'SIGN IN'));
-      await tester.pump();
-
-      // Verify no validation errors exist
-      expect(find.text('Enter a valid email'), findsNothing);
-      expect(find.text('Please enter your email'), findsNothing);
+      await tester.pump(); // For SnackBar
 
       // Verify SnackBar appears (indicating success logic triggered)
       expect(find.text('Logging in...'), findsOneWidget);
+
+      await tester.pumpAndSettle(); // For navigation to complete
+
+      // Verify navigation to home screen
+      expect(find.text('Home Screen'), findsOneWidget);
     });
 
     testWidgets('should allow login with valid hotmail', (tester) async {
-      await tester.pumpWidget(createTestWidget());
+      await tester.pumpWidget(MaterialApp(
+        initialRoute: '/login',
+        routes: {
+          '/': (context) =>
+              const Scaffold(body: Center(child: Text('Home Screen'))),
+          '/login': (context) => const LoginPage(),
+        },
+      ));
       await tester.pump();
 
       // Enter valid hotmail
@@ -105,6 +114,11 @@ void main() {
 
       // Verify SnackBar appears
       expect(find.text('Logging in...'), findsOneWidget);
+
+      await tester.pumpAndSettle();
+
+      // Verify navigation to home screen
+      expect(find.text('Home Screen'), findsOneWidget);
     });
   });
 }

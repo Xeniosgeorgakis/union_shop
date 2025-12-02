@@ -238,7 +238,7 @@ class CollectionsPage extends StatelessWidget {
                       childAspectRatio: 0.8,
                       children: const [
                         CollectionCard(
-                          title: '1000% BEAARBRICKS',
+                          title: '1000% BE@RBRICKS',
                           imageUrl:
                               'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxrfumRH3x_TzW-P0tAg8gjIMhJh1pCP-UWw&s',
                           route: '/collection/1', // Add route

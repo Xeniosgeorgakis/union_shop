@@ -306,7 +306,7 @@ class PrintsharkPage extends StatelessWidget {
                   ),
                 ),
                 child: const Text(
-                  'Start Personilising',
+                  'Start Personalising',
                   style: TextStyle(fontSize: 16),
                 ),
               ),

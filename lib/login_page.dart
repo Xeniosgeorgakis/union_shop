@@ -74,87 +74,121 @@ class _LoginPageState extends State<LoginPage> {
                                   const Icon(Icons.error),
                             ),
                           ),
-                          const Spacer(),
-                          MouseRegion(
-                            cursor: SystemMouseCursors.click,
-                            child: GestureDetector(
-                              onTap: () => navigateToHome(context),
-                              child: const Text('Home',
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w600)),
-                            ),
-                          ),
-                          const SizedBox(width: 24),
-                          MouseRegion(
-                            cursor: SystemMouseCursors.click,
-                            child: GestureDetector(
-                              onTap: () =>
-                                  Navigator.pushNamed(context, '/about'),
-                              child: const Text('About Us',
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w600)),
-                            ),
-                          ),
-                          const SizedBox(width: 24),
-                          MouseRegion(
-                            cursor: SystemMouseCursors.click,
-                            child: GestureDetector(
-                              onTap: () =>
-                                  Navigator.pushNamed(context, '/collections'),
-                              child: const Text('Collections',
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w600)),
-                            ),
-                          ),
-                          const SizedBox(width: 24),
-                          MouseRegion(
-                            cursor: SystemMouseCursors.click,
-                            child: GestureDetector(
-                              onTap: () =>
-                                  Navigator.pushNamed(context, '/sale'),
-                              child: const Text('Sale',
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w600)),
-                            ),
-                          ),
-                          const SizedBox(width: 24),
-                          PopupMenuButton<String>(
-                            onSelected: (value) {
-                              Navigator.pushNamed(context, value);
-                            },
-                            itemBuilder: (context) => [
-                              const PopupMenuItem(
-                                value: '/printshark',
-                                child: Text('About Print Shack'),
-                              ),
-                              const PopupMenuItem(
-                                value: '/personalise',
-                                child: Text('Personalise'),
-                              ),
-                            ],
-                            child: const MouseRegion(
-                              cursor: SystemMouseCursors.click,
+                          Expanded(
+                            child: SingleChildScrollView(
+                              scrollDirection: Axis.horizontal,
                               child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Text(
-                                    'Printshark',
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w600,
+                                  MouseRegion(
+                                    cursor: SystemMouseCursors.click,
+                                    child: GestureDetector(
+                                      onTap: () => navigateToHome(context),
+                                      child: const Text('Home',
+                                          style: TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w600)),
                                     ),
                                   ),
-                                  Icon(Icons.arrow_drop_down),
+                                  const SizedBox(width: 24),
+                                  MouseRegion(
+                                    cursor: SystemMouseCursors.click,
+                                    child: GestureDetector(
+                                      onTap: () => Navigator.pushNamed(
+                                          context, '/about'),
+                                      child: const Text('About Us',
+                                          style: TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w600)),
+                                    ),
+                                  ),
+                                  const SizedBox(width: 24),
+                                  MouseRegion(
+                                    cursor: SystemMouseCursors.click,
+                                    child: GestureDetector(
+                                      onTap: () => Navigator.pushNamed(
+                                          context, '/collections'),
+                                      child: const Text('Collections',
+                                          style: TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w600)),
+                                    ),
+                                  ),
+                                  const SizedBox(width: 24),
+                                  MouseRegion(
+                                    cursor: SystemMouseCursors.click,
+                                    child: GestureDetector(
+                                      onTap: () =>
+                                          Navigator.pushNamed(context, '/sale'),
+                                      child: const Text('Sale',
+                                          style: TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w600)),
+                                    ),
+                                  ),
+                                  const SizedBox(width: 24),
+                                  PopupMenuButton<String>(
+                                    onSelected: (value) {
+                                      Navigator.pushNamed(context, value);
+                                    },
+                                    itemBuilder: (context) => [
+                                      const PopupMenuItem(
+                                        value: '/printshark',
+                                        child: Text('About Print Shack'),
+                                      ),
+                                      const PopupMenuItem(
+                                        value: '/personalise',
+                                        child: Text('Personalise'),
+                                      ),
+                                    ],
+                                    child: const MouseRegion(
+                                      cursor: SystemMouseCursors.click,
+                                      child: Row(
+                                        children: [
+                                          Text(
+                                            'Printshark',
+                                            style: TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                          ),
+                                          Icon(Icons.arrow_drop_down),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
                                 ],
                               ),
                             ),
                           ),
-                          const Spacer(),
                           // Placeholder for right side icons alignment
-                          const SizedBox(width: 150),
+                          Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              IconButton(
+                                icon: const Icon(Icons.search,
+                                    size: 18, color: Colors.grey),
+                                onPressed: () {},
+                              ),
+                              IconButton(
+                                icon: const Icon(Icons.person_outline,
+                                    size: 18, color: Colors.black),
+                                onPressed: () {
+                                  Navigator.pushNamed(context, '/login');
+                                },
+                              ),
+                              IconButton(
+                                icon: const Icon(Icons.shopping_bag_outlined,
+                                    size: 18, color: Colors.grey),
+                                onPressed: () {},
+                              ),
+                              IconButton(
+                                icon: const Icon(Icons.menu,
+                                    size: 18, color: Colors.grey),
+                                onPressed: () {},
+                              ),
+                            ],
+                          ),
                         ],
                       ),
                     ),

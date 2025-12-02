@@ -4,42 +4,118 @@ import 'package:union_shop/product_page.dart';
 
 void main() {
   group('Product Page Tests', () {
-    Widget createTestWidget() {
-      return const MaterialApp(home: ProductPage());
+    const productArgs = {
+      'title': 'Test Product',
+      'price': '£99.99',
+      'originalPrice': '£120.00',
+      'imageUrl': 'assets/images/bearbricklogo.png',
+      'description': 'This is a test description.',
+    };
+
+    Widget createTestableWidget(Widget child) {
+      return MaterialApp(
+        home: child,
+        onGenerateRoute: (settings) {
+          if (settings.name == '/product') {
+            return MaterialPageRoute(
+              settings: const RouteSettings(
+                name: '/product',
+                arguments: productArgs,
+              ),
+              builder: (_) => const ProductPage(),
+            );
+          }
+          return null;
+        },
+      );
     }
 
-    testWidgets('should display product page with basic elements', (
-      tester,
-    ) async {
-      await tester.pumpWidget(createTestWidget());
-      await tester.pump();
+    testWidgets('should display product page with basic elements',
+        (tester) async {
+      await tester.pumpWidget(
+        createTestableWidget(
+          Builder(
+            builder: (context) => Scaffold(
+              body: Center(
+                child: ElevatedButton(
+                  onPressed: () => Navigator.pushNamed(context, '/product',
+                      arguments: productArgs),
+                  child: const Text('Go to Product'),
+                ),
+              ),
+            ),
+          ),
+        ),
+      );
+
+      await tester.tap(find.text('Go to Product'));
+      await tester.pumpAndSettle();
 
       // Check that basic UI elements are present
       expect(
         find.text(
-            'BIG SALE! OUR ESSENTIAL RANGE HAS DROPPED IN PRICE! OVER 20% OFF! COME GRAB YOURS WHILE STOCK LASTS!'),
+            '🔥 Massive BE@RBRICK Sale Live Now — Limited Editions, Exclusive Drops, and Up to 20% Off While Stock Lasts!'),
         findsOneWidget,
       );
-      expect(find.text('Product Name'), findsOneWidget);
-      expect(find.text('£0.00'), findsOneWidget);
+      expect(find.text('Test Product'), findsOneWidget);
+      expect(find.text('£99.99'), findsOneWidget);
+      expect(find.text('£120.00'), findsOneWidget);
       expect(find.text('Description'), findsOneWidget);
+      expect(find.text('This is a test description.'), findsOneWidget);
     });
 
     testWidgets('should display header icons', (tester) async {
-      await tester.pumpWidget(createTestWidget());
-      await tester.pump();
+      await tester.pumpWidget(
+        createTestableWidget(
+          Builder(
+            builder: (context) => Scaffold(
+              body: Center(
+                child: ElevatedButton(
+                  onPressed: () => Navigator.pushNamed(context, '/product',
+                      arguments: productArgs),
+                  child: const Text('Go to Product'),
+                ),
+              ),
+            ),
+          ),
+        ),
+      );
+      await tester.tap(find.text('Go to Product'));
+      await tester.pumpAndSettle();
 
       // Check that header icons are present
       expect(find.byIcon(Icons.search), findsOneWidget);
+      expect(find.byIcon(Icons.person_outline), findsOneWidget);
       expect(find.byIcon(Icons.shopping_bag_outlined), findsOneWidget);
       expect(find.byIcon(Icons.menu), findsOneWidget);
     });
 
     testWidgets('should display footer', (tester) async {
-      await tester.pumpWidget(createTestWidget());
-      await tester.pump();
+      await tester.pumpWidget(
+        createTestableWidget(
+          Builder(
+            builder: (context) => Scaffold(
+              body: Center(
+                child: ElevatedButton(
+                  onPressed: () => Navigator.pushNamed(context, '/product',
+                      arguments: productArgs),
+                  child: const Text('Go to Product'),
+                ),
+              ),
+            ),
+          ),
+        ),
+      );
+      await tester.tap(find.text('Go to Product'));
+      await tester.pumpAndSettle();
 
-      
+      await tester.drag(
+          find.byType(SingleChildScrollView), const Offset(0, -1000));
+      await tester.pumpAndSettle();
+
+      expect(find.text('OPENING HOURS'), findsOneWidget);
+      expect(find.text('INFORMATION'), findsOneWidget);
+      expect(find.text('HELP'), findsOneWidget);
     });
   });
 }
