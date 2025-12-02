@@ -4,13 +4,17 @@ import 'package:provider/provider.dart';
 import 'package:union_shop/footer.dart';
 import 'package:union_shop/main.dart';
 import 'package:union_shop/models/cart_provider.dart';
+import 'package:union_shop/models/search_provider.dart';
 
 void main() {
   group('Home Page Tests', () {
     testWidgets('should display home page with basic elements', (tester) async {
       await tester.pumpWidget(
-        ChangeNotifierProvider(
-          create: (context) => CartProvider(),
+        MultiProvider(
+          providers: [
+            ChangeNotifierProvider(create: (context) => CartProvider()),
+            ChangeNotifierProvider(create: (context) => SearchProvider()),
+          ],
           child: const UnionShopApp(),
         ),
       );
@@ -34,8 +38,11 @@ void main() {
 
     testWidgets('should display product cards', (tester) async {
       await tester.pumpWidget(
-        ChangeNotifierProvider(
-          create: (context) => CartProvider(),
+        MultiProvider(
+          providers: [
+            ChangeNotifierProvider(create: (context) => CartProvider()),
+            ChangeNotifierProvider(create: (context) => SearchProvider()),
+          ],
           child: const UnionShopApp(),
         ),
       );
@@ -63,8 +70,11 @@ void main() {
 
     testWidgets('should display header icons', (tester) async {
       await tester.pumpWidget(
-        ChangeNotifierProvider(
-          create: (context) => CartProvider(),
+        MultiProvider(
+          providers: [
+            ChangeNotifierProvider(create: (context) => CartProvider()),
+            ChangeNotifierProvider(create: (context) => SearchProvider()),
+          ],
           child: const UnionShopApp(),
         ),
       );
@@ -87,8 +97,11 @@ void main() {
 
     testWidgets('should display footer', (tester) async {
       await tester.pumpWidget(
-        ChangeNotifierProvider(
-          create: (context) => CartProvider(),
+        MultiProvider(
+          providers: [
+            ChangeNotifierProvider(create: (context) => CartProvider()),
+            ChangeNotifierProvider(create: (context) => SearchProvider()),
+          ],
           child: const UnionShopApp(),
         ),
       );

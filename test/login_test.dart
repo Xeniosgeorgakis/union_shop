@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:provider/provider.dart';
+import 'package:union_shop/header_search_widget.dart';
 import 'package:union_shop/login_page.dart';
 import 'package:union_shop/models/cart_provider.dart';
+import 'package:union_shop/models/search_provider.dart';
 
 void main() {
   Widget createTestableWidget(Widget child) {
-    return ChangeNotifierProvider(
-      create: (context) => CartProvider(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => CartProvider()),
+        ChangeNotifierProvider(create: (context) => SearchProvider()),
+      ],
       child: MaterialApp(home: child),
     );
   }
@@ -40,7 +45,9 @@ void main() {
       expect(find.widgetWithText(ElevatedButton, 'SIGN IN'), findsOneWidget);
 
       // Tap search icon and verify text field appears
-      await tester.tap(find.byIcon(Icons.search));
+      await tester.tap(find.descendant(
+          of: find.byType(HeaderSearchWidget),
+          matching: find.byIcon(Icons.search)));
       await tester.pump();
       expect(
           find.byType(TextField), findsNWidgets(3)); // email, password, search
@@ -81,8 +88,11 @@ void main() {
 
     testWidgets('should allow login with valid gmail', (tester) async {
       await tester.pumpWidget(
-        ChangeNotifierProvider(
-          create: (context) => CartProvider(),
+        MultiProvider(
+          providers: [
+            ChangeNotifierProvider(create: (context) => CartProvider()),
+            ChangeNotifierProvider(create: (context) => SearchProvider()),
+          ],
           child: MaterialApp(
             initialRoute: '/login',
             routes: {
@@ -116,8 +126,11 @@ void main() {
 
     testWidgets('should allow login with valid hotmail', (tester) async {
       await tester.pumpWidget(
-        ChangeNotifierProvider(
-          create: (context) => CartProvider(),
+        MultiProvider(
+          providers: [
+            ChangeNotifierProvider(create: (context) => CartProvider()),
+            ChangeNotifierProvider(create: (context) => SearchProvider()),
+          ],
           child: MaterialApp(
             initialRoute: '/login',
             routes: {

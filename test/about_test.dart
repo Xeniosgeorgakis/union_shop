@@ -4,11 +4,15 @@ import 'package:provider/provider.dart';
 import 'package:union_shop/about_us_page.dart';
 import 'package:union_shop/footer.dart';
 import 'package:union_shop/models/cart_provider.dart';
+import 'package:union_shop/models/search_provider.dart';
 
 void main() {
   Widget createTestableWidget(Widget child) {
-    return ChangeNotifierProvider(
-      create: (context) => CartProvider(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => CartProvider()),
+        ChangeNotifierProvider(create: (context) => SearchProvider()),
+      ],
       child: MaterialApp(
         home: child,
         routes: {
