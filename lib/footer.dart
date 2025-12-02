@@ -30,11 +30,10 @@ class Footer extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: 16),
-                     Text(
+                    Text(
                       '(Working days)',
                       style: TextStyle(color: Colors.black, height: 1.5),
                     ),
-                    
                     Text(
                       'Monday - Friday: 9:00 AM - 6:00 PM',
                       style: TextStyle(color: Colors.grey, height: 1.5),
