@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:union_shop/cart_provider.dart';
 import 'package:union_shop/footer.dart';
+import 'package:union_shop/models/product_model.dart';
 
 enum LineOption { one, two, three }
 
@@ -239,8 +242,10 @@ class _PersonalisePageState extends State<PersonalisePage> {
                                 ),
                                 IconButton(
                                   icon: const Icon(Icons.shopping_bag_outlined,
-                                      size: 18, color: Colors.grey),
-                                  onPressed: placeholderCallbackForButtons,
+                                      size: 18, color: Colors.black),
+                                  onPressed: () {
+                                    Navigator.pushNamed(context, '/cart');
+                                  },
                                 ),
                                 IconButton(
                                   icon: const Icon(Icons.menu,
@@ -458,6 +463,64 @@ class _PersonalisePageState extends State<PersonalisePage> {
                                         },
                                       ),
                                     ],
+                                  ),
+                                ),
+                                const SizedBox(height: 24),
+                                SizedBox(
+                                  width: double.infinity,
+                                  height: 48,
+                                  child: ElevatedButton(
+                                    onPressed: () {
+                                      if (_customText.trim().isEmpty) {
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          const SnackBar(
+                                            content: Text(
+                                                'Please enter some text to personalise.'),
+                                            backgroundColor: Colors.red,
+                                          ),
+                                        );
+                                        return;
+                                      }
+
+                                      final product = Product(
+                                        title: 'Personalised T-Shirt',
+                                        price: '£25.00',
+                                        imageUrl: 'assets/images/tshirt.png',
+                                        description:
+                                            'Custom Text: "$_customText"\nFont: $_selectedFont',
+                                      );
+
+                                      Provider.of<CartProvider>(context,
+                                              listen: false)
+                                          .addItem(
+                                              product, _quantity, 'Personal');
+
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        SnackBar(
+                                          content: Text(
+                                              '${product.title} has been added to your cart.'),
+                                          duration: const Duration(seconds: 4),
+                                          action: SnackBarAction(
+                                            label: 'VIEW CART',
+                                            onPressed: () {
+                                              Navigator.pushNamed(
+                                                  context, '/cart');
+                                            },
+                                            textColor: Colors.yellow,
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: Colors.black,
+                                      foregroundColor: Colors.white,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(4),
+                                      ),
+                                    ),
+                                    child: const Text('ADD TO CART'),
                                   ),
                                 ),
                               ],
