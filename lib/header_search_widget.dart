@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:union_shop/models/all_products.dart';
 import 'package:union_shop/models/product_model.dart';
+import 'package:union_shop/models/search_provider.dart';
 
 class HeaderSearchWidget extends StatefulWidget {
   const HeaderSearchWidget({super.key});
@@ -11,7 +13,6 @@ class HeaderSearchWidget extends StatefulWidget {
 
 class _HeaderSearchWidgetState extends State<HeaderSearchWidget> {
   final _searchController = TextEditingController();
-  bool _isSearching = false;
 
   @override
   void dispose() {
@@ -55,7 +56,9 @@ class _HeaderSearchWidgetState extends State<HeaderSearchWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return _isSearching
+    final searchProvider = Provider.of<SearchProvider>(context);
+
+    return searchProvider.isSearching
         ? Row(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -82,9 +85,7 @@ class _HeaderSearchWidgetState extends State<HeaderSearchWidget> {
         : IconButton(
             icon: const Icon(Icons.search, size: 18, color: Colors.black),
             onPressed: () {
-              setState(() {
-                _isSearching = true;
-              });
+              searchProvider.setSearch(true);
             },
           );
   }

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:union_shop/models/search_provider.dart';
 
 class Footer extends StatelessWidget {
   final ScrollController? scrollController;
@@ -165,6 +167,8 @@ class Footer extends StatelessWidget {
                 IconButton(
                   icon: const Icon(Icons.search, color: Colors.black),
                   onPressed: () {
+                    Provider.of<SearchProvider>(context, listen: false)
+                        .setSearch(true);
                     scrollController!.animateTo(
                       0,
                       duration: const Duration(milliseconds: 500),
