@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:union_shop/cart_provider.dart';
 import 'package:union_shop/footer.dart';
+import 'package:union_shop/models/product_model.dart';
 
 class ProductPage extends StatefulWidget {
   const ProductPage({super.key});
@@ -557,6 +560,16 @@ class _ProductPageState extends State<ProductPage> {
                           height: 48,
                           child: ElevatedButton(
                             onPressed: () {
+                              final product = Product(
+                                title: title,
+                                price: price,
+                                originalPrice: originalPrice,
+                                imageUrl: _selectedImage ?? '',
+                                description: description,
+                              );
+                              Provider.of<CartProvider>(context, listen: false)
+                                  .addItem(product, _quantity, _purchaseType);
+
                               // Show a confirmation SnackBar
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
