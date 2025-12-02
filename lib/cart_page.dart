@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:union_shop/models/cart_provider.dart';
 import 'package:union_shop/footer.dart';
+import 'package:union_shop/search_delegate.dart';
 
 class CartPage extends StatelessWidget {
   const CartPage({super.key});
@@ -139,7 +140,12 @@ class CartPage extends StatelessWidget {
                               IconButton(
                                 icon: const Icon(Icons.search,
                                     size: 18, color: Colors.grey),
-                                onPressed: () {},
+                                onPressed: () {
+                                  showSearch(
+                                    context: context,
+                                    delegate: CustomSearchDelegate(),
+                                  );
+                                },
                               ),
                               IconButton(
                                 icon: const Icon(Icons.person_outline,

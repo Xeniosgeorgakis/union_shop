@@ -12,6 +12,8 @@ import 'package:union_shop/collection_one_page.dart'; // Import the new page
 import 'package:union_shop/collection_two_page.dart';
 import 'package:union_shop/printshark_page.dart';
 import 'package:union_shop/cart_page.dart';
+import 'package:union_shop/search_delegate.dart';
+import 'package:union_shop/models/all_products.dart';
 
 void main() {
   runApp(
@@ -237,7 +239,12 @@ class HomeScreen extends StatelessWidget {
                                     minWidth: 32,
                                     minHeight: 32,
                                   ),
-                                  onPressed: placeholderCallbackForButtons,
+                                  onPressed: () {
+                                    showSearch(
+                                      context: context,
+                                      delegate: CustomSearchDelegate(),
+                                    );
+                                  },
                                 ),
                                 IconButton(
                                   icon: const Icon(
@@ -445,25 +452,20 @@ class HomeScreen extends StatelessWidget {
                           crossAxisSpacing: 80,
                           mainAxisSpacing: 80,
                           childAspectRatio: 0.75,
-                          children: const [
+                          children: [
                             ProductCard(
-                              title:
-                                  'Bearbrick Garfield 100% & 400% Set (Gold)',
-                              price: '£112.00',
-                              originalPrice: '£140.00',
-                              imageUrl:
-                                  'https://images.stockx.com/images/Bearbrick-Garfield-100-400-Set-Gold-Chrome-Ver-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1738193358',
-                              description:
-                                  'Celebrate one of pop culture’s most iconic characters with the limited-edition BE@RBRICK Garfield 100% & 400% Gold Set. \n\nFeaturing a striking chrome gold finish, this collector’s duo blends playful character design with the signature BE@RBRICK style.\n\n Perfect for display, gifting, or expanding your collection, each figure delivers high-quality craftsmanship, smooth detailing, and a bold visual presence that stands out in any room or shelf.\n\n A must-have collector’s piece for Garfield fans and Bearbrick enthusiasts alike.',
+                              title: allProducts[0].title,
+                              price: allProducts[0].price,
+                              originalPrice: allProducts[0].originalPrice,
+                              imageUrl: allProducts[0].imageUrl,
+                              description: allProducts[0].description,
                             ),
                             ProductCard(
-                              title: '1000% Bearbrick - Squid Game (Red)',
-                              price: '£160.00',
-                              originalPrice: '£200.00',
-                              imageUrl:
-                                  'https://cdn.webshopapp.com/shops/153/files/431539158/medicom-toy-1000-bearbrick-squid-game-square-guard.jpg',
-                              description:
-                                  'Step into the gripping world of Squid Game with this striking 1000% Bearbrick figure, inspired by the iconic Square Guard—the highest-ranking enforcer in the series’ hierarchy. Standing approximately 70 cm (27.5 inches) tall',
+                              title: allProducts[1].title,
+                              price: allProducts[1].price,
+                              originalPrice: allProducts[1].originalPrice,
+                              imageUrl: allProducts[1].imageUrl,
+                              description: allProducts[1].description,
                             ),
                           ],
                         ),
@@ -509,24 +511,18 @@ class HomeScreen extends StatelessWidget {
                           crossAxisSpacing: 80,
                           mainAxisSpacing: 80,
                           childAspectRatio: 0.75,
-                          children: const [
+                          children: [
                             ProductCard(
-                              title:
-                                  'Bearbrick x Nike Tech Fleece N98 100% & 400% Set (Grey)',
-                              price: '£140.00',
-                              imageUrl:
-                                  'https://images.stockx.com/images/Bearbrick-x-Nike-Tech-Fleece-N98-100-400-Set-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1738193358',
-                              description:
-                                  'The perfect fusion of streetwear and designer art toys, the Bearbrick x Nike Tech Fleece N98 Set brings Nike’s classic sportswear aesthetic into the world of collectible design. This limited-edition duo includes both the 100% (7 cm) and 400% (28 cm) Bearbrick figures, each dressed in the iconic Nike Tech Fleece N98 jacket',
+                              title: allProducts[2].title,
+                              price: allProducts[2].price,
+                              imageUrl: allProducts[2].imageUrl,
+                              description: allProducts[2].description,
                             ),
                             ProductCard(
-                              title:
-                                  '400% & 100% Bearbrick Set – LBWK x BAPE Green Camo (Black)',
-                              price: '£140.00',
-                              imageUrl:
-                                  'https://szopex.blob.core.windows.net/shops/media/f1000/2024/medicom-toy/231848/medicom-bearbricks-100-400-set-anever-black-anever-black-2pack-6666f34da73b5.webp',
-                              description:
-                                  'Experience the perfect blend of streetwear culture and automotive lifestyle with the LBWK x BAPE Green Camo Bearbrick Set. This exclusive release features both the 400% (28 cm) and 100% (7 cm) figures, wrapped in BAPE’s iconic green camouflage pattern with bold LBWK (Liberty Walk) branding.',
+                              title: allProducts[3].title,
+                              price: allProducts[3].price,
+                              imageUrl: allProducts[3].imageUrl,
+                              description: allProducts[3].description,
                             ),
                           ],
                         ),

@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:union_shop/models/cart_provider.dart';
 import 'package:union_shop/footer.dart';
 import 'package:union_shop/models/product_model.dart';
+import 'package:union_shop/search_delegate.dart';
 
 class ProductPage extends StatefulWidget {
   const ProductPage({super.key});
@@ -277,7 +278,12 @@ class _ProductPageState extends State<ProductPage> {
                                     minWidth: 32,
                                     minHeight: 32,
                                   ),
-                                  onPressed: placeholderCallbackForButtons,
+                                  onPressed: () {
+                                    showSearch(
+                                      context: context,
+                                      delegate: CustomSearchDelegate(),
+                                    );
+                                  },
                                 ),
                                 IconButton(
                                   icon: const Icon(

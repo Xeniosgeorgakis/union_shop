@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:union_shop/models/cart_provider.dart';
 import 'package:union_shop/footer.dart';
+import 'package:union_shop/search_delegate.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -172,7 +173,12 @@ class _LoginPageState extends State<LoginPage> {
                               IconButton(
                                 icon: const Icon(Icons.search,
                                     size: 18, color: Colors.grey),
-                                onPressed: () {},
+                                onPressed: () {
+                                  showSearch(
+                                    context: context,
+                                    delegate: CustomSearchDelegate(),
+                                  );
+                                },
                               ),
                               IconButton(
                                 icon: const Icon(Icons.person_outline,
