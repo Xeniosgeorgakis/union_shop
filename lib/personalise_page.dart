@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:union_shop/footer.dart';
 
+enum LineOption { one, two, three }
+
 class PersonalisePage extends StatefulWidget {
   const PersonalisePage({super.key});
 
@@ -9,7 +11,10 @@ class PersonalisePage extends StatefulWidget {
 }
 
 class _PersonalisePageState extends State<PersonalisePage> {
-  final _nameController = TextEditingController();
+  final _line1Controller = TextEditingController();
+  final _line2Controller = TextEditingController();
+  final _line3Controller = TextEditingController();
+
   String _customText = '';
   String _selectedFont = 'Arial';
   final List<String> _fonts = [
@@ -20,20 +25,35 @@ class _PersonalisePageState extends State<PersonalisePage> {
     'Times New Roman'
   ];
   int _quantity = 1;
+  LineOption _selectedLineOption = LineOption.one;
 
   @override
   void initState() {
     super.initState();
-    _nameController.addListener(() {
-      setState(() {
-        _customText = _nameController.text;
-      });
+    _line1Controller.addListener(_updateCustomText);
+    _line2Controller.addListener(_updateCustomText);
+    _line3Controller.addListener(_updateCustomText);
+  }
+
+  void _updateCustomText() {
+    setState(() {
+      final lines = [_line1Controller.text];
+      if (_selectedLineOption == LineOption.two ||
+          _selectedLineOption == LineOption.three) {
+        lines.add(_line2Controller.text);
+      }
+      if (_selectedLineOption == LineOption.three) {
+        lines.add(_line3Controller.text);
+      }
+      _customText = lines.where((line) => line.isNotEmpty).join('\n');
     });
   }
 
   @override
   void dispose() {
-    _nameController.dispose();
+    _line1Controller.dispose();
+    _line2Controller.dispose();
+    _line3Controller.dispose();
     super.dispose();
   }
 
@@ -186,7 +206,7 @@ class _PersonalisePageState extends State<PersonalisePage> {
                               child: Row(
                                 children: [
                                   Text(
-                                    'Printshark',
+                                    'Printshack',
                                     style: TextStyle(
                                       fontSize: 16,
                                       fontWeight: FontWeight.w600,
@@ -252,11 +272,6 @@ class _PersonalisePageState extends State<PersonalisePage> {
                         style: TextStyle(
                             fontSize: 32, fontWeight: FontWeight.bold),
                       ),
-                      const SizedBox(height: 20),
-                      const Text(
-                        'This is where the T-shirt personalisation options will go.',
-                        style: TextStyle(fontSize: 16, height: 1.5),
-                      ),
                       const SizedBox(height: 40),
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -304,12 +319,39 @@ class _PersonalisePageState extends State<PersonalisePage> {
                                   ),
                                 ),
                                 const SizedBox(height: 24),
-                                TextField(
-                                  controller: _nameController,
+                                const Text(
+                                  'Number of lines',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                                const SizedBox(height: 8),
+                                DropdownButtonFormField<LineOption>(
+                                  value: _selectedLineOption,
                                   decoration: const InputDecoration(
-                                    labelText: 'Enter Your Name',
                                     border: OutlineInputBorder(),
                                   ),
+                                  items: const [
+                                    DropdownMenuItem(
+                                      value: LineOption.one,
+                                      child: Text('One Line'),
+                                    ),
+                                    DropdownMenuItem(
+                                      value: LineOption.two,
+                                      child: Text('Two Lines'),
+                                    ),
+                                    DropdownMenuItem(
+                                      value: LineOption.three,
+                                      child: Text('Three Lines'),
+                                    ),
+                                  ],
+                                  onChanged: (LineOption? newValue) {
+                                    setState(() {
+                                      _selectedLineOption = newValue!;
+                                      _updateCustomText();
+                                    });
+                                  },
                                 ),
                                 const SizedBox(height: 24),
                                 const Text(
@@ -321,7 +363,7 @@ class _PersonalisePageState extends State<PersonalisePage> {
                                 ),
                                 const SizedBox(height: 8),
                                 DropdownButtonFormField<String>(
-                                  initialValue: _selectedFont,
+                                  value: _selectedFont,
                                   decoration: const InputDecoration(
                                     border: OutlineInputBorder(),
                                   ),
@@ -337,6 +379,37 @@ class _PersonalisePageState extends State<PersonalisePage> {
                                     });
                                   },
                                 ),
+                                const SizedBox(height: 24),
+                                TextFormField(
+                                  controller: _line1Controller,
+                                  decoration: const InputDecoration(
+                                    labelText: 'Enter your text (Line 1)',
+                                    border: OutlineInputBorder(),
+                                  ),
+                                ),
+                                if (_selectedLineOption == LineOption.two ||
+                                    _selectedLineOption == LineOption.three)
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 16.0),
+                                    child: TextFormField(
+                                      controller: _line2Controller,
+                                      decoration: const InputDecoration(
+                                        labelText: 'Enter your text (Line 2)',
+                                        border: OutlineInputBorder(),
+                                      ),
+                                    ),
+                                  ),
+                                if (_selectedLineOption == LineOption.three)
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 16.0),
+                                    child: TextFormField(
+                                      controller: _line3Controller,
+                                      decoration: const InputDecoration(
+                                        labelText: 'Enter your text (Line 3)',
+                                        border: OutlineInputBorder(),
+                                      ),
+                                    ),
+                                  ),
                                 const SizedBox(height: 24),
                                 const Text(
                                   'Quantity',
