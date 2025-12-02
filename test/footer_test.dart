@@ -109,6 +109,11 @@ void main() {
         matching: find.byIcon(Icons.search),
       );
       expect(searchIcon, findsOneWidget);
+
+      // Ensure the icon is visible before tapping
+      await tester.ensureVisible(searchIcon);
+      await tester.pumpAndSettle();
+
       await tester.tap(searchIcon);
       await tester.pumpAndSettle(); // Wait for scroll and provider update
 
