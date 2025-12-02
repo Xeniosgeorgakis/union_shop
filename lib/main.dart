@@ -13,7 +13,7 @@ import 'package:union_shop/collection_one_page.dart'; // Import the new page
 import 'package:union_shop/collection_two_page.dart';
 import 'package:union_shop/printshark_page.dart';
 import 'package:union_shop/cart_page.dart';
-import 'package:union_shop/header_search_widget.dart';
+import 'package:union_shop/widgets/header_search_widget.dart';
 import 'package:union_shop/models/all_products.dart';
 
 void main() {

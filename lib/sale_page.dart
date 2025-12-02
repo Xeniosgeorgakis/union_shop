@@ -4,7 +4,7 @@ import 'package:union_shop/models/cart_provider.dart';
 import 'package:union_shop/footer.dart';
 import 'package:union_shop/models/product_model.dart';
 import 'package:union_shop/models/all_products.dart';
-import 'package:union_shop/header_search_widget.dart';
+import 'package:union_shop/widgets/header_search_widget.dart';
 
 class SalePage extends StatefulWidget {
   const SalePage({super.key});

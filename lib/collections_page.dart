@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:union_shop/models/cart_provider.dart';
 import 'package:union_shop/footer.dart';
-import 'package:union_shop/header_search_widget.dart';
+import 'package:union_shop/widgets/header_search_widget.dart';
 
 class CollectionsPage extends StatefulWidget {
   const CollectionsPage({super.key});
