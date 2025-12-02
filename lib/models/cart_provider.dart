@@ -19,7 +19,7 @@ class CartProvider with ChangeNotifier {
   List<CartItem> get items => [..._items];
 
   int get itemCount {
-    return _items.length;
+    return _items.fold(0, (sum, item) => sum + item.quantity);
   }
 
   double get subtotal {
