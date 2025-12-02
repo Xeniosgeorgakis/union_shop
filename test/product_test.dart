@@ -17,7 +17,8 @@ void main() {
       'description': 'This is a test description.',
     };
 
-    Widget createTestableWidget(Widget child) {
+    Widget createTestableWidget(Widget child,
+        {Map<String, dynamic>? arguments}) {
       return MultiProvider(
         providers: [
           ChangeNotifierProvider(create: (context) => CartProvider()),
@@ -28,9 +29,9 @@ void main() {
           onGenerateRoute: (settings) {
             if (settings.name == '/product') {
               return MaterialPageRoute(
-                settings: const RouteSettings(
+                settings: RouteSettings(
                   name: '/product',
-                  arguments: productArgs,
+                  arguments: arguments ?? productArgs,
                 ),
                 builder: (_) => const ProductPage(),
               );
@@ -113,6 +114,111 @@ void main() {
           matching: find.byIcon(Icons.search)));
       await tester.pump();
       expect(find.byType(TextField), findsOneWidget);
+    });
+
+    testWidgets('should increment and decrement quantity', (tester) async {
+      await tester.pumpWidget(createTestableWidget(const ProductPage()));
+
+      // Check initial quantity
+      expect(find.text('1'), findsOneWidget);
+
+      // Increment quantity
+      await tester.tap(find.byIcon(Icons.add));
+      await tester.pump();
+      expect(find.text('2'), findsOneWidget);
+
+      // Decrement quantity
+      await tester.tap(find.byIcon(Icons.remove));
+      await tester.pump();
+      expect(find.text('1'), findsOneWidget);
+
+      // Ensure quantity does not go below 1
+      await tester.tap(find.byIcon(Icons.remove));
+      await tester.pump();
+      expect(find.text('1'), findsOneWidget);
+    });
+
+    testWidgets('should change purchase type', (tester) async {
+      await tester.pumpWidget(createTestableWidget(const ProductPage()));
+
+      // Check initial purchase type
+      expect(find.text('Personal Use'), findsOneWidget);
+
+      // Change purchase type to 'Gift'
+      await tester.tap(find.text('Personal Use'));
+      await tester.pumpAndSettle(); // Wait for dropdown animation
+      await tester.tap(find.text('Gift').last);
+      await tester.pumpAndSettle();
+
+      // Check if purchase type is updated
+      expect(find.text('Gift'), findsOneWidget);
+    });
+
+    testWidgets('should add item to cart and show snackbar', (tester) async {
+      late CartProvider cartProvider;
+      await tester.pumpWidget(
+        createTestableWidget(
+          Builder(
+            builder: (context) {
+              cartProvider = Provider.of<CartProvider>(context, listen: false);
+              return const ProductPage();
+            },
+          ),
+        ),
+      );
+
+      // Check that cart is initially empty
+      expect(cartProvider.itemCount, 0);
+
+      // Tap 'ADD TO CART' button
+      await tester.tap(find.widgetWithText(ElevatedButton, 'ADD TO CART'));
+      await tester.pump(); // Let the SnackBar appear
+
+      // Verify SnackBar is shown
+      expect(find.byType(SnackBar), findsOneWidget);
+      expect(find.text('Test Product has been added to your cart.'),
+          findsOneWidget);
+
+      // Verify item was added to cart
+      expect(cartProvider.itemCount, 1);
+      expect(cartProvider.items.first.product.title, 'Test Product');
+    });
+
+    testWidgets('should select different product image', (tester) async {
+      const garfieldArgs = {
+        'title': 'Bearbrick Garfield 100% & 400% Set (Gold)',
+        'price': '£112.00',
+        'originalPrice': '£140.00',
+        'imageUrl':
+            'https://images.stockx.com/images/Bearbrick-Garfield-100-400-Set-Gold-Chrome-Ver-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1738193358',
+        'description': 'A Garfield Bearbrick.',
+      };
+
+      await tester.pumpWidget(createTestableWidget(
+        const ProductPage(),
+        arguments: garfieldArgs,
+      ));
+      await tester.pumpAndSettle();
+
+      // Find thumbnails
+      final thumbnails = find.byType(GestureDetector).evaluate().where((e) {
+        final widget = e.widget as GestureDetector;
+        return widget.child is Container &&
+            (widget.child as Container).child is Image;
+      }).toList();
+
+      expect(thumbnails.length, 2);
+
+      // Tap the second thumbnail
+      await tester.tap(find.byWidget(thumbnails.last.widget));
+      await tester.pump();
+
+      // Verify the second thumbnail is now selected (has a border)
+      final secondThumbnailContainer =
+          (thumbnails.last.widget as GestureDetector).child as Container;
+      final decoration = secondThumbnailContainer.decoration as BoxDecoration;
+      expect(decoration.border, isNotNull);
+      expect((decoration.border as Border).top.color, Colors.black);
     });
 
     testWidgets('should display footer', (tester) async {
