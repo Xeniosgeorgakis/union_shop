@@ -10,6 +10,19 @@ class PersonalisePage extends StatefulWidget {
 
 class _PersonalisePageState extends State<PersonalisePage> {
   final _nameController = TextEditingController();
+  String _customText = '';
+  String _selectedFont = 'Arial';
+  final List<String> _fonts = ['Arial', 'Verdana', 'Georgia'];
+
+  @override
+  void initState() {
+    super.initState();
+    _nameController.addListener(() {
+      setState(() {
+        _customText = _nameController.text;
+      });
+    });
+  }
 
   @override
   void dispose() {
@@ -247,15 +260,25 @@ class _PersonalisePageState extends State<PersonalisePage> {
                             child: Container(
                               height: 400,
                               color: Colors.grey[300],
-                              child: const Center(
-                                child: Text(
-                                  'Preview Area',
-                                  style: TextStyle(
-                                    fontSize: 24,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
+                              child: Center(
+                                child: _customText.isEmpty
+                                    ? const Text(
+                                        'Preview Area',
+                                        style: TextStyle(
+                                          fontSize: 24,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      )
+                                    : Text(
+                                        _customText,
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          fontSize: 32,
+                                          fontFamily: _selectedFont,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
                               ),
                             ),
                           ),
@@ -280,6 +303,35 @@ class _PersonalisePageState extends State<PersonalisePage> {
                                     labelText: 'Enter Your Name',
                                     border: OutlineInputBorder(),
                                   ),
+                                ),
+                                const SizedBox(height: 24),
+                                const Text(
+                                  'Font',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                                const SizedBox(height: 8),
+                                DropdownButtonFormField<String>(
+                                  initialValue: _selectedFont,
+                                  decoration: const InputDecoration(
+                                    border: OutlineInputBorder(),
+                                  ),
+                                  items: _fonts.map((String font) {
+                                    return DropdownMenuItem<String>(
+                                      value: font,
+                                      child: Text(
+                                        font,
+                                        style: TextStyle(fontFamily: font),
+                                      ),
+                                    );
+                                  }).toList(),
+                                  onChanged: (String? newValue) {
+                                    setState(() {
+                                      _selectedFont = newValue!;
+                                    });
+                                  },
                                 ),
                               ],
                             ),
