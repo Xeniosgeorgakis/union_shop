@@ -1,8 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:union_shop/footer.dart';
 
-class PersonalisePage extends StatelessWidget {
+class PersonalisePage extends StatefulWidget {
   const PersonalisePage({super.key});
+
+  @override
+  State<PersonalisePage> createState() => _PersonalisePageState();
+}
+
+class _PersonalisePageState extends State<PersonalisePage> {
+  final _nameController = TextEditingController();
+
+  @override
+  void dispose() {
+    _nameController.dispose();
+    super.dispose();
+  }
 
   void navigateToHome(BuildContext context) {
     Navigator.pushNamed(context, '/');
@@ -211,18 +224,26 @@ class PersonalisePage extends StatelessWidget {
               child: Center(
                 child: ConstrainedBox(
                   constraints: const BoxConstraints(maxWidth: 800),
-                  child: const Column(
+                  child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
+                      const Text(
                         'Personalise Your T-Shirt',
                         style: TextStyle(
                             fontSize: 32, fontWeight: FontWeight.bold),
                       ),
-                      SizedBox(height: 20),
-                      Text(
+                      const SizedBox(height: 20),
+                      const Text(
                         'This is where the T-shirt personalisation options will go.',
                         style: TextStyle(fontSize: 16, height: 1.5),
+                      ),
+                      const SizedBox(height: 40),
+                      TextField(
+                        controller: _nameController,
+                        decoration: const InputDecoration(
+                          labelText: 'Enter Your Name',
+                          border: OutlineInputBorder(),
+                        ),
                       ),
                     ],
                   ),
