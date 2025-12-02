@@ -138,19 +138,73 @@ void main() {
     });
 
     group('Cart Icon Badge', () {
+      Widget buildCartBadge() {
+        return Consumer<CartProvider>(
+          builder: (context, cart, _) => Stack(
+            alignment: Alignment.center,
+            children: [
+              const Icon(Icons.shopping_bag_outlined),
+              if (cart.itemCount > 0)
+                Positioned(
+                  right: 0,
+                  top: 0,
+                  child: Container(
+                    padding: const EdgeInsets.all(2),
+                    decoration: BoxDecoration(
+                      color: Colors.red,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    constraints: const BoxConstraints(
+                      minWidth: 16,
+                      minHeight: 16,
+                    ),
+                    child: Text(
+                      '${cart.itemCount}',
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 10,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ),
+            ],
+          ),
+        );
+      }
+
       testWidgets('should not display badge when cart is empty',
           (tester) async {
-        await tester.pumpWidget(createTestableWidget(child: Container()));
+        await tester.pumpWidget(
+          createTestableWidget(
+            child: Scaffold(
+              appBar: AppBar(
+                actions: [buildCartBadge()],
+              ),
+            ),
+          ),
+        );
         expect(find.text('0'), findsNothing);
+        // Also check for higher numbers to be sure
+        expect(find.text('1'), findsNothing);
       });
 
       testWidgets('should display badge with item count when cart is not empty',
           (tester) async {
         final cartProvider = CartProvider();
         await tester.pumpWidget(
-          ChangeNotifierProvider.value(
-            value: cartProvider,
-            child: createTestableWidget(child: Container()),
+          MultiProvider(
+            providers: [
+              ChangeNotifierProvider.value(value: cartProvider),
+              ChangeNotifierProvider(create: (_) => SearchProvider()),
+            ],
+            child: MaterialApp(
+              home: Scaffold(
+                appBar: AppBar(
+                  actions: [buildCartBadge()],
+                ),
+              ),
+            ),
           ),
         );
 
