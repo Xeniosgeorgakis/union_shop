@@ -228,6 +228,22 @@ class CartPage extends StatelessWidget {
                             ),
                           ],
                         ),
+                        const SizedBox(height: 12),
+                        const Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'Shipping',
+                              style:
+                                  TextStyle(fontSize: 16, color: Colors.grey),
+                            ),
+                            Text(
+                              'Free',
+                              style:
+                                  TextStyle(fontSize: 16, color: Colors.grey),
+                            ),
+                          ],
+                        ),
                         const SizedBox(height: 24),
                         SizedBox(
                           width: double.infinity,
