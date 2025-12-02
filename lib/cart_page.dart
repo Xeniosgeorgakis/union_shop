@@ -285,14 +285,51 @@ class CartListItem extends StatelessWidget {
                       fontSize: 16, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 8),
-                Text(
-                  'Quantity: ${cartItem.quantity}',
-                  style: const TextStyle(fontSize: 14, color: Colors.grey),
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  'Purchase as: ${cartItem.purchaseType}',
-                  style: const TextStyle(fontSize: 14, color: Colors.grey),
+                Row(
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.grey.shade300),
+                        borderRadius: BorderRadius.circular(4),
+                      ),
+                      child: Row(
+                        children: [
+                          IconButton(
+                            icon: const Icon(Icons.remove, size: 16),
+                            onPressed: () {
+                              Provider.of<CartProvider>(context, listen: false)
+                                  .decrementItemQuantity(
+                                      cartItem.product.title);
+                            },
+                            constraints: const BoxConstraints(),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 8, vertical: 4),
+                          ),
+                          Text(
+                            '${cartItem.quantity}',
+                            style: const TextStyle(
+                                fontSize: 14, fontWeight: FontWeight.bold),
+                          ),
+                          IconButton(
+                            icon: const Icon(Icons.add, size: 16),
+                            onPressed: () {
+                              Provider.of<CartProvider>(context, listen: false)
+                                  .incrementItemQuantity(
+                                      cartItem.product.title);
+                            },
+                            constraints: const BoxConstraints(),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 8, vertical: 4),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(width: 16),
+                    Text(
+                      'Purchase as: ${cartItem.purchaseType}',
+                      style: const TextStyle(fontSize: 14, color: Colors.grey),
+                    ),
+                  ],
                 ),
               ],
             ),
