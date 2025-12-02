@@ -50,6 +50,7 @@ void main() {
       expect(find.text('Printshark'), findsOneWidget);
 
       // Check for Header Icons
+      expect(find.byType(TextField), findsOneWidget);
       expect(find.byIcon(Icons.search), findsOneWidget);
       expect(find.byIcon(Icons.person_outline), findsOneWidget);
       expect(find.byIcon(Icons.shopping_bag_outlined), findsOneWidget);

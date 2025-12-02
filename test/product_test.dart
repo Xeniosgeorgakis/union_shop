@@ -89,6 +89,7 @@ void main() {
       await tester.pumpAndSettle();
 
       // Check that header icons are present
+      expect(find.byType(TextField), findsOneWidget);
       expect(find.byIcon(Icons.search), findsOneWidget);
       expect(find.byIcon(Icons.person_outline), findsOneWidget);
       expect(find.byIcon(Icons.shopping_bag_outlined), findsOneWidget);

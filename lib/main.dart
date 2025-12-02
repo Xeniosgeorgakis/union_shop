@@ -12,7 +12,7 @@ import 'package:union_shop/collection_one_page.dart'; // Import the new page
 import 'package:union_shop/collection_two_page.dart';
 import 'package:union_shop/printshark_page.dart';
 import 'package:union_shop/cart_page.dart';
-import 'package:union_shop/search_delegate.dart';
+import 'package:union_shop/header_search_widget.dart';
 import 'package:union_shop/models/all_products.dart';
 
 void main() {
@@ -228,24 +228,7 @@ class HomeScreen extends StatelessWidget {
                             child: Row(
                               mainAxisSize: MainAxisSize.min,
                               children: [
-                                IconButton(
-                                  icon: const Icon(
-                                    Icons.search,
-                                    size: 18,
-                                    color: Colors.grey,
-                                  ),
-                                  padding: const EdgeInsets.all(8),
-                                  constraints: const BoxConstraints(
-                                    minWidth: 32,
-                                    minHeight: 32,
-                                  ),
-                                  onPressed: () {
-                                    showSearch(
-                                      context: context,
-                                      delegate: CustomSearchDelegate(),
-                                    );
-                                  },
-                                ),
+                                const HeaderSearchWidget(),
                                 IconButton(
                                   icon: const Icon(
                                     Icons.person_outline,

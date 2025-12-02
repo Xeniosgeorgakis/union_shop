@@ -33,6 +33,10 @@ void main() {
       expect(find.widgetWithText(TextFormField, 'Email'), findsOneWidget);
       expect(find.widgetWithText(TextFormField, 'Password'), findsOneWidget);
 
+      // Check for search field
+      expect(
+          find.byType(TextField), findsNWidgets(3)); // email, password, search
+
       // Check for Sign In Button
       expect(find.widgetWithText(ElevatedButton, 'SIGN IN'), findsOneWidget);
     });

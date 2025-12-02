@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:union_shop/models/cart_provider.dart';
 import 'package:union_shop/footer.dart';
-import 'package:union_shop/search_delegate.dart';
+import 'package:union_shop/header_search_widget.dart';
 
 class CollectionsPage extends StatelessWidget {
   const CollectionsPage({super.key});
@@ -167,16 +167,7 @@ class CollectionsPage extends StatelessWidget {
                             child: Row(
                               mainAxisSize: MainAxisSize.min,
                               children: [
-                                IconButton(
-                                  icon: const Icon(Icons.search,
-                                      size: 18, color: Colors.grey),
-                                  onPressed: () {
-                                    showSearch(
-                                      context: context,
-                                      delegate: CustomSearchDelegate(),
-                                    );
-                                  },
-                                ),
+                                const HeaderSearchWidget(),
                                 IconButton(
                                   icon: const Icon(Icons.person_outline,
                                       size: 18, color: Colors.black),
