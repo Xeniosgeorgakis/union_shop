@@ -74,13 +74,13 @@ class _HeaderSearchWidgetState extends State<HeaderSearchWidget> {
                 ),
               ),
               IconButton(
-                icon: const Icon(Icons.search, size: 18, color: Colors.grey),
+                icon: const Icon(Icons.search, size: 18, color: Colors.black),
                 onPressed: _performSearch,
               ),
             ],
           )
         : IconButton(
-            icon: const Icon(Icons.search, size: 18, color: Colors.grey),
+            icon: const Icon(Icons.search, size: 18, color: Colors.black),
             onPressed: () {
               setState(() {
                 _isSearching = true;

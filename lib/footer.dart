@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class Footer extends StatelessWidget {
-  const Footer({super.key});
+  final ScrollController? scrollController;
+  const Footer({super.key, this.scrollController});
 
   @override
   Widget build(BuildContext context) {
@@ -107,9 +108,7 @@ class Footer extends StatelessWidget {
                     MouseRegion(
                       cursor: SystemMouseCursors.click,
                       child: GestureDetector(
-                        onTap: () {
-                          
-                        },
+                        onTap: () {},
                         child: const Text(
                           'Shipping & Returns',
                           style: TextStyle(color: Colors.grey, height: 1.5),
@@ -119,9 +118,7 @@ class Footer extends StatelessWidget {
                     MouseRegion(
                       cursor: SystemMouseCursors.click,
                       child: GestureDetector(
-                        onTap: () {
-                          
-                        },
+                        onTap: () {},
                         child: const Text(
                           'FAQ',
                           style: TextStyle(color: Colors.grey, height: 1.5),
@@ -131,9 +128,7 @@ class Footer extends StatelessWidget {
                     MouseRegion(
                       cursor: SystemMouseCursors.click,
                       child: GestureDetector(
-                        onTap: () {
-                          
-                        },
+                        onTap: () {},
                         child: const Text(
                           'Contact Us',
                           style: TextStyle(color: Colors.grey, height: 1.5),
@@ -143,9 +138,7 @@ class Footer extends StatelessWidget {
                     MouseRegion(
                       cursor: SystemMouseCursors.click,
                       child: GestureDetector(
-                        onTap: () {
-                          
-                        },
+                        onTap: () {},
                         child: const Text(
                           'Terms & Conditions',
                           style: TextStyle(color: Colors.grey, height: 1.5),
@@ -160,9 +153,28 @@ class Footer extends StatelessWidget {
           const SizedBox(height: 48),
           const Divider(color: Colors.grey),
           const SizedBox(height: 24),
-          const Text(
-            '© 2024 Bearbrick Shop. All rights reserved.',
-            style: TextStyle(color: Colors.grey, fontSize: 12),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text(
+                '© 2024 Bearbrick Shop. All rights reserved.',
+                style: TextStyle(color: Colors.grey, fontSize: 12),
+              ),
+              if (scrollController != null) ...[
+                const SizedBox(width: 16),
+                IconButton(
+                  icon: const Icon(Icons.search, color: Colors.black),
+                  onPressed: () {
+                    scrollController!.animateTo(
+                      0,
+                      duration: const Duration(milliseconds: 500),
+                      curve: Curves.easeInOut,
+                    );
+                  },
+                  tooltip: 'Scroll to search',
+                ),
+              ]
+            ],
           ),
         ],
       ),

@@ -18,6 +18,7 @@ class _ProductPageState extends State<ProductPage> {
   List<String> _productImages = [];
   bool _isInit = true;
   String _purchaseType = 'Personal Use';
+  final ScrollController _scrollController = ScrollController();
 
   @override
   void didChangeDependencies() {
@@ -48,6 +49,12 @@ class _ProductPageState extends State<ProductPage> {
 
       _isInit = false;
     }
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
   }
 
   void navigateToHome(BuildContext context) {
@@ -103,6 +110,7 @@ class _ProductPageState extends State<ProductPage> {
 
     return Scaffold(
       body: SingleChildScrollView(
+        controller: _scrollController,
         child: Column(
           children: [
             // Header
@@ -672,7 +680,7 @@ class _ProductPageState extends State<ProductPage> {
             ),
 
             // Footer
-            const Footer(),
+            Footer(scrollController: _scrollController),
           ],
         ),
       ),

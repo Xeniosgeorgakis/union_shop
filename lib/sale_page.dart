@@ -17,12 +17,19 @@ class _SalePageState extends State<SalePage> {
   late List<Product> _products;
   late List<Product> _filteredProducts;
   String _sortOption = 'Default';
+  final ScrollController _scrollController = ScrollController();
 
   @override
   void initState() {
     super.initState();
     _products = allProducts.where((p) => p.originalPrice != null).toList();
     _filteredProducts = List.from(_products);
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
   }
 
   void navigateToHome(BuildContext context) {
@@ -55,6 +62,7 @@ class _SalePageState extends State<SalePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
+        controller: _scrollController,
         child: Column(
           children: [
             // Header
@@ -355,7 +363,7 @@ class _SalePageState extends State<SalePage> {
             ),
 
             // Footer
-            const Footer(),
+            Footer(scrollController: _scrollController),
           ],
         ),
       ),

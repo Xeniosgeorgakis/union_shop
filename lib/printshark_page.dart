@@ -4,8 +4,21 @@ import 'package:union_shop/models/cart_provider.dart';
 import 'package:union_shop/footer.dart';
 import 'package:union_shop/header_search_widget.dart';
 
-class PrintsharkPage extends StatelessWidget {
+class PrintsharkPage extends StatefulWidget {
   const PrintsharkPage({super.key});
+
+  @override
+  State<PrintsharkPage> createState() => _PrintsharkPageState();
+}
+
+class _PrintsharkPageState extends State<PrintsharkPage> {
+  final ScrollController _scrollController = ScrollController();
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
 
   void navigateToHome(BuildContext context) {
     Navigator.pushNamed(context, '/');
@@ -19,6 +32,7 @@ class PrintsharkPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
+        controller: _scrollController,
         child: Column(
           children: [
             // Header
@@ -346,7 +360,7 @@ class PrintsharkPage extends StatelessWidget {
                 ),
               ),
             ),
-            const Footer(),
+            Footer(scrollController: _scrollController),
           ],
         ),
       ),

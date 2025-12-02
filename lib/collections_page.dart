@@ -4,8 +4,21 @@ import 'package:union_shop/models/cart_provider.dart';
 import 'package:union_shop/footer.dart';
 import 'package:union_shop/header_search_widget.dart';
 
-class CollectionsPage extends StatelessWidget {
+class CollectionsPage extends StatefulWidget {
   const CollectionsPage({super.key});
+
+  @override
+  State<CollectionsPage> createState() => _CollectionsPageState();
+}
+
+class _CollectionsPageState extends State<CollectionsPage> {
+  final ScrollController _scrollController = ScrollController();
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
 
   void navigateToHome(BuildContext context) {
     Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
@@ -19,6 +32,7 @@ class CollectionsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
+        controller: _scrollController,
         child: Column(
           children: [
             // Header
@@ -296,7 +310,7 @@ class CollectionsPage extends StatelessWidget {
               ),
             ),
 
-            const Footer(),
+            Footer(scrollController: _scrollController),
           ],
         ),
       ),

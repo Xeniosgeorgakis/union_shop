@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:provider/provider.dart';
+import 'package:union_shop/footer.dart';
 import 'package:union_shop/models/cart_provider.dart';
 import 'package:union_shop/product_page.dart';
 
@@ -129,6 +130,11 @@ void main() {
       expect(find.text('OPENING HOURS'), findsOneWidget);
       expect(find.text('INFORMATION'), findsOneWidget);
       expect(find.text('HELP'), findsOneWidget);
+      // Check for search icon in footer
+      expect(
+          find.descendant(
+              of: find.byType(Footer), matching: find.byIcon(Icons.search)),
+          findsOneWidget);
     });
   });
 }

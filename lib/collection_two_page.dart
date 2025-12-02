@@ -17,6 +17,7 @@ class _CollectionTwoPageState extends State<CollectionTwoPage> {
   late List<Product> _products;
   late List<Product> _filteredProducts;
   String _sortOption = 'Default';
+  final ScrollController _scrollController = ScrollController();
 
   @override
   void initState() {
@@ -78,6 +79,12 @@ class _CollectionTwoPageState extends State<CollectionTwoPage> {
     _filteredProducts = List.from(_products);
   }
 
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
   void navigateToHome(BuildContext context) {
     Navigator.pushNamed(context, '/');
   }
@@ -104,6 +111,7 @@ class _CollectionTwoPageState extends State<CollectionTwoPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
+        controller: _scrollController,
         child: Column(
           children: [
             // Header
@@ -382,7 +390,7 @@ class _CollectionTwoPageState extends State<CollectionTwoPage> {
                 ),
               ),
             ),
-            const Footer(),
+            Footer(scrollController: _scrollController),
           ],
         ),
       ),
