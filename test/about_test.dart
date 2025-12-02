@@ -5,6 +5,7 @@ import 'package:union_shop/about_us_page.dart';
 import 'package:union_shop/footer.dart';
 import 'package:union_shop/models/cart_provider.dart';
 import 'package:union_shop/models/search_provider.dart';
+import 'package:union_shop/widgets/header_search_widget.dart';
 
 void main() {
   Widget createTestableWidget(Widget child) {
@@ -55,7 +56,11 @@ void main() {
       expect(find.text('Printshark'), findsOneWidget);
 
       // Check for Header Icons
-      expect(find.byIcon(Icons.search), findsOneWidget);
+      expect(
+          find.descendant(
+              of: find.byType(HeaderSearchWidget),
+              matching: find.byIcon(Icons.search)),
+          findsOneWidget);
       expect(find.byIcon(Icons.person_outline), findsOneWidget);
       expect(find.byIcon(Icons.shopping_bag_outlined), findsOneWidget);
       expect(find.byIcon(Icons.menu), findsOneWidget);
@@ -64,7 +69,9 @@ void main() {
       expect(find.byType(TextField), findsNothing);
 
       // Tap search icon and verify text field appears
-      await tester.tap(find.byIcon(Icons.search));
+      await tester.tap(find.descendant(
+          of: find.byType(HeaderSearchWidget),
+          matching: find.byIcon(Icons.search)));
       await tester.pump();
       expect(find.byType(TextField), findsOneWidget);
       expect(find.byIcon(Icons.close), findsNothing);
