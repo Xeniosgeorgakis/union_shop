@@ -213,18 +213,24 @@ class CartPage extends StatelessWidget {
                           ),
                         ),
                         const Divider(height: 40),
+                        const Text(
+                          'Order Summary',
+                          style: TextStyle(
+                              fontSize: 22, fontWeight: FontWeight.bold),
+                        ),
+                        const SizedBox(height: 16),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             const Text(
                               'Subtotal',
-                              style: TextStyle(
-                                  fontSize: 20, fontWeight: FontWeight.bold),
+                              style:
+                                  TextStyle(fontSize: 16, color: Colors.grey),
                             ),
                             Text(
                               '£${cart.subtotal.toStringAsFixed(2)}',
                               style: const TextStyle(
-                                  fontSize: 20, fontWeight: FontWeight.bold),
+                                  fontSize: 16, color: Colors.black87),
                             ),
                           ],
                         ),
@@ -239,8 +245,24 @@ class CartPage extends StatelessWidget {
                             ),
                             Text(
                               'Free',
-                              style:
-                                  TextStyle(fontSize: 16, color: Colors.grey),
+                              style: TextStyle(
+                                  fontSize: 16, color: Colors.black87),
+                            ),
+                          ],
+                        ),
+                        const Divider(height: 24),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Text(
+                              'Total',
+                              style: TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              '£${cart.subtotal.toStringAsFixed(2)}',
+                              style: const TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.bold),
                             ),
                           ],
                         ),
