@@ -186,7 +186,7 @@ class PrintsharkPage extends StatelessWidget {
                                 ),
                                 IconButton(
                                   icon: const Icon(Icons.shopping_bag_outlined,
-                                      size: 18, color: Colors.grey),
+                                      size: 18, color: Colors.black),
                                   onPressed: () {
                                     Navigator.pushNamed(context, '/cart');
                                   },

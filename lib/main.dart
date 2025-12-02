@@ -251,7 +251,7 @@ class HomeScreen extends StatelessWidget {
                                   icon: const Icon(
                                     Icons.shopping_bag_outlined,
                                     size: 18,
-                                    color: Colors.grey,
+                                    color: Colors.black,
                                   ),
                                   padding: const EdgeInsets.all(8),
                                   constraints: const BoxConstraints(
