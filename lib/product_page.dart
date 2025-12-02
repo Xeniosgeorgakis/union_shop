@@ -575,7 +575,14 @@ class _ProductPageState extends State<ProductPage> {
                                 SnackBar(
                                   content: Text(
                                       '$title has been added to your cart.'),
-                                  duration: const Duration(seconds: 2),
+                                  duration: const Duration(seconds: 4),
+                                  action: SnackBarAction(
+                                    label: 'VIEW CART',
+                                    onPressed: () {
+                                      Navigator.pushNamed(context, '/cart');
+                                    },
+                                    textColor: Colors.yellow,
+                                  ),
                                 ),
                               );
                             },
