@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:provider/provider.dart';
 import 'package:union_shop/main.dart';
+import 'package:union_shop/models/cart_provider.dart';
 
 void main() {
   group('Home Page Tests', () {
     testWidgets('should display home page with basic elements', (tester) async {
-      await tester.pumpWidget(const UnionShopApp());
+      await tester.pumpWidget(
+        ChangeNotifierProvider(
+          create: (context) => CartProvider(),
+          child: const UnionShopApp(),
+        ),
+      );
       await tester.pump();
 
       // Check that basic UI elements are present
@@ -25,7 +32,12 @@ void main() {
     });
 
     testWidgets('should display product cards', (tester) async {
-      await tester.pumpWidget(const UnionShopApp());
+      await tester.pumpWidget(
+        ChangeNotifierProvider(
+          create: (context) => CartProvider(),
+          child: const UnionShopApp(),
+        ),
+      );
       await tester.pump();
 
       // Check that product cards are displayed
@@ -49,7 +61,12 @@ void main() {
     });
 
     testWidgets('should display header icons', (tester) async {
-      await tester.pumpWidget(const UnionShopApp());
+      await tester.pumpWidget(
+        ChangeNotifierProvider(
+          create: (context) => CartProvider(),
+          child: const UnionShopApp(),
+        ),
+      );
       await tester.pump();
 
       // Check that header icons are present
@@ -60,7 +77,12 @@ void main() {
     });
 
     testWidgets('should display footer', (tester) async {
-      await tester.pumpWidget(const UnionShopApp());
+      await tester.pumpWidget(
+        ChangeNotifierProvider(
+          create: (context) => CartProvider(),
+          child: const UnionShopApp(),
+        ),
+      );
       await tester.pump();
 
       await tester.drag(

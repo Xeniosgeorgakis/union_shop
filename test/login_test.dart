@@ -1,11 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:provider/provider.dart';
 import 'package:union_shop/login_page.dart';
+import 'package:union_shop/models/cart_provider.dart';
 
 void main() {
+  Widget createTestableWidget(Widget child) {
+    return ChangeNotifierProvider(
+      create: (context) => CartProvider(),
+      child: MaterialApp(home: child),
+    );
+  }
+
   group('LoginPage Tests', () {
     testWidgets('should display login page elements', (tester) async {
-      await tester.pumpWidget(const MaterialApp(home: LoginPage()));
+      await tester.pumpWidget(createTestableWidget(const LoginPage()));
       await tester.pump();
 
       // Check for Header text
@@ -30,7 +39,7 @@ void main() {
 
     testWidgets('should show validation errors for empty fields',
         (tester) async {
-      await tester.pumpWidget(const MaterialApp(home: LoginPage()));
+      await tester.pumpWidget(createTestableWidget(const LoginPage()));
       await tester.pump();
 
       // Tap Sign In button without entering data
@@ -44,7 +53,7 @@ void main() {
 
     testWidgets('should show validation error for invalid email domain',
         (tester) async {
-      await tester.pumpWidget(const MaterialApp(home: LoginPage()));
+      await tester.pumpWidget(createTestableWidget(const LoginPage()));
       await tester.pump();
 
       // Enter invalid email
@@ -62,14 +71,19 @@ void main() {
     });
 
     testWidgets('should allow login with valid gmail', (tester) async {
-      await tester.pumpWidget(MaterialApp(
-        initialRoute: '/login',
-        routes: {
-          '/': (context) =>
-              const Scaffold(body: Center(child: Text('Home Screen'))),
-          '/login': (context) => const LoginPage(),
-        },
-      ));
+      await tester.pumpWidget(
+        ChangeNotifierProvider(
+          create: (context) => CartProvider(),
+          child: MaterialApp(
+            initialRoute: '/login',
+            routes: {
+              '/': (context) =>
+                  const Scaffold(body: Center(child: Text('Home Screen'))),
+              '/login': (context) => const LoginPage(),
+            },
+          ),
+        ),
+      );
       await tester.pump();
 
       // Enter valid gmail
@@ -92,14 +106,19 @@ void main() {
     });
 
     testWidgets('should allow login with valid hotmail', (tester) async {
-      await tester.pumpWidget(MaterialApp(
-        initialRoute: '/login',
-        routes: {
-          '/': (context) =>
-              const Scaffold(body: Center(child: Text('Home Screen'))),
-          '/login': (context) => const LoginPage(),
-        },
-      ));
+      await tester.pumpWidget(
+        ChangeNotifierProvider(
+          create: (context) => CartProvider(),
+          child: MaterialApp(
+            initialRoute: '/login',
+            routes: {
+              '/': (context) =>
+                  const Scaffold(body: Center(child: Text('Home Screen'))),
+              '/login': (context) => const LoginPage(),
+            },
+          ),
+        ),
+      );
       await tester.pump();
 
       // Enter valid hotmail

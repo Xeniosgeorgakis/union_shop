@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:provider/provider.dart';
+import 'package:union_shop/models/cart_provider.dart';
 import 'package:union_shop/product_page.dart';
 
 void main() {
@@ -13,20 +15,23 @@ void main() {
     };
 
     Widget createTestableWidget(Widget child) {
-      return MaterialApp(
-        home: child,
-        onGenerateRoute: (settings) {
-          if (settings.name == '/product') {
-            return MaterialPageRoute(
-              settings: const RouteSettings(
-                name: '/product',
-                arguments: productArgs,
-              ),
-              builder: (_) => const ProductPage(),
-            );
-          }
-          return null;
-        },
+      return ChangeNotifierProvider(
+        create: (context) => CartProvider(),
+        child: MaterialApp(
+          home: child,
+          onGenerateRoute: (settings) {
+            if (settings.name == '/product') {
+              return MaterialPageRoute(
+                settings: const RouteSettings(
+                  name: '/product',
+                  arguments: productArgs,
+                ),
+                builder: (_) => const ProductPage(),
+              );
+            }
+            return null;
+          },
+        ),
       );
     }
 
