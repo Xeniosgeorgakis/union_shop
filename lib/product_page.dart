@@ -522,6 +522,30 @@ class _ProductPageState extends State<ProductPage> {
 
                         const SizedBox(height: 24),
 
+                        // Summary Text
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Quantity: $_quantity',
+                              style: const TextStyle(
+                                fontSize: 16,
+                                color: Colors.black87,
+                              ),
+                            ),
+                            const SizedBox(height: 8),
+                            Text(
+                              'Purchase as: $_purchaseType',
+                              style: const TextStyle(
+                                fontSize: 16,
+                                color: Colors.black87,
+                              ),
+                            ),
+                          ],
+                        ),
+
+                        const SizedBox(height: 24),
+
                         // Product description
                         const Text(
                           'Description',
