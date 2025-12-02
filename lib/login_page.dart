@@ -76,6 +76,7 @@ class _LoginPageState extends State<LoginPage> {
                                   const Icon(Icons.error),
                             ),
                           ),
+                          const Spacer(),
                           Expanded(
                             child: SingleChildScrollView(
                               scrollDirection: Axis.horizontal,
@@ -163,6 +164,7 @@ class _LoginPageState extends State<LoginPage> {
                               ),
                             ),
                           ),
+                          const Spacer(),
                           // Placeholder for right side icons alignment
                           Row(
                             mainAxisSize: MainAxisSize.min,

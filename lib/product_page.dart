@@ -149,102 +149,113 @@ class _ProductPageState extends State<ProductPage> {
                             ),
                           ),
                           const Spacer(),
-                          MouseRegion(
-                            cursor: SystemMouseCursors.click,
-                            child: GestureDetector(
-                              onTap: () {
-                                navigateToHome(context);
-                              },
-                              child: const Text(
-                                'Home',
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.black,
-                                ),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(width: 24),
-                          MouseRegion(
-                            cursor: SystemMouseCursors.click,
-                            child: GestureDetector(
-                              onTap: () {
-                                Navigator.pushNamed(context, '/about');
-                              },
-                              child: const Text(
-                                'About Us',
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.black,
-                                ),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(width: 24),
-                          MouseRegion(
-                            cursor: SystemMouseCursors.click,
-                            child: GestureDetector(
-                              onTap: () {
-                                Navigator.pushNamed(context, '/collections');
-                              },
-                              child: const Text(
-                                'Collections',
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.black,
-                                ),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(width: 24),
-                          MouseRegion(
-                            cursor: SystemMouseCursors.click,
-                            child: GestureDetector(
-                              onTap: () {
-                                Navigator.pushNamed(context, '/sale');
-                              },
-                              child: const Text(
-                                'Sale',
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.black,
-                                ),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(width: 24),
-                          PopupMenuButton<String>(
-                            onSelected: (value) {
-                              Navigator.pushNamed(context, value);
-                            },
-                            itemBuilder: (context) => [
-                              const PopupMenuItem(
-                                value: '/printshark',
-                                child: Text('About Print Shack'),
-                              ),
-                              const PopupMenuItem(
-                                value: '/personalise',
-                                child: Text('Personalise'),
-                              ),
-                            ],
-                            child: const MouseRegion(
-                              cursor: SystemMouseCursors.click,
+                          Expanded(
+                            child: SingleChildScrollView(
+                              scrollDirection: Axis.horizontal,
                               child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Text(
-                                    'Printshark',
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w600,
-                                      color: Colors.black,
+                                  MouseRegion(
+                                    cursor: SystemMouseCursors.click,
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        navigateToHome(context);
+                                      },
+                                      child: const Text(
+                                        'Home',
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w600,
+                                          color: Colors.black,
+                                        ),
+                                      ),
                                     ),
                                   ),
-                                  Icon(Icons.arrow_drop_down,
-                                      color: Colors.black),
+                                  const SizedBox(width: 24),
+                                  MouseRegion(
+                                    cursor: SystemMouseCursors.click,
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        Navigator.pushNamed(context, '/about');
+                                      },
+                                      child: const Text(
+                                        'About Us',
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w600,
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(width: 24),
+                                  MouseRegion(
+                                    cursor: SystemMouseCursors.click,
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        Navigator.pushNamed(
+                                            context, '/collections');
+                                      },
+                                      child: const Text(
+                                        'Collections',
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w600,
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(width: 24),
+                                  MouseRegion(
+                                    cursor: SystemMouseCursors.click,
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        Navigator.pushNamed(context, '/sale');
+                                      },
+                                      child: const Text(
+                                        'Sale',
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w600,
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(width: 24),
+                                  PopupMenuButton<String>(
+                                    onSelected: (value) {
+                                      Navigator.pushNamed(context, value);
+                                    },
+                                    itemBuilder: (context) => [
+                                      const PopupMenuItem(
+                                        value: '/printshark',
+                                        child: Text('About Print Shack'),
+                                      ),
+                                      const PopupMenuItem(
+                                        value: '/personalise',
+                                        child: Text('Personalise'),
+                                      ),
+                                    ],
+                                    child: const MouseRegion(
+                                      cursor: SystemMouseCursors.click,
+                                      child: Row(
+                                        children: [
+                                          Text(
+                                            'Printshark',
+                                            style: TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w600,
+                                              color: Colors.black,
+                                            ),
+                                          ),
+                                          Icon(Icons.arrow_drop_down,
+                                              color: Colors.black),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
                                 ],
                               ),
                             ),
@@ -430,16 +441,19 @@ class _ProductPageState extends State<ProductPage> {
 
                         const SizedBox(height: 12),
 
-                        // Product price
+// Product price
                         if (originalPrice != null)
                           Row(
                             children: [
-                              Text(
-                                originalPrice,
-                                style: const TextStyle(
-                                  fontSize: 20,
-                                  color: Colors.grey,
-                                  decoration: TextDecoration.lineThrough,
+                              Expanded(
+                                child: Text(
+                                  originalPrice,
+                                  style: const TextStyle(
+                                    fontSize: 20,
+                                    color: Colors.grey,
+                                    decoration: TextDecoration.lineThrough,
+                                  ),
+                                  overflow: TextOverflow.ellipsis,
                                 ),
                               ),
                               const SizedBox(width: 12),
@@ -466,7 +480,10 @@ class _ProductPageState extends State<ProductPage> {
                         const SizedBox(height: 24),
 
                         // Quantity Selector
-                        Row(
+                        Wrap(
+                          crossAxisAlignment: WrapCrossAlignment.center,
+                          spacing: 16,
+                          runSpacing: 8,
                           children: [
                             const Text(
                               'Quantity:',
@@ -475,13 +492,13 @@ class _ProductPageState extends State<ProductPage> {
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
-                            const SizedBox(width: 16),
                             Container(
                               decoration: BoxDecoration(
                                 border: Border.all(color: Colors.grey.shade300),
                                 borderRadius: BorderRadius.circular(4),
                               ),
                               child: Row(
+                                mainAxisSize: MainAxisSize.min,
                                 children: [
                                   IconButton(
                                     icon: const Icon(Icons.remove),
@@ -517,7 +534,10 @@ class _ProductPageState extends State<ProductPage> {
                         const SizedBox(height: 24),
 
                         // Purchase Type Dropdown
-                        Row(
+                        Wrap(
+                          crossAxisAlignment: WrapCrossAlignment.center,
+                          spacing: 16,
+                          runSpacing: 8,
                           children: [
                             const Text(
                               'Purchase as:',
@@ -526,7 +546,6 @@ class _ProductPageState extends State<ProductPage> {
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
-                            const SizedBox(width: 16),
                             Container(
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 12.0),
@@ -557,7 +576,9 @@ class _ProductPageState extends State<ProductPage> {
                         const SizedBox(height: 24),
 
                         // Summary Text
-                        Row(
+                        Wrap(
+                          spacing: 8,
+                          runSpacing: 4,
                           children: [
                             Text(
                               'Quantity: $_quantity',
@@ -567,7 +588,7 @@ class _ProductPageState extends State<ProductPage> {
                               ),
                             ),
                             const Text(
-                              '  ·  ',
+                              '·',
                               style: TextStyle(
                                 fontSize: 16,
                                 color: Colors.black87,
