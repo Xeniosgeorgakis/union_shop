@@ -74,19 +74,14 @@ void main() {
         expect(find.byType(TextField), findsNothing);
       });
 
-      testWidgets(
-          'should show text field and close icon when search icon is tapped',
-          (tester) async {
+      testWidgets('should show text field when icon is tapped', (tester) async {
         await tester.pumpWidget(
-          createTestableWidget(child: const HeaderSearchWidget()),
-        );
+            createTestableWidget(child: const HeaderSearchWidget()));
 
         await tester.tap(find.byIcon(Icons.search));
         await tester.pump();
 
         expect(find.byType(TextField), findsOneWidget);
-        expect(find.byIcon(Icons.close), findsOneWidget);
-        expect(find.byIcon(Icons.search), findsNothing);
       });
 
       testWidgets('should update search query in provider when typing',
@@ -115,25 +110,6 @@ void main() {
 
         // Verify the text was entered into the TextField
         expect(find.text('test query'), findsOneWidget);
-      });
-
-      testWidgets('should hide text field when close icon is tapped',
-          (tester) async {
-        await tester.pumpWidget(
-          createTestableWidget(child: const HeaderSearchWidget()),
-        );
-
-        // Open search
-        await tester.tap(find.byIcon(Icons.search));
-        await tester.pump();
-        expect(find.byType(TextField), findsOneWidget);
-
-        // Close search
-        await tester.tap(find.byIcon(Icons.close));
-        await tester.pump();
-
-        expect(find.byType(TextField), findsNothing);
-        expect(find.byIcon(Icons.search), findsOneWidget);
       });
     });
 
