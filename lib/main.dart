@@ -525,6 +525,19 @@ class HomeScreen extends StatelessWidget {
                         ),
                       ),
                     ),
+                    const SizedBox(height: 24),
+                    ConstrainedBox(
+                      constraints: const BoxConstraints(maxWidth: 500),
+                      child: const Text(
+                        'Print Shack is our personalised T-shirt service that lets you create unique, made-to-order shirts with your own text, artwork, or branding.',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.grey,
+                          fontSize: 16,
+                          height: 1.5,
+                        ),
+                      ),
+                    ),
                     const SizedBox(height: 48),
                   ],
                 ),
