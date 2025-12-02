@@ -290,7 +290,9 @@ class _ProductPageState extends State<ProductPage> {
                                     minWidth: 32,
                                     minHeight: 32,
                                   ),
-                                  onPressed: placeholderCallbackForButtons,
+                                  onPressed: () {
+                                    Navigator.pushNamed(context, '/cart');
+                                  },
                                 ),
                                 IconButton(
                                   icon: const Icon(

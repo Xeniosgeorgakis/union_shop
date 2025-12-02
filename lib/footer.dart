@@ -108,7 +108,7 @@ class Footer extends StatelessWidget {
                       cursor: SystemMouseCursors.click,
                       child: GestureDetector(
                         onTap: () {
-                          // TODO: Implement navigation
+                          
                         },
                         child: const Text(
                           'Shipping & Returns',
@@ -120,7 +120,7 @@ class Footer extends StatelessWidget {
                       cursor: SystemMouseCursors.click,
                       child: GestureDetector(
                         onTap: () {
-                          // TODO: Implement navigation
+                          
                         },
                         child: const Text(
                           'FAQ',
@@ -132,7 +132,7 @@ class Footer extends StatelessWidget {
                       cursor: SystemMouseCursors.click,
                       child: GestureDetector(
                         onTap: () {
-                          // TODO: Implement navigation
+                          
                         },
                         child: const Text(
                           'Contact Us',
@@ -144,7 +144,7 @@ class Footer extends StatelessWidget {
                       cursor: SystemMouseCursors.click,
                       child: GestureDetector(
                         onTap: () {
-                          // TODO: Implement navigation
+                          
                         },
                         child: const Text(
                           'Terms & Conditions',

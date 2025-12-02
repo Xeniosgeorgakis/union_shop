@@ -9,6 +9,7 @@ import 'package:union_shop/footer.dart';
 import 'package:union_shop/collection_one_page.dart'; // Import the new page
 import 'package:union_shop/collection_two_page.dart';
 import 'package:union_shop/printshark_page.dart';
+import 'package:union_shop/cart_page.dart';
 
 void main() {
   runApp(const UnionShopApp());
@@ -37,6 +38,7 @@ class UnionShopApp extends StatelessWidget {
         '/collection/2': (context) => const CollectionTwoPage(),
         '/printshark': (context) => const PrintsharkPage(),
         '/personalise': (context) => const PersonalisePage(),
+        '/cart': (context) => const CartPage(),
       },
     );
   }
@@ -256,7 +258,9 @@ class HomeScreen extends StatelessWidget {
                                     minWidth: 32,
                                     minHeight: 32,
                                   ),
-                                  onPressed: placeholderCallbackForButtons,
+                                  onPressed: () {
+                                    Navigator.pushNamed(context, '/cart');
+                                  },
                                 ),
                                 IconButton(
                                   icon: const Icon(

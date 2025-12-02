@@ -179,7 +179,9 @@ class CollectionsPage extends StatelessWidget {
                                 IconButton(
                                   icon: const Icon(Icons.shopping_bag_outlined,
                                       size: 18, color: Colors.grey),
-                                  onPressed: placeholderCallbackForButtons,
+                                  onPressed: () {
+                                    Navigator.pushNamed(context, '/cart');
+                                  },
                                 ),
                                 IconButton(
                                   icon: const Icon(Icons.menu,
