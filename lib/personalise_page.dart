@@ -11,8 +11,6 @@ class PersonalisePage extends StatefulWidget {
 class _PersonalisePageState extends State<PersonalisePage> {
   final _nameController = TextEditingController();
   String _customText = '';
-  String _selectedFont = 'Arial';
-  final List<String> _fonts = ['Arial', 'Verdana', 'Georgia'];
 
   @override
   void initState() {
@@ -273,9 +271,8 @@ class _PersonalisePageState extends State<PersonalisePage> {
                                     : Text(
                                         _customText,
                                         textAlign: TextAlign.center,
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           fontSize: 32,
-                                          fontFamily: _selectedFont,
                                           fontWeight: FontWeight.bold,
                                         ),
                                       ),
@@ -314,23 +311,58 @@ class _PersonalisePageState extends State<PersonalisePage> {
                                 ),
                                 const SizedBox(height: 8),
                                 DropdownButtonFormField<String>(
-                                  initialValue: _selectedFont,
                                   decoration: const InputDecoration(
                                     border: OutlineInputBorder(),
                                   ),
-                                  items: _fonts.map((String font) {
-                                    return DropdownMenuItem<String>(
-                                      value: font,
+                                  items: const [
+                                    DropdownMenuItem<String>(
+                                      value: 'Arial',
                                       child: Text(
-                                        font,
-                                        style: TextStyle(fontFamily: font),
+                                        'Arial',
+                                        style: TextStyle(
+                                          fontFamily: 'Arial',
+                                        ),
                                       ),
-                                    );
-                                  }).toList(),
+                                    ),
+                                    DropdownMenuItem<String>(
+                                      value: 'Courier',
+                                      child: Text(
+                                        'Courier',
+                                        style: TextStyle(
+                                          fontFamily: 'Courier',
+                                        ),
+                                      ),
+                                    ),
+                                    DropdownMenuItem<String>(
+                                      value: 'Georgia',
+                                      child: Text(
+                                        'Georgia',
+                                        style: TextStyle(
+                                          fontFamily: 'Georgia',
+                                        ),
+                                      ),
+                                    ),
+                                    DropdownMenuItem<String>(
+                                      value: 'Times New Roman',
+                                      child: Text(
+                                        'Times New Roman',
+                                        style: TextStyle(
+                                          fontFamily: 'Times New Roman',
+                                        ),
+                                      ),
+                                    ),
+                                    DropdownMenuItem<String>(
+                                      value: 'Verdana',
+                                      child: Text(
+                                        'Verdana',
+                                        style: TextStyle(
+                                          fontFamily: 'Verdana',
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                   onChanged: (String? newValue) {
-                                    setState(() {
-                                      _selectedFont = newValue!;
-                                    });
+                                    setState(() {});
                                   },
                                 ),
                               ],
