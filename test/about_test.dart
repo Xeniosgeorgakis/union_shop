@@ -106,7 +106,10 @@ void main() {
 
       // Scroll to the bottom to make sure footer is visible
       await tester.drag(
-          find.byType(SingleChildScrollView), const Offset(0, -1000));
+          find.byWidgetPredicate((widget) =>
+              widget is SingleChildScrollView &&
+              widget.scrollDirection == Axis.vertical),
+          const Offset(0, -1000));
       await tester.pumpAndSettle();
 
       // Check for footer content

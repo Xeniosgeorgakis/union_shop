@@ -115,7 +115,10 @@ void main() {
       await tester.pump();
 
       await tester.drag(
-          find.byType(SingleChildScrollView), const Offset(0, -1000));
+          find.byWidgetPredicate((widget) =>
+              widget is SingleChildScrollView &&
+              widget.scrollDirection == Axis.vertical),
+          const Offset(0, -1000));
       await tester.pumpAndSettle();
 
       expect(find.text('OPENING HOURS'), findsOneWidget);
