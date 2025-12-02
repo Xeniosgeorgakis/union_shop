@@ -19,6 +19,7 @@ class _PersonalisePageState extends State<PersonalisePage> {
     'Courier',
     'Times New Roman'
   ];
+  int _quantity = 1;
 
   @override
   void initState() {
@@ -335,6 +336,56 @@ class _PersonalisePageState extends State<PersonalisePage> {
                                       _selectedFont = newValue!;
                                     });
                                   },
+                                ),
+                                const SizedBox(height: 24),
+                                const Text(
+                                  'Quantity',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                                const SizedBox(height: 8),
+                                Container(
+                                  decoration: BoxDecoration(
+                                    border:
+                                        Border.all(color: Colors.grey.shade300),
+                                    borderRadius: BorderRadius.circular(4),
+                                  ),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      IconButton(
+                                        icon: const Icon(Icons.remove),
+                                        onPressed: () {
+                                          if (_quantity > 1) {
+                                            setState(() {
+                                              _quantity--;
+                                            });
+                                          }
+                                        },
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 16.0),
+                                        child: Text(
+                                          '$_quantity',
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                      IconButton(
+                                        icon: const Icon(Icons.add),
+                                        onPressed: () {
+                                          setState(() {
+                                            _quantity++;
+                                          });
+                                        },
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ],
                             ),
