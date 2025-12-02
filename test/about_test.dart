@@ -62,6 +62,7 @@ void main() {
       await tester.tap(find.byIcon(Icons.search));
       await tester.pump();
       expect(find.byType(TextField), findsOneWidget);
+      expect(find.byIcon(Icons.close), findsNothing);
     });
 
     testWidgets('should display main content of About Us page', (tester) async {

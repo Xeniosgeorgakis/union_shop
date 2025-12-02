@@ -77,15 +77,6 @@ class _HeaderSearchWidgetState extends State<HeaderSearchWidget> {
                 icon: const Icon(Icons.search, size: 18, color: Colors.grey),
                 onPressed: _performSearch,
               ),
-              IconButton(
-                icon: const Icon(Icons.close, size: 18, color: Colors.grey),
-                onPressed: () {
-                  setState(() {
-                    _isSearching = false;
-                    _searchController.clear();
-                  });
-                },
-              ),
             ],
           )
         : IconButton(
