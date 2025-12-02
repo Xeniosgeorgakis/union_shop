@@ -245,6 +245,22 @@ class _PersonalisePageState extends State<PersonalisePage> {
                           border: OutlineInputBorder(),
                         ),
                       ),
+                      const SizedBox(height: 40),
+                      Container(
+                        height: 300,
+                        width: double.infinity,
+                        color: Colors.grey[300],
+                        child: const Center(
+                          child: Text(
+                            'Preview Area',
+                            style: TextStyle(
+                              fontSize: 24,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),
