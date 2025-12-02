@@ -13,6 +13,7 @@ class _ProductPageState extends State<ProductPage> {
   String? _selectedImage;
   List<String> _productImages = [];
   bool _isInit = true;
+  String _purchaseType = 'Personal Use';
 
   @override
   void didChangeDependencies() {
@@ -474,6 +475,46 @@ class _ProductPageState extends State<ProductPage> {
                                     },
                                   ),
                                 ],
+                              ),
+                            ),
+                          ],
+                        ),
+
+                        const SizedBox(height: 24),
+
+                        // Purchase Type Dropdown
+                        Row(
+                          children: [
+                            const Text(
+                              'Purchase as:',
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            const SizedBox(width: 16),
+                            Container(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 12.0),
+                              decoration: BoxDecoration(
+                                border: Border.all(color: Colors.grey.shade300),
+                                borderRadius: BorderRadius.circular(4),
+                              ),
+                              child: DropdownButton<String>(
+                                value: _purchaseType,
+                                underline: const SizedBox(),
+                                items: <String>['Personal Use', 'Gift']
+                                    .map((String value) {
+                                  return DropdownMenuItem<String>(
+                                    value: value,
+                                    child: Text(value),
+                                  );
+                                }).toList(),
+                                onChanged: (String? newValue) {
+                                  setState(() {
+                                    _purchaseType = newValue!;
+                                  });
+                                },
                               ),
                             ),
                           ],
