@@ -1,0 +1,141 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:provider/provider.dart';
+import 'package:union_shop/footer.dart';
+import 'package:union_shop/main.dart';
+import 'package:union_shop/models/cart_provider.dart';
+import 'package:union_shop/models/search_provider.dart';
+import 'package:union_shop/widgets/header_search_widget.dart';
+
+void main() {
+  group('Home Page Tests', () {
+    testWidgets('should display home page with basic elements', (tester) async {
+      await tester.pumpWidget(
+        MultiProvider(
+          providers: [
+            ChangeNotifierProvider(create: (context) => CartProvider()),
+            ChangeNotifierProvider(create: (context) => SearchProvider()),
+          ],
+          child: const UnionShopApp(),
+        ),
+      );
+      await tester.pump();
+
+      // Check that basic UI elements are present
+
+      expect(
+        find.text('🔥 Massive BE@RBRICK Sale Live Now'),
+        findsOneWidget,
+      );
+
+      expect(find.text('OVER 20% OFF!'), findsOneWidget);
+
+      expect(find.text('OVER 20% OFF ON SELECTED PRODUCTS!'), findsOneWidget);
+      expect(find.text('BROWSE OUR COLLECTIONS'), findsOneWidget);
+
+      expect(find.text('VIEW ALL SALES'), findsOneWidget);
+    });
+
+    testWidgets('should display product cards', (tester) async {
+      await tester.pumpWidget(
+        MultiProvider(
+          providers: [
+            ChangeNotifierProvider(create: (context) => CartProvider()),
+            ChangeNotifierProvider(create: (context) => SearchProvider()),
+          ],
+          child: const UnionShopApp(),
+        ),
+      );
+      await tester.pump();
+
+      // Check that product cards are displayed
+
+      expect(find.text('Bearbrick Garfield 100% & 400% Set (Gold)'),
+          findsOneWidget);
+      expect(find.text('1000% Bearbrick - Squid Game (Red)'), findsOneWidget);
+      expect(
+          find.text('Bearbrick x Nike Tech Fleece N98 100% & 400% Set (Grey)'),
+          findsOneWidget);
+      expect(
+          find.text(
+              '400% & 100% Bearbrick Set – LBWK x BAPE Green Camo (Black)'),
+          findsOneWidget);
+
+      // Check prices are displayed
+
+      expect(find.text('£112.00'), findsOneWidget);
+      expect(find.text('£160.00'), findsOneWidget);
+
+      // Find Text widgets with '£140.00' that are not strikethrough
+      final priceFinder = find.byWidgetPredicate((widget) =>
+          widget is Text &&
+          widget.data == '£140.00' &&
+          (widget.style?.decoration == null ||
+              widget.style?.decoration != TextDecoration.lineThrough));
+
+      expect(priceFinder, findsNWidgets(2));
+    });
+
+    testWidgets('should display header icons', (tester) async {
+      await tester.pumpWidget(
+        MultiProvider(
+          providers: [
+            ChangeNotifierProvider(create: (context) => CartProvider()),
+            ChangeNotifierProvider(create: (context) => SearchProvider()),
+          ],
+          child: const UnionShopApp(),
+        ),
+      );
+      await tester.pump();
+
+      // Check that header icons are present
+      expect(
+          find.descendant(
+              of: find.byType(HeaderSearchWidget),
+              matching: find.byIcon(Icons.search)),
+          findsOneWidget);
+      expect(find.byIcon(Icons.person_outline), findsOneWidget);
+      expect(find.byIcon(Icons.shopping_bag_outlined), findsOneWidget);
+      expect(find.byIcon(Icons.menu), findsOneWidget);
+
+      // Check that search field is not visible initially
+      expect(find.byType(TextField), findsNothing);
+
+      // Tap search icon and verify text field appears
+      await tester.tap(find.descendant(
+          of: find.byType(HeaderSearchWidget),
+          matching: find.byIcon(Icons.search)));
+      await tester.pump();
+      expect(find.byType(TextField), findsOneWidget);
+    });
+
+    testWidgets('should display footer', (tester) async {
+      await tester.pumpWidget(
+        MultiProvider(
+          providers: [
+            ChangeNotifierProvider(create: (context) => CartProvider()),
+            ChangeNotifierProvider(create: (context) => SearchProvider()),
+          ],
+          child: const UnionShopApp(),
+        ),
+      );
+      await tester.pump();
+
+      await tester.drag(
+          find.byWidgetPredicate((widget) =>
+              widget is SingleChildScrollView &&
+              widget.scrollDirection == Axis.vertical),
+          const Offset(0, -1000));
+      await tester.pumpAndSettle();
+
+      expect(find.text('OPENING HOURS'), findsOneWidget);
+      expect(find.text('INFORMATION'), findsOneWidget);
+      expect(find.text('HELP'), findsOneWidget);
+      // Check for search icon in footer
+      expect(
+          find.descendant(
+              of: find.byType(Footer), matching: find.byIcon(Icons.search)),
+          findsOneWidget);
+    });
+  });
+}
