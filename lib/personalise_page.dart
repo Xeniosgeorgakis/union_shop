@@ -18,6 +18,7 @@ class _PersonalisePageState extends State<PersonalisePage> {
   final _line1Controller = TextEditingController();
   final _line2Controller = TextEditingController();
   final _line3Controller = TextEditingController();
+  final ScrollController _scrollController = ScrollController();
 
   String _customText = '';
   String _selectedFont = 'Arial';
@@ -58,6 +59,7 @@ class _PersonalisePageState extends State<PersonalisePage> {
     _line1Controller.dispose();
     _line2Controller.dispose();
     _line3Controller.dispose();
+    _scrollController.dispose();
     super.dispose();
   }
 
@@ -73,6 +75,7 @@ class _PersonalisePageState extends State<PersonalisePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
+        controller: _scrollController,
         child: Column(
           children: [
             // Header
@@ -563,7 +566,8 @@ class _PersonalisePageState extends State<PersonalisePage> {
                 ),
               ),
             ),
-            const Footer(),
+            // Footer
+            Footer(scrollController: _scrollController),
           ],
         ),
       ),

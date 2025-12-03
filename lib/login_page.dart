@@ -153,7 +153,7 @@ class _LoginPageState extends State<LoginPage> {
                                       child: Row(
                                         children: [
                                           Text(
-                                            'Printshark',
+                                            'PrintShack',
                                             style: TextStyle(
                                               fontSize: 16,
                                               fontWeight: FontWeight.w600,

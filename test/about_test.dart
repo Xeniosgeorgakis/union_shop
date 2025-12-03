@@ -53,7 +53,7 @@ void main() {
           findsNWidgets(3)); // Header, content title, and footer link
       expect(find.text('Collections'), findsOneWidget);
       expect(find.text('Sale'), findsOneWidget);
-      expect(find.text('Printshark'), findsOneWidget);
+      expect(find.text('PrintShack'), findsOneWidget);
 
       // Check for Header Icons
       expect(

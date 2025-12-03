@@ -177,7 +177,7 @@ class _PrintsharkPageState extends State<PrintsharkPage> {
                                       child: Row(
                                         children: [
                                           Text(
-                                            'Printshark',
+                                            'PrintShack',
                                             style: TextStyle(
                                               fontSize: 16,
                                               fontWeight: FontWeight.w600,

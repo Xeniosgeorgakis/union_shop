@@ -221,7 +221,7 @@ class _CollectionTwoPageState extends State<CollectionTwoPage> {
                                       child: Row(
                                         children: [
                                           Text(
-                                            'Printshark',
+                                            'PrintShack',
                                             style: TextStyle(
                                               fontSize: 16,
                                               fontWeight: FontWeight.w600,

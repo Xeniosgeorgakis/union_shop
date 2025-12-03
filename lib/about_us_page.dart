@@ -172,7 +172,7 @@ class _AboutUsPageState extends State<AboutUsPage> {
                                       child: Row(
                                         children: [
                                           Text(
-                                            'Printshark',
+                                            'PrintShack',
                                             style: TextStyle(
                                               fontSize: 16,
                                               fontWeight: FontWeight.w600,
