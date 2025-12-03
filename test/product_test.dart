@@ -65,8 +65,7 @@ void main() {
 
       // Check that basic UI elements are present
       expect(
-        find.text(
-            '🔥 Massive BE@RBRICK Sale Live Now — Limited Editions, Exclusive Drops, and Up to 20% Off While Stock Lasts!'),
+        find.text('🔥 Massive BE@RBRICK Sale Live Now'),
         findsOneWidget,
       );
       expect(find.text('Test Product'), findsOneWidget);

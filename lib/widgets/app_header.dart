@@ -26,7 +26,7 @@ class AppHeader extends StatelessWidget implements PreferredSizeWidget {
             padding: const EdgeInsets.symmetric(vertical: 8),
             color: Colors.black,
             child: const Text(
-              '🔥 Massive BE@RBRICK Sale Live Now — Limited Editions, Exclusive Drops, and Up to 20% Off While Stock Lasts!',
+              '🔥 Massive BE@RBRICK Sale Live Now',
               textAlign: TextAlign.center,
               style: TextStyle(
                   color: Colors.white,

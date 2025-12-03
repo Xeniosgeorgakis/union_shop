@@ -62,8 +62,8 @@ class AppDrawer extends StatelessWidget {
           ),
           ExpansionTile(
             title: const Text('PrintShack'),
-            initiallyExpanded: currentRoute == '/printshark' ||
-                currentRoute == '/personalise',
+            initiallyExpanded:
+                currentRoute == '/printshark' || currentRoute == '/personalise',
             children: <Widget>[
               ListTile(
                 title: const Text('About Print Shack'),
