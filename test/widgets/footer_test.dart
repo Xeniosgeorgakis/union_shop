@@ -118,7 +118,7 @@ void main() {
       await tester.pumpAndSettle(); // Wait for scroll and provider update
 
       // Verify search provider was activated
-      expect(searchProvider.isSearching, isTrue);
+      expect(searchProvider.isSearchVisible, isTrue);
 
       // Verify scroll position is at the top
       expect(scrollController.offset, 0);

@@ -110,7 +110,7 @@ class AppHeader extends StatelessWidget implements PreferredSizeWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        const HeaderSearchWidget(),
+        HeaderSearchWidget(isMobile: isMobile),
         IconButton(
           icon: const Icon(Icons.person_outline, size: 18, color: Colors.black),
           onPressed: () {

@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 
 class SearchProvider with ChangeNotifier {
-  bool _isSearching = false;
+  bool _isSearchVisible = false;
 
-  bool get isSearching => _isSearching;
+  bool get isSearchVisible => _isSearchVisible;
 
-  void setSearch(bool isSearching) {
-    if (_isSearching != isSearching) {
-      _isSearching = isSearching;
-      notifyListeners();
-    }
+  void setSearch(bool isVisible) {
+    _isSearchVisible = isVisible;
+    notifyListeners();
   }
 }

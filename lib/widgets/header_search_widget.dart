@@ -5,7 +5,8 @@ import 'package:union_shop/models/product_model.dart';
 import 'package:union_shop/models/search_provider.dart';
 
 class HeaderSearchWidget extends StatefulWidget {
-  const HeaderSearchWidget({super.key});
+  final bool isMobile;
+  const HeaderSearchWidget({super.key, this.isMobile = false});
 
   @override
   State<HeaderSearchWidget> createState() => _HeaderSearchWidgetState();
@@ -58,12 +59,12 @@ class _HeaderSearchWidgetState extends State<HeaderSearchWidget> {
   Widget build(BuildContext context) {
     final searchProvider = Provider.of<SearchProvider>(context);
 
-    return searchProvider.isSearching
+    return searchProvider.isSearchVisible
         ? Row(
             mainAxisSize: MainAxisSize.min,
             children: [
               SizedBox(
-                width: 150,
+                width: widget.isMobile ? 100 : 150,
                 height: 36,
                 child: TextField(
                   controller: _searchController,
