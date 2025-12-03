@@ -40,17 +40,7 @@ class CustomSearchDelegate extends SearchDelegate {
         return ListTile(
           title: Text(result.title),
           onTap: () {
-            Navigator.pushNamed(
-              context,
-              '/product',
-              arguments: {
-                'title': result.title,
-                'price': result.price,
-                'originalPrice': result.originalPrice,
-                'imageUrl': result.imageUrl,
-                'description': result.description,
-              },
-            );
+            Navigator.pushNamed(context, '/product/${result.id}');
           },
         );
       },
@@ -72,8 +62,7 @@ class CustomSearchDelegate extends SearchDelegate {
         return ListTile(
           title: Text(result.title),
           onTap: () {
-            query = result.title;
-            showResults(context);
+            Navigator.pushNamed(context, '/product/${result.id}');
           },
         );
       },
