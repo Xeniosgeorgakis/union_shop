@@ -7,6 +7,7 @@ import 'package:union_shop/footer.dart';
 import 'package:union_shop/models/cart_provider.dart';
 import 'package:union_shop/models/search_provider.dart';
 import 'package:union_shop/widgets/header_search_widget.dart';
+import 'package:union_shop/product_page.dart';
 
 // A mock navigator observer to verify navigation events.
 class MockNavigatorObserver extends NavigatorObserver {
@@ -39,9 +40,17 @@ void main() {
       ],
       child: MaterialApp(
         home: child,
-        routes: {
-          '/product': (context) => const Scaffold(body: Text('Product Page')),
+        onGenerateRoute: (settings) {
+          if (settings.name?.startsWith('/product/') == true) {
+            final productId = settings.name!.substring('/product/'.length);
+            return MaterialPageRoute(
+              settings: settings,
+              builder: (context) => ProductPage(productId: productId),
+            );
+          }
+          return null;
         },
+        routes: const {},
         navigatorObservers: [mockObserver],
       ),
     );
@@ -142,12 +151,10 @@ void main() {
 
       // Verify navigation
       expect(mockObserver.pushed, isTrue);
-      expect(mockObserver.pushedRoute, '/product');
+      expect(mockObserver.pushedRoute, startsWith('/product/'));
 
-      // Verify arguments
-      final args = mockObserver.pushedArguments as Map<String, dynamic>;
-      expect(args['title'], cardWidget.title);
-      expect(args['price'], cardWidget.price);
+      // Verify the route contains a product ID
+      expect(mockObserver.pushedRoute, contains(cardWidget.id));
     });
 
     testWidgets('should display footer on CollectionTwo page', (tester) async {

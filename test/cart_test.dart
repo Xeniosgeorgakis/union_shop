@@ -49,6 +49,7 @@ void main() {
       final cartProvider = CartProvider();
       cartProvider.addItem(
         Product(
+          id: 'test-product',
           title: 'Test Product',
           price: '25.00',
           originalPrice: null,
@@ -78,6 +79,7 @@ void main() {
       final cartProvider = CartProvider();
       cartProvider.addItem(
           Product(
+            id: 'test-product-2',
             title: 'Test Product',
             price: '£10.00',
             originalPrice: '£15.00',
@@ -108,6 +110,7 @@ void main() {
       final cartProvider = CartProvider();
       cartProvider.addItem(
           Product(
+            id: 'test-product-3',
             title: 'Test Product',
             price: '£10.00',
             originalPrice: '£15.00',
@@ -139,6 +142,7 @@ void main() {
       final cartProvider = CartProvider();
       cartProvider.addItem(
           Product(
+            id: 'test-product-4',
             title: 'Test Product',
             price: '£10.00',
             originalPrice: '£15.00',
@@ -174,6 +178,7 @@ void main() {
       final cartProvider = CartProvider();
       cartProvider.addItem(
           Product(
+            id: 'test-product-5',
             title: 'Test Product',
             price: '£10.00',
             originalPrice: '£15.00',
@@ -205,6 +210,7 @@ void main() {
       final cartProvider = CartProvider();
       cartProvider.addItem(
           Product(
+            id: 'test-product-6',
             title: 'Test Product',
             price: '£10.00',
             originalPrice: '£15.00',
@@ -233,6 +239,7 @@ void main() {
       final cartProvider = CartProvider();
       cartProvider.addItem(
           Product(
+            id: 'test-product-7',
             title: 'Test Product',
             price: '£10.00',
             originalPrice: '£15.00',
@@ -261,6 +268,7 @@ void main() {
       final cartProvider = CartProvider();
       cartProvider.addItem(
           Product(
+            id: 'test-product-8',
             title: 'Test Product',
             price: '£10.00',
             originalPrice: '£15.00',
@@ -296,6 +304,7 @@ void main() {
       final cartProvider = CartProvider();
       cartProvider.addItem(
           Product(
+            id: 'test-product-9',
             title: 'Test Product',
             price: '£10.00',
             originalPrice: '£15.00',
@@ -353,6 +362,7 @@ void main() {
       final cartProvider = CartProvider();
       cartProvider.addItem(
         Product(
+          id: 'test-product-10',
           title: 'Product 1',
           price: '25.00',
           originalPrice: null,
@@ -364,6 +374,7 @@ void main() {
       );
       cartProvider.addItem(
         Product(
+          id: 'test-product-11',
           title: 'Product 2',
           price: '5.00',
           originalPrice: null,
