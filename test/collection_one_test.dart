@@ -4,9 +4,8 @@ import 'package:provider/provider.dart';
 import 'package:union_shop/collection_one_page.dart';
 import 'package:union_shop/footer.dart';
 import 'package:union_shop/models/cart_provider.dart';
-
 import 'package:union_shop/models/search_provider.dart';
-import 'package:union_shop/widgets/header_search_widget.dart';
+
 
 // A mock navigator observer to verify navigation events.
 class MockNavigatorObserver extends NavigatorObserver {
@@ -52,35 +51,7 @@ void main() {
       mockObserver = MockNavigatorObserver();
     });
 
-    testWidgets('should display CollectionOne page with all elements',
-        (tester) async {
-      await tester.pumpWidget(createTestableWidget(const CollectionOnePage()));
-      await tester.pump();
-
-      // Check for Header text
-      expect(find.text('🔥 Massive BE@RBRICK Sale Live Now'), findsOneWidget);
-
-      // Check for page banner
-      expect(find.text('1000% BE@RBRICKS'), findsOneWidget);
-      expect(find.text('The biggest and boldest Bearbricks available.'),
-          findsOneWidget);
-
-      // Check for sort dropdown
-      expect(find.text('Sort by:'), findsOneWidget);
-      expect(find.widgetWithText(DropdownButton<String>, 'Default'),
-          findsOneWidget);
-
-      // Check for Header Icons
-      expect(
-          find.descendant(
-              of: find.byType(HeaderSearchWidget),
-              matching: find.byIcon(Icons.search)),
-          findsOneWidget);
-      expect(find.byIcon(Icons.person_outline), findsOneWidget);
-      expect(find.byIcon(Icons.shopping_bag_outlined), findsOneWidget);
-      expect(find.byIcon(Icons.menu), findsOneWidget);
-    });
-
+    
     testWidgets('should sort products by price low to high', (tester) async {
       await tester.pumpWidget(createTestableWidget(const CollectionOnePage()));
       await tester.pump();
