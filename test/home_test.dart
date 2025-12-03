@@ -65,7 +65,15 @@ void main() {
 
       expect(find.text('£112.00'), findsOneWidget);
       expect(find.text('£160.00'), findsOneWidget);
-      expect(find.text('£140.00'), findsNWidgets(2)); // Two items at £140.00
+
+      // Find Text widgets with '£140.00' that are not strikethrough
+      final priceFinder = find.byWidgetPredicate((widget) =>
+          widget is Text &&
+          widget.data == '£140.00' &&
+          (widget.style?.decoration == null ||
+              widget.style?.decoration != TextDecoration.lineThrough));
+
+      expect(priceFinder, findsNWidgets(2));
     });
 
     testWidgets('should display header icons', (tester) async {
