@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:provider/provider.dart';
 import 'package:union_shop/widgets/header_search_widget.dart';
-import 'package:union_shop/login_page.dart';
+import 'package:union_shop/auth/login_page.dart';
 import 'package:union_shop/models/cart_provider.dart';
 import 'package:union_shop/models/search_provider.dart';
 
