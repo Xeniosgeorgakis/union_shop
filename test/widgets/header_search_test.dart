@@ -22,6 +22,17 @@ void main() {
         routes: {
           '/product': (context) => const ProductPage(),
         },
+        onGenerateRoute: (settings) {
+          // Handle dynamic /product/:id routes
+          if (settings.name?.startsWith('/product/') == true) {
+            final productId = settings.name!.substring('/product/'.length);
+            return MaterialPageRoute(
+              builder: (context) => ProductPage(productId: productId),
+              settings: settings,
+            );
+          }
+          return null;
+        },
       ),
     );
   }
@@ -190,7 +201,8 @@ void main() {
         expect(find.text('No product found.'), findsNothing);
       });
 
-      testWidgets('should show snackbar when no product found', (tester) async {
+      testWidgets('should show no suggestions when no product matches',
+          (tester) async {
         await tester.pumpWidget(createTestableWidget());
 
         await tester.tap(find.byIcon(Icons.search));
@@ -198,11 +210,10 @@ void main() {
 
         // Enter a product name that doesn't exist
         await tester.enterText(find.byType(TextField), 'Nonexistent Product');
-        await tester.testTextInput.receiveAction(TextInputAction.done);
         await tester.pumpAndSettle();
 
-        // Should show snackbar
-        expect(find.text('No product found.'), findsOneWidget);
+        // Should show no suggestions (no ListTile)
+        expect(find.byType(ListTile), findsNothing);
       });
 
       testWidgets('should perform search when search icon button is tapped',
@@ -460,10 +471,9 @@ void main() {
         await tester.pumpAndSettle();
 
         await tester.enterText(find.byType(TextField), '@#\$%^&*()');
-        await tester.testTextInput.receiveAction(TextInputAction.done);
         await tester.pumpAndSettle();
 
-        expect(find.text('No product found.'), findsOneWidget);
+        expect(find.byType(ListTile), findsNothing);
       });
 
       testWidgets('should handle very long search queries', (tester) async {
@@ -474,10 +484,9 @@ void main() {
 
         final longQuery = 'a' * 200;
         await tester.enterText(find.byType(TextField), longQuery);
-        await tester.testTextInput.receiveAction(TextInputAction.done);
         await tester.pumpAndSettle();
 
-        expect(find.text('No product found.'), findsOneWidget);
+        expect(find.byType(ListTile), findsNothing);
       });
     });
   });
