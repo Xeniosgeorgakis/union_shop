@@ -68,32 +68,37 @@ class _CollectionsPageState extends State<CollectionsPage> {
                 child: Center(
                   child: ConstrainedBox(
                     constraints: const BoxConstraints(maxWidth: 1100),
-                    child: GridView.count(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      crossAxisCount: 3,
-                      crossAxisSpacing: 40,
-                      mainAxisSpacing: 40,
-                      childAspectRatio: 0.8,
-                      children: const [
-                        CollectionCard(
-                          title: '1000% BE@RBRICKS',
-                          imageUrl:
-                              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxrfumRH3x_TzW-P0tAg8gjIMhJh1pCP-UWw&s',
-                          route: '/collection/1', // Add route
-                        ),
-                        CollectionCard(
-                          title: '400% AND 100% BE@RBRICKS',
-                          imageUrl:
-                              'https://bearbrickz.com/cdn/shop/files/400_-_-100_-Bearbrick-S_t-E.T.-114182579_1000x.webp?v=1742649369',
-                          route: '/collection/2',
-                        ),
-                        CollectionCard(
-                          title: 'Bearbrick Merch',
-                          imageUrl:
-                              'https://images.teepublic.com/derived/production/designs/63473609_0/1721896748/i_m:bi_production_blanks_mtl53ofohwq5goqjo9ke_1462829015,c_0_0_470x,s_313,q_90.jpg',
-                        ),
-                      ],
+                    child: LayoutBuilder(
+                      builder: (context, constraints) {
+                        final isMobile = constraints.maxWidth < 600;
+                        return GridView.count(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          crossAxisCount: isMobile ? 1 : 3,
+                          crossAxisSpacing: 40,
+                          mainAxisSpacing: 40,
+                          childAspectRatio: isMobile ? 1.5 : 0.8,
+                          children: const [
+                            CollectionCard(
+                              title: '1000% BE@RBRICKS',
+                              imageUrl:
+                                  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxrfumRH3x_TzW-P0tAg8gjIMhJh1pCP-UWw&s',
+                              route: '/collection/1', // Add route
+                            ),
+                            CollectionCard(
+                              title: '400% AND 100% BE@RBRICKS',
+                              imageUrl:
+                                  'https://bearbrickz.com/cdn/shop/files/400_-_-100_-Bearbrick-S_t-E.T.-114182579_1000x.webp?v=1742649369',
+                              route: '/collection/2',
+                            ),
+                            CollectionCard(
+                              title: 'Bearbrick Merch',
+                              imageUrl:
+                                  'https://images.teepublic.com/derived/production/designs/63473609_0/1721896748/i_m:bi_production_blanks_mtl53ofohwq5goqjo9ke_1462829015,c_0_0_470x,s_313,q_90.jpg',
+                            ),
+                          ],
+                        );
+                      },
                     ),
                   ),
                 ),
