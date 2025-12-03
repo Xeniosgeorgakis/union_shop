@@ -182,25 +182,30 @@ class _CollectionTwoPageState extends State<CollectionTwoPage> {
                 child: Center(
                   child: ConstrainedBox(
                     constraints: const BoxConstraints(maxWidth: 1100),
-                    child: GridView.builder(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 3,
-                        crossAxisSpacing: 40,
-                        mainAxisSpacing: 40,
-                        childAspectRatio: 0.75,
-                      ),
-                      itemCount: _filteredProducts.length,
-                      itemBuilder: (context, index) {
-                        final product = _filteredProducts[index];
-                        return CollectionProductCard(
-                          title: product.title,
-                          price: product.price,
-                          originalPrice: product.originalPrice,
-                          imageUrl: product.imageUrl,
-                          description: product.description,
+                    child: LayoutBuilder(
+                      builder: (context, constraints) {
+                        final isMobile = constraints.maxWidth < 600;
+                        return GridView.builder(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: isMobile ? 1 : 3,
+                            crossAxisSpacing: 40,
+                            mainAxisSpacing: 40,
+                            childAspectRatio: isMobile ? 1.2 : 0.75,
+                          ),
+                          itemCount: _filteredProducts.length,
+                          itemBuilder: (context, index) {
+                            final product = _filteredProducts[index];
+                            return CollectionProductCard(
+                              title: product.title,
+                              price: product.price,
+                              originalPrice: product.originalPrice,
+                              imageUrl: product.imageUrl,
+                              description: product.description,
+                            );
+                          },
                         );
                       },
                     ),
