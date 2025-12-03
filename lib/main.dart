@@ -209,29 +209,34 @@ class _HomeScreenState extends State<HomeScreen> {
                     Center(
                       child: ConstrainedBox(
                         constraints: const BoxConstraints(maxWidth: 900),
-                        child: GridView.count(
-                          shrinkWrap: true,
-                          physics: const NeverScrollableScrollPhysics(),
-                          crossAxisCount: 2,
-                          crossAxisSpacing: 80,
-                          mainAxisSpacing: 80,
-                          childAspectRatio: 0.75,
-                          children: [
-                            ProductCard(
-                              title: allProducts[0].title,
-                              price: allProducts[0].price,
-                              originalPrice: allProducts[0].originalPrice,
-                              imageUrl: allProducts[0].imageUrl,
-                              description: allProducts[0].description,
-                            ),
-                            ProductCard(
-                              title: allProducts[1].title,
-                              price: allProducts[1].price,
-                              originalPrice: allProducts[1].originalPrice,
-                              imageUrl: allProducts[1].imageUrl,
-                              description: allProducts[1].description,
-                            ),
-                          ],
+                        child: LayoutBuilder(
+                          builder: (context, constraints) {
+                            final isMobile = constraints.maxWidth < 600;
+                            return GridView.count(
+                              shrinkWrap: true,
+                              physics: const NeverScrollableScrollPhysics(),
+                              crossAxisCount: isMobile ? 1 : 2,
+                              crossAxisSpacing: 80,
+                              mainAxisSpacing: 80,
+                              childAspectRatio: isMobile ? 1.2 : 0.75,
+                              children: [
+                                ProductCard(
+                                  title: allProducts[0].title,
+                                  price: allProducts[0].price,
+                                  originalPrice: allProducts[0].originalPrice,
+                                  imageUrl: allProducts[0].imageUrl,
+                                  description: allProducts[0].description,
+                                ),
+                                ProductCard(
+                                  title: allProducts[1].title,
+                                  price: allProducts[1].price,
+                                  originalPrice: allProducts[1].originalPrice,
+                                  imageUrl: allProducts[1].imageUrl,
+                                  description: allProducts[1].description,
+                                ),
+                              ],
+                            );
+                          },
                         ),
                       ),
                     ),
@@ -268,27 +273,32 @@ class _HomeScreenState extends State<HomeScreen> {
                     Center(
                       child: ConstrainedBox(
                         constraints: const BoxConstraints(maxWidth: 900),
-                        child: GridView.count(
-                          shrinkWrap: true,
-                          physics: const NeverScrollableScrollPhysics(),
-                          crossAxisCount: 2,
-                          crossAxisSpacing: 80,
-                          mainAxisSpacing: 80,
-                          childAspectRatio: 0.75,
-                          children: [
-                            ProductCard(
-                              title: allProducts[2].title,
-                              price: allProducts[2].price,
-                              imageUrl: allProducts[2].imageUrl,
-                              description: allProducts[2].description,
-                            ),
-                            ProductCard(
-                              title: allProducts[3].title,
-                              price: allProducts[3].price,
-                              imageUrl: allProducts[3].imageUrl,
-                              description: allProducts[3].description,
-                            ),
-                          ],
+                        child: LayoutBuilder(
+                          builder: (context, constraints) {
+                            final isMobile = constraints.maxWidth < 600;
+                            return GridView.count(
+                              shrinkWrap: true,
+                              physics: const NeverScrollableScrollPhysics(),
+                              crossAxisCount: isMobile ? 1 : 2,
+                              crossAxisSpacing: 80,
+                              mainAxisSpacing: 80,
+                              childAspectRatio: isMobile ? 1.2 : 0.75,
+                              children: [
+                                ProductCard(
+                                  title: allProducts[2].title,
+                                  price: allProducts[2].price,
+                                  imageUrl: allProducts[2].imageUrl,
+                                  description: allProducts[2].description,
+                                ),
+                                ProductCard(
+                                  title: allProducts[3].title,
+                                  price: allProducts[3].price,
+                                  imageUrl: allProducts[3].imageUrl,
+                                  description: allProducts[3].description,
+                                ),
+                              ],
+                            );
+                          },
                         ),
                       ),
                     ),
