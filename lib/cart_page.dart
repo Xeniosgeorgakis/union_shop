@@ -165,96 +165,153 @@ class CartListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 12.0),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Image.network(
-            cartItem.product.imageUrl,
-            width: 100,
-            height: 100,
-            fit: BoxFit.contain,
-            errorBuilder: (context, error, stackTrace) =>
-                const Icon(Icons.error, size: 100),
-          ),
-          const SizedBox(width: 16),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  cartItem.product.title,
-                  style: const TextStyle(
-                      fontSize: 16, fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(height: 8),
-                Row(
+    return LayoutBuilder(builder: (context, constraints) {
+      final isMobile = constraints.maxWidth < 500;
+
+      if (isMobile) {
+        return Padding(
+          padding: const EdgeInsets.symmetric(vertical: 12.0),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Image.network(
+                cartItem.product.imageUrl,
+                width: 80,
+                height: 80,
+                fit: BoxFit.contain,
+                errorBuilder: (context, error, stackTrace) =>
+                    const Icon(Icons.error, size: 80),
+              ),
+              const SizedBox(width: 16),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.grey.shade300),
-                        borderRadius: BorderRadius.circular(4),
-                      ),
-                      child: Row(
-                        children: [
-                          IconButton(
-                            icon: const Icon(Icons.remove, size: 16),
-                            onPressed: () {
-                              Provider.of<CartProvider>(context, listen: false)
-                                  .decrementItemQuantity(
-                                      cartItem.product.title);
-                            },
-                            constraints: const BoxConstraints(),
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 8, vertical: 4),
-                          ),
-                          Text(
-                            '${cartItem.quantity}',
-                            style: const TextStyle(
-                                fontSize: 14, fontWeight: FontWeight.bold),
-                          ),
-                          IconButton(
-                            icon: const Icon(Icons.add, size: 16),
-                            onPressed: () {
-                              Provider.of<CartProvider>(context, listen: false)
-                                  .incrementItemQuantity(
-                                      cartItem.product.title);
-                            },
-                            constraints: const BoxConstraints(),
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 8, vertical: 4),
-                          ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(width: 16),
                     Text(
-                      'Purchase as: ${cartItem.purchaseType}',
-                      style: const TextStyle(fontSize: 14, color: Colors.grey),
+                      cartItem.product.title,
+                      style: const TextStyle(
+                          fontSize: 16, fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      '£${(cartItem.product.priceValue * cartItem.quantity).toStringAsFixed(2)}',
+                      style: const TextStyle(
+                          fontSize: 16, fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(height: 8),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        _buildQuantitySelector(context),
+                        IconButton(
+                          icon: const Icon(Icons.delete_outline,
+                              color: Colors.red),
+                          onPressed: () {
+                            Provider.of<CartProvider>(context, listen: false)
+                                .removeItem(cartItem.product.title);
+                          },
+                        ),
+                      ],
                     ),
                   ],
                 ),
-              ],
-            ),
-          ),
-          const SizedBox(width: 16),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Text(
-                '£${(cartItem.product.priceValue * cartItem.quantity).toStringAsFixed(2)}',
-                style:
-                    const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-              ),
-              IconButton(
-                icon: const Icon(Icons.delete_outline, color: Colors.red),
-                onPressed: () {
-                  Provider.of<CartProvider>(context, listen: false)
-                      .removeItem(cartItem.product.title);
-                },
               ),
             ],
+          ),
+        );
+      }
+
+      return Padding(
+        padding: const EdgeInsets.symmetric(vertical: 12.0),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Image.network(
+              cartItem.product.imageUrl,
+              width: 100,
+              height: 100,
+              fit: BoxFit.contain,
+              errorBuilder: (context, error, stackTrace) =>
+                  const Icon(Icons.error, size: 100),
+            ),
+            const SizedBox(width: 16),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    cartItem.product.title,
+                    style: const TextStyle(
+                        fontSize: 16, fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(height: 8),
+                  Row(
+                    children: [
+                      _buildQuantitySelector(context),
+                      const SizedBox(width: 16),
+                      Text(
+                        'Purchase as: ${cartItem.purchaseType}',
+                        style:
+                            const TextStyle(fontSize: 14, color: Colors.grey),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(width: 16),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Text(
+                  '£${(cartItem.product.priceValue * cartItem.quantity).toStringAsFixed(2)}',
+                  style: const TextStyle(
+                      fontSize: 16, fontWeight: FontWeight.bold),
+                ),
+                IconButton(
+                  icon: const Icon(Icons.delete_outline, color: Colors.red),
+                  onPressed: () {
+                    Provider.of<CartProvider>(context, listen: false)
+                        .removeItem(cartItem.product.title);
+                  },
+                ),
+              ],
+            ),
+          ],
+        ),
+      );
+    });
+  }
+
+  Widget _buildQuantitySelector(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.grey.shade300),
+        borderRadius: BorderRadius.circular(4),
+      ),
+      child: Row(
+        children: [
+          IconButton(
+            icon: const Icon(Icons.remove, size: 16),
+            onPressed: () {
+              Provider.of<CartProvider>(context, listen: false)
+                  .decrementItemQuantity(cartItem.product.title);
+            },
+            constraints: const BoxConstraints(),
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+          ),
+          Text(
+            '${cartItem.quantity}',
+            style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+          ),
+          IconButton(
+            icon: const Icon(Icons.add, size: 16),
+            onPressed: () {
+              Provider.of<CartProvider>(context, listen: false)
+                  .incrementItemQuantity(cartItem.product.title);
+            },
+            constraints: const BoxConstraints(),
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
           ),
         ],
       ),
