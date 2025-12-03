@@ -10,7 +10,8 @@ void main() {
     // Set a larger screen size for tests to avoid layout overflow
     TestWidgetsFlutterBinding.ensureInitialized();
     const Size testScreenSize = Size(1200, 800);
-    TestWidgetsFlutterBinding.instance.window.physicalSizeTestValue = testScreenSize;
+    TestWidgetsFlutterBinding.instance.window.physicalSizeTestValue =
+        testScreenSize;
     TestWidgetsFlutterBinding.instance.window.devicePixelRatioTestValue = 1.0;
   });
 
@@ -77,7 +78,8 @@ void main() {
       expect(find.byType(SingleChildScrollView).at(1), findsOneWidget);
     });
 
-    testWidgets('should display white text on black background', (tester) async {
+    testWidgets('should display white text on black background',
+        (tester) async {
       await tester.pumpWidget(createTestableWidget());
       await tester.pumpAndSettle();
 
