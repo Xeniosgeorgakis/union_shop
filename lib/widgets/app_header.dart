@@ -39,119 +39,139 @@ class AppHeader extends StatelessWidget implements PreferredSizeWidget {
               padding: const EdgeInsets.symmetric(horizontal: 10),
               child: LayoutBuilder(builder: (context, constraints) {
                 final isMobile = constraints.maxWidth < 900;
-                return Row(
-                  children: [
-                    GestureDetector(
-                      onTap: () => navigateToHome(context),
-                      child: Image.asset(
-                        'assets/images/bearbricklogo.png',
-                        height: 48,
-                        fit: BoxFit.contain,
-                        errorBuilder: (context, error, stackTrace) =>
-                            const Icon(Icons.error),
+                if (isMobile) {
+                  return Row(
+                    children: [
+                      GestureDetector(
+                        onTap: () => navigateToHome(context),
+                        child: Image.asset(
+                          'assets/images/bearbricklogo.png',
+                          height: 48,
+                          fit: BoxFit.contain,
+                          errorBuilder: (context, error, stackTrace) =>
+                              const Icon(Icons.error),
+                        ),
                       ),
-                    ),
-                    if (!isMobile) ...[
                       const Spacer(),
-                      Expanded(
-                        flex: 3,
-                        child: SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              _buildNavLink(context, 'Home', '/'),
-                              const SizedBox(width: 24),
-                              _buildNavLink(context, 'About Us', '/about'),
-                              const SizedBox(width: 24),
-                              _buildNavLink(
-                                  context, 'Collections', '/collections'),
-                              const SizedBox(width: 24),
-                              _buildNavLink(context, 'SALE!', '/sale'),
-                              const SizedBox(width: 24),
-                              _buildPrintShackMenu(context),
-                            ],
+                      _buildHeaderIcons(context, isMobile),
+                    ],
+                  );
+                } else {
+                  return Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: GestureDetector(
+                          onTap: () => navigateToHome(context),
+                          child: Image.asset(
+                            'assets/images/bearbricklogo.png',
+                            height: 48,
+                            fit: BoxFit.contain,
+                            errorBuilder: (context, error, stackTrace) =>
+                                const Icon(Icons.error),
                           ),
                         ),
+                      ),
+                      SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            _buildNavLink(context, 'Home', '/'),
+                            const SizedBox(width: 24),
+                            _buildNavLink(context, 'About Us', '/about'),
+                            const SizedBox(width: 24),
+                            _buildNavLink(
+                                context, 'Collections', '/collections'),
+                            const SizedBox(width: 24),
+                            _buildNavLink(context, 'SALE!', '/sale'),
+                            const SizedBox(width: 24),
+                            _buildPrintShackMenu(context),
+                          ],
+                        ),
+                      ),
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: _buildHeaderIcons(context, isMobile),
                       ),
                     ],
-                    const Spacer(),
-                    Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        const HeaderSearchWidget(),
-                        IconButton(
-                          icon: const Icon(Icons.person_outline,
-                              size: 18, color: Colors.black),
-                          onPressed: () {
-                            Navigator.pushNamed(context, '/login');
-                          },
-                        ),
-                        Consumer<CartProvider>(
-                          builder: (context, cart, child) => Stack(
-                            children: [
-                              IconButton(
-                                icon: const Icon(
-                                  Icons.shopping_bag_outlined,
-                                  size: 18,
-                                  color: Colors.black,
-                                ),
-                                onPressed: () {
-                                  Navigator.pushNamed(context, '/cart');
-                                },
-                              ),
-                              if (cart.itemCount > 0)
-                                Positioned(
-                                  right: 0,
-                                  top: 0,
-                                  child: Container(
-                                    padding: const EdgeInsets.all(2),
-                                    decoration: BoxDecoration(
-                                      color: Colors.red,
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
-                                    constraints: const BoxConstraints(
-                                      minWidth: 16,
-                                      minHeight: 16,
-                                    ),
-                                    child: Text(
-                                      '${cart.itemCount}',
-                                      style: const TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 10,
-                                      ),
-                                      textAlign: TextAlign.center,
-                                    ),
-                                  ),
-                                ),
-                            ],
-                          ),
-                        ),
-                        if (isMobile)
-                          Builder(
-                            builder: (context) => IconButton(
-                              icon: const Icon(Icons.menu,
-                                  size: 18, color: Colors.black),
-                              onPressed: () {
-                                Scaffold.of(context).openEndDrawer();
-                              },
-                            ),
-                          )
-                        else
-                          IconButton(
-                            icon: const Icon(Icons.menu,
-                                size: 18, color: Colors.grey),
-                            onPressed: () {},
-                          ),
-                      ],
-                    ),
-                  ],
-                );
+                  );
+                }
               }),
             ),
           ),
         ],
       ),
+    );
+  }
+
+  Widget _buildHeaderIcons(BuildContext context, bool isMobile) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        const HeaderSearchWidget(),
+        IconButton(
+          icon: const Icon(Icons.person_outline, size: 18, color: Colors.black),
+          onPressed: () {
+            Navigator.pushNamed(context, '/login');
+          },
+        ),
+        Consumer<CartProvider>(
+          builder: (context, cart, child) => Stack(
+            children: [
+              IconButton(
+                icon: const Icon(
+                  Icons.shopping_bag_outlined,
+                  size: 18,
+                  color: Colors.black,
+                ),
+                onPressed: () {
+                  Navigator.pushNamed(context, '/cart');
+                },
+              ),
+              if (cart.itemCount > 0)
+                Positioned(
+                  right: 0,
+                  top: 0,
+                  child: Container(
+                    padding: const EdgeInsets.all(2),
+                    decoration: BoxDecoration(
+                      color: Colors.red,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    constraints: const BoxConstraints(
+                      minWidth: 16,
+                      minHeight: 16,
+                    ),
+                    child: Text(
+                      '${cart.itemCount}',
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 10,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ),
+            ],
+          ),
+        ),
+        if (isMobile)
+          Builder(
+            builder: (context) => IconButton(
+              icon: const Icon(Icons.menu, size: 18, color: Colors.black),
+              onPressed: () {
+                Scaffold.of(context).openEndDrawer();
+              },
+            ),
+          )
+        else
+          IconButton(
+            icon: const Icon(Icons.menu, size: 18, color: Colors.grey),
+            onPressed: () {},
+          ),
+      ],
     );
   }
 
