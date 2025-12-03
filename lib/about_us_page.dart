@@ -65,7 +65,7 @@ class _AboutUsPageState extends State<AboutUsPage> {
                             onTap: () {
                               navigateToHome(context);
                             },
-                            child: Image.network(
+                            child: Image.asset(
                               'assets/images/bearbricklogo.png',
                               height: 48,
                               fit: BoxFit.contain,

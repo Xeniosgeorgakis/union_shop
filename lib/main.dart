@@ -122,7 +122,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             onTap: () {
                               navigateToHome(context);
                             },
-                            child: Image.network(
+                            child: Image.asset(
                               'assets/images/bearbricklogo.png',
                               height: 48,
                               fit: BoxFit.contain,
@@ -354,7 +354,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: Container(
                       decoration: const BoxDecoration(
                         image: DecorationImage(
-                          image: NetworkImage(
+                          image: AssetImage(
                             'assets/images/bearbrickheader.png',
                           ),
                           fit: BoxFit.cover,
@@ -557,7 +557,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       },
                       child: MouseRegion(
                         cursor: SystemMouseCursors.click,
-                        child: Image.network(
+                        child: Image.asset(
                           'assets/images/tshirt.png',
                           height: 300,
                           fit: BoxFit.contain,
