@@ -3,6 +3,7 @@ import 'package:union_shop/footer.dart';
 import 'package:union_shop/widgets/app_drawer.dart';
 import 'package:union_shop/widgets/app_header.dart';
 import 'package:union_shop/models/product_model.dart';
+import 'package:union_shop/fixtures.dart';
 
 class CollectionOnePage extends StatefulWidget {
   const CollectionOnePage({super.key});
@@ -20,33 +21,7 @@ class _CollectionOnePageState extends State<CollectionOnePage> {
   @override
   void initState() {
     super.initState();
-    _products = [
-      Product(
-        title: 'KAWS Companion Bearbrick 1000% (Blue)',
-        price: '£200.00',
-        imageUrl:
-            'https://images.stockx.com/images/KAWS-Companion-Bearbrick-1000-Grey-Blue.jpg?fit=fill&bg=FFFFFF&w=700&h=500&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1620338070',
-        description:
-            'The KAWS Companion Bearbrick 1000% Grey/Blue – GB is a standout collectible that merges the iconic Bearbrick silhouette with the unmistakable artistry of KAWS. Standing at an impressive 70 cm (27.5 inches), this oversized figure showcases the classic Companion character with its signature crossed-out eyes, detailed sculpting, and expressive posture.',
-      ),
-      Product(
-        title: '1000% Bearbrick - Squid Game (Red)',
-        price: '£160.00',
-        originalPrice: '£200.00',
-        imageUrl:
-            'https://cdn.webshopapp.com/shops/153/files/431539158/medicom-toy-1000-bearbrick-squid-game-square-guard.jpg',
-        description:
-            'Step into the gripping world of Squid Game with this striking 1000% Bearbrick figure, inspired by the iconic Square Guard—the highest-ranking enforcer in the series’ hierarchy. Standing approximately 70 cm (27.5 inches) tall',
-      ),
-      Product(
-        title: 'Bearbrick PAC-MAN 1000% (Black)',
-        price: '£200.00',
-        imageUrl:
-            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOssIj6bikkRwl1sBE0u0ZK22FUihgjtlaPw&s',
-        description:
-            'The Bearbrick PAC-MAN 1000% – GB pays tribute to one of the most iconic video games of all time, blending nostalgic arcade culture with the modern collectible design of Bearbrick. Standing at approximately 70 cm tall, this oversized figure showcases vibrant PAC-MAN graphics wrapped around the classic Bearbrick form.',
-      ),
-    ];
+    _products = ProductFixtures.collection1Products;
     _filteredProducts = List.from(_products);
   }
 
@@ -175,6 +150,7 @@ class _CollectionOnePageState extends State<CollectionOnePage> {
                           itemBuilder: (context, index) {
                             final product = _filteredProducts[index];
                             return CollectionProductCard(
+                              id: product.id,
                               title: product.title,
                               price: product.price,
                               originalPrice: product.originalPrice,
@@ -198,6 +174,7 @@ class _CollectionOnePageState extends State<CollectionOnePage> {
 }
 
 class CollectionProductCard extends StatelessWidget {
+  final String id;
   final String title;
   final String price;
   final String? originalPrice;
@@ -206,6 +183,7 @@ class CollectionProductCard extends StatelessWidget {
 
   const CollectionProductCard({
     super.key,
+    required this.id,
     required this.title,
     required this.price,
     this.originalPrice,
@@ -219,14 +197,7 @@ class CollectionProductCard extends StatelessWidget {
       onTap: () {
         Navigator.pushNamed(
           context,
-          '/product',
-          arguments: {
-            'title': title,
-            'price': price,
-            'originalPrice': originalPrice,
-            'imageUrl': imageUrl,
-            'description': description,
-          },
+          '/product/$id',
         );
       },
       child: Container(

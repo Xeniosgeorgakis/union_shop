@@ -5,15 +5,19 @@ import 'package:union_shop/footer.dart';
 import 'package:union_shop/models/product_model.dart';
 import 'package:union_shop/widgets/app_drawer.dart';
 import 'package:union_shop/widgets/app_header.dart';
+import 'package:union_shop/fixtures.dart';
 
 class ProductPage extends StatefulWidget {
-  const ProductPage({super.key});
+  final String? productId;
+
+  const ProductPage({super.key, this.productId});
 
   @override
   State<ProductPage> createState() => _ProductPageState();
 }
 
 class _ProductPageState extends State<ProductPage> {
+  Product? _product;
   int _quantity = 1;
   String? _selectedImage;
   List<String> _productImages = [];
@@ -25,16 +29,39 @@ class _ProductPageState extends State<ProductPage> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     if (_isInit) {
-      final args =
-          ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>?;
-      final imageUrl = args?['imageUrl'] ?? '';
-      final title = args?['title'] ?? '';
+      // Try to load product from fixtures using productId
+      if (widget.productId != null) {
+        _product = ProductFixtures.findById(widget.productId!);
+      }
+
+      // Fallback to route arguments if no productId or product not found
+      if (_product == null) {
+        final args =
+            ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;
+        if (args != null) {
+          _product = Product(
+            id: args['id'] ?? 'unknown',
+            title: args['title'] ?? 'Product',
+            price: args['price'] ?? '£0.00',
+            originalPrice: args['originalPrice'],
+            imageUrl: args['imageUrl'] ?? '',
+            description: args['description'] ?? '',
+          );
+        }
+      }
+
+      // If still no product, show error
+      if (_product == null) {
+        return;
+      }
+
+      final imageUrl = _product!.imageUrl;
+      final title = _product!.title;
 
       _selectedImage = imageUrl;
       _productImages = [imageUrl];
 
-      if (title.toString().contains('Garfield') ||
-          imageUrl.toString().contains('garfield.png')) {
+      if (title.contains('Garfield') || imageUrl.contains('garfield.png')) {
         _productImages
             .add('https://i.ebayimg.com/images/g/hL0AAOSwLtljjLNk/s-l1200.jpg');
       }
@@ -98,8 +125,6 @@ class _ProductPageState extends State<ProductPage> {
 
   @override
   Widget build(BuildContext context) {
-    
-
     return Scaffold(
       appBar: const AppHeader(currentPage: '/product'),
       endDrawer: const AppDrawer(),
@@ -192,12 +217,16 @@ class _ProductPageState extends State<ProductPage> {
   }
 
   Widget _buildInfoSide(BuildContext context) {
-    final args =
-        ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>?;
-    final title = args?['title'] ?? 'Product Name';
-    final price = args?['price'] ?? '£0.00';
-    final originalPrice = args?['originalPrice'];
-    final description = args?['description'] ?? 'No description available.';
+    if (_product == null) {
+      return const Center(
+        child: Text('Product not found'),
+      );
+    }
+
+    final title = _product!.title;
+    final price = _product!.price;
+    final originalPrice = _product!.originalPrice;
+    final description = _product!.description;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -380,20 +409,16 @@ class _ProductPageState extends State<ProductPage> {
           height: 48,
           child: ElevatedButton(
             onPressed: () {
-              final product = Product(
-                title: title,
-                price: price,
-                originalPrice: originalPrice,
-                imageUrl: _selectedImage ?? '',
-                description: description,
-              );
+              if (_product == null) return;
+
               Provider.of<CartProvider>(context, listen: false)
-                  .addItem(product, _quantity, _purchaseType);
+                  .addItem(_product!, _quantity, _purchaseType);
 
               // Show a confirmation SnackBar
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
-                  content: Text('$title has been added to your cart.'),
+                  content:
+                      Text('${_product!.title} has been added to your cart.'),
                   duration: const Duration(seconds: 4),
                   action: SnackBarAction(
                     label: 'VIEW CART',
