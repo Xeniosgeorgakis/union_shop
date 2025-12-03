@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:union_shop/footer.dart';
-import 'package:union_shop/widgets/header_search_widget.dart';
-import 'package:union_shop/models/cart_provider.dart';
+import 'package:union_shop/widgets/app_drawer.dart';
+import 'package:union_shop/widgets/app_header.dart';
 import 'package:union_shop/models/product_model.dart';
 
 class CollectionOnePage extends StatefulWidget {
@@ -16,6 +15,7 @@ class _CollectionOnePageState extends State<CollectionOnePage> {
   late List<Product> _products;
   late List<Product> _filteredProducts;
   String _sortOption = 'Default';
+  final ScrollController _scrollController = ScrollController();
 
   @override
   void initState() {
@@ -50,6 +50,12 @@ class _CollectionOnePageState extends State<CollectionOnePage> {
     _filteredProducts = List.from(_products);
   }
 
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
   void navigateToHome(BuildContext context) {
     Navigator.pushNamed(context, '/');
   }
@@ -79,228 +85,12 @@ class _CollectionOnePageState extends State<CollectionOnePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: const AppHeader(currentPage: '/collection/1'),
+      endDrawer: const AppDrawer(),
       body: SingleChildScrollView(
+        controller: _scrollController,
         child: Column(
           children: [
-            // Header
-            Container(
-              height: 100,
-              color: Colors.white,
-              child: Column(
-                children: [
-                  // Top banner
-                  Container(
-                    width: double.infinity,
-                    padding: const EdgeInsets.symmetric(vertical: 8),
-                    color: Colors.black,
-                    child: const Text(
-                      '🔥 Massive BE@RBRICK Sale Live Now',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  // Main header
-                  Expanded(
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: Row(
-                        children: [
-                          GestureDetector(
-                            onTap: () {
-                              navigateToHome(context);
-                            },
-                            child: Image.network(
-                              'assets/images/bearbricklogo.png',
-                              height: 48,
-                              fit: BoxFit.contain,
-                              errorBuilder: (context, error, stackTrace) {
-                                return Container(
-                                  color: Colors.grey[300],
-                                  width: 48,
-                                  height: 48,
-                                  child: const Center(
-                                    child: Icon(Icons.image_not_supported,
-                                        color: Colors.grey),
-                                  ),
-                                );
-                              },
-                            ),
-                          ),
-                          const Spacer(),
-                          MouseRegion(
-                            cursor: SystemMouseCursors.click,
-                            child: GestureDetector(
-                              onTap: () {
-                                navigateToHome(context);
-                              },
-                              child: const Text(
-                                'Home',
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.black,
-                                ),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(width: 24),
-                          MouseRegion(
-                            cursor: SystemMouseCursors.click,
-                            child: GestureDetector(
-                              onTap: () {
-                                Navigator.pushNamed(context, '/about');
-                              },
-                              child: const Text(
-                                'About Us',
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.black,
-                                ),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(width: 24),
-                          MouseRegion(
-                            cursor: SystemMouseCursors.click,
-                            child: GestureDetector(
-                              onTap: () {
-                                Navigator.pushNamed(context, '/collections');
-                              },
-                              child: const Text(
-                                'Collections',
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.black,
-                                ),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(width: 24),
-                          MouseRegion(
-                            cursor: SystemMouseCursors.click,
-                            child: GestureDetector(
-                              onTap: () {
-                                Navigator.pushNamed(context, '/sale');
-                              },
-                              child: const Text(
-                                'Sale',
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.black,
-                                ),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(width: 24),
-                          PopupMenuButton<String>(
-                            onSelected: (value) {
-                              Navigator.pushNamed(context, value);
-                            },
-                            itemBuilder: (context) => [
-                              const PopupMenuItem(
-                                value: '/printshark',
-                                child: Text('About Print Shack'),
-                              ),
-                              const PopupMenuItem(
-                                value: '/personalise',
-                                child: Text('Personalise'),
-                              ),
-                            ],
-                            child: const MouseRegion(
-                              cursor: SystemMouseCursors.click,
-                              child: Row(
-                                children: [
-                                  Text(
-                                    'Printshark',
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w600,
-                                      color: Colors.black,
-                                    ),
-                                  ),
-                                  Icon(Icons.arrow_drop_down,
-                                      color: Colors.black),
-                                ],
-                              ),
-                            ),
-                          ),
-                          const Spacer(),
-                          ConstrainedBox(
-                            constraints: const BoxConstraints(maxWidth: 600),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                const HeaderSearchWidget(),
-                                IconButton(
-                                  icon: const Icon(Icons.person_outline,
-                                      size: 18, color: Colors.black),
-                                  onPressed: () {
-                                    Navigator.pushNamed(context, '/login');
-                                  },
-                                ),
-                                Consumer<CartProvider>(
-                                  builder: (context, cart, child) => Stack(
-                                    children: [
-                                      IconButton(
-                                        icon: const Icon(
-                                          Icons.shopping_bag_outlined,
-                                          size: 18,
-                                          color: Colors.black,
-                                        ),
-                                        onPressed: () {
-                                          Navigator.pushNamed(context, '/cart');
-                                        },
-                                      ),
-                                      if (cart.itemCount > 0)
-                                        Positioned(
-                                          right: 0,
-                                          top: 0,
-                                          child: Container(
-                                            padding: const EdgeInsets.all(2),
-                                            decoration: BoxDecoration(
-                                              color: Colors.red,
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                            ),
-                                            constraints: const BoxConstraints(
-                                              minWidth: 16,
-                                              minHeight: 16,
-                                            ),
-                                            child: Text(
-                                              '${cart.itemCount}',
-                                              style: const TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 10,
-                                              ),
-                                              textAlign: TextAlign.center,
-                                            ),
-                                          ),
-                                        ),
-                                    ],
-                                  ),
-                                ),
-                                IconButton(
-                                  icon: const Icon(Icons.menu,
-                                      size: 18, color: Colors.grey),
-                                  onPressed: placeholderCallbackForButtons,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-
             // Collection Banner
             Container(
               width: double.infinity,
@@ -360,7 +150,7 @@ class _CollectionOnePageState extends State<CollectionOnePage> {
               ),
             ),
 
-            // Products Grid
+            // Products Section
             Container(
               color: Colors.white,
               child: Padding(
@@ -368,25 +158,30 @@ class _CollectionOnePageState extends State<CollectionOnePage> {
                 child: Center(
                   child: ConstrainedBox(
                     constraints: const BoxConstraints(maxWidth: 1100),
-                    child: GridView.builder(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 3,
-                        crossAxisSpacing: 40,
-                        mainAxisSpacing: 40,
-                        childAspectRatio: 0.75,
-                      ),
-                      itemCount: _filteredProducts.length,
-                      itemBuilder: (context, index) {
-                        final product = _filteredProducts[index];
-                        return CollectionProductCard(
-                          title: product.title,
-                          price: product.price,
-                          originalPrice: product.originalPrice,
-                          imageUrl: product.imageUrl,
-                          description: product.description,
+                    child: LayoutBuilder(
+                      builder: (context, constraints) {
+                        final isMobile = constraints.maxWidth < 600;
+                        return GridView.builder(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: isMobile ? 1 : 3,
+                            crossAxisSpacing: 40,
+                            mainAxisSpacing: 40,
+                            childAspectRatio: isMobile ? 1.2 : 0.75,
+                          ),
+                          itemCount: _filteredProducts.length,
+                          itemBuilder: (context, index) {
+                            final product = _filteredProducts[index];
+                            return CollectionProductCard(
+                              title: product.title,
+                              price: product.price,
+                              originalPrice: product.originalPrice,
+                              imageUrl: product.imageUrl,
+                              description: product.description,
+                            );
+                          },
                         );
                       },
                     ),
@@ -394,7 +189,7 @@ class _CollectionOnePageState extends State<CollectionOnePage> {
                 ),
               ),
             ),
-            const Footer(),
+            Footer(scrollController: _scrollController),
           ],
         ),
       ),
