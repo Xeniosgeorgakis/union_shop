@@ -96,8 +96,13 @@ void main() {
       final previewTextFinder = find.byWidgetPredicate((widget) =>
           widget is Text &&
           widget.data == 'Hello World' &&
-          find.ancestor(of: find.byWidget(widget), matching: find.byType(TextFormField)).evaluate().isEmpty);
-          
+          find
+              .ancestor(
+                  of: find.byWidget(widget),
+                  matching: find.byType(TextFormField))
+              .evaluate()
+              .isEmpty);
+
       expect(previewTextFinder, findsOneWidget);
       expect(find.text('Preview Area'), findsNothing);
     });
