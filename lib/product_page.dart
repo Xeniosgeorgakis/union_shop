@@ -223,7 +223,7 @@ class _ProductPageState extends State<ProductPage> {
                                         Navigator.pushNamed(context, '/sale');
                                       },
                                       child: const Text(
-                                        'Sale',
+                                        'SALE!',
                                         style: TextStyle(
                                           fontSize: 16,
                                           fontWeight: FontWeight.w600,

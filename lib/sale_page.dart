@@ -172,7 +172,7 @@ class _SalePageState extends State<SalePage> {
                                   ),
                                   const SizedBox(width: 24),
                                   const Text(
-                                    'Sale',
+                                    'SALE!',
                                     style: TextStyle(
                                       fontSize: 16,
                                       fontWeight: FontWeight.w600,

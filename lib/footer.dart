@@ -84,7 +84,10 @@ class Footer extends StatelessWidget {
                         },
                         child: const Text(
                           'About Us',
-                          style: TextStyle(color: Colors.grey, height: 1.5),
+                          style: TextStyle(
+                              color: Colors.grey,
+                              height: 1.5,
+                              decoration: TextDecoration.underline),
                         ),
                       ),
                     ),

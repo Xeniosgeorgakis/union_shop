@@ -148,7 +148,7 @@ class _PrintsharkPageState extends State<PrintsharkPage> {
                                         Navigator.pushNamed(context, '/sale');
                                       },
                                       child: const Text(
-                                        'Sale',
+                                        'SALE!',
                                         style: TextStyle(
                                           fontSize: 16,
                                           fontWeight: FontWeight.w600,

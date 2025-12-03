@@ -195,7 +195,7 @@ class _CollectionTwoPageState extends State<CollectionTwoPage> {
                                     child: GestureDetector(
                                       onTap: () =>
                                           Navigator.pushNamed(context, '/sale'),
-                                      child: const Text('Sale',
+                                      child: const Text('SALE!',
                                           style: TextStyle(
                                               fontSize: 16,
                                               fontWeight: FontWeight.w600)),
