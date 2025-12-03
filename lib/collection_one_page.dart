@@ -94,7 +94,7 @@ class _CollectionOnePageState extends State<CollectionOnePage> {
                     padding: const EdgeInsets.symmetric(vertical: 8),
                     color: Colors.black,
                     child: const Text(
-                      '🔥 Massive BE@RBRICK Sale Live Now — Limited Editions, Exclusive Drops, and Up to 20% Off While Stock Lasts!',
+                      '🔥 Massive BE@RBRICK Sale Live Now',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           color: Colors.white,
@@ -505,7 +505,9 @@ class CollectionProductCard extends StatelessWidget {
                   ),
                   const SizedBox(height: 8),
                   if (originalPrice != null)
-                    Row(
+                    Wrap(
+                      spacing: 8,
+                      crossAxisAlignment: WrapCrossAlignment.center,
                       children: [
                         Text(
                           originalPrice!,
@@ -515,7 +517,6 @@ class CollectionProductCard extends StatelessWidget {
                             decoration: TextDecoration.lineThrough,
                           ),
                         ),
-                        const SizedBox(width: 8),
                         Text(
                           price,
                           style: const TextStyle(

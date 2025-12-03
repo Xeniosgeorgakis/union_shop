@@ -458,7 +458,9 @@ class ProductCard extends StatelessWidget {
                   ),
                   const SizedBox(height: 8),
                   if (originalPrice != null)
-                    Row(
+                    Wrap(
+                      spacing: 8,
+                      crossAxisAlignment: WrapCrossAlignment.center,
                       children: [
                         Text(
                           originalPrice!,
@@ -468,7 +470,6 @@ class ProductCard extends StatelessWidget {
                             decoration: TextDecoration.lineThrough,
                           ),
                         ),
-                        const SizedBox(width: 8),
                         Text(
                           price,
                           style: const TextStyle(
