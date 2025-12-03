@@ -142,6 +142,7 @@ class _SalePageState extends State<SalePage> {
                           itemBuilder: (context, index) {
                             final product = _filteredProducts[index];
                             return SaleProductCard(
+                              id: product.id,
                               title: product.title,
                               price: product.price,
                               originalPrice: product.originalPrice,
@@ -167,6 +168,7 @@ class _SalePageState extends State<SalePage> {
 }
 
 class SaleProductCard extends StatelessWidget {
+  final String id;
   final String title;
   final String price;
   final String? originalPrice;
@@ -175,6 +177,7 @@ class SaleProductCard extends StatelessWidget {
 
   const SaleProductCard({
     super.key,
+    required this.id,
     required this.title,
     required this.price,
     this.originalPrice,
@@ -188,14 +191,7 @@ class SaleProductCard extends StatelessWidget {
       onTap: () {
         Navigator.pushNamed(
           context,
-          '/product',
-          arguments: {
-            'title': title,
-            'price': price,
-            'originalPrice': originalPrice,
-            'imageUrl': imageUrl,
-            'description': description,
-          },
+          '/product/$id',
         );
       },
       child: Container(

@@ -1,4 +1,5 @@
 class Product {
+  final String id;
   final String title;
   final String price;
   final String? originalPrice;
@@ -6,6 +7,7 @@ class Product {
   final String description;
 
   Product({
+    required this.id,
     required this.title,
     required this.price,
     this.originalPrice,
