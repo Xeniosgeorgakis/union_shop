@@ -267,6 +267,11 @@ class _PersonalisePageState extends State<PersonalisePage> {
           ),
         const SizedBox(height: 24),
         const Text(
+          'Price: £25.00',
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        ),
+        const SizedBox(height: 16),
+        const Text(
           'Quantity',
           style: TextStyle(
             fontSize: 16,
