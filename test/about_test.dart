@@ -49,7 +49,8 @@ void main() {
 
       // Check for Navigation Links
       expect(find.text('Home'), findsOneWidget);
-      expect(find.text('About Us'), findsNWidgets(2)); // Header and footer link
+      expect(find.text('About Us'),
+          findsNWidgets(3)); // Header, content title, and footer link
       expect(find.text('Collections'), findsOneWidget);
       expect(find.text('Sale'), findsOneWidget);
       expect(find.text('Printshark'), findsOneWidget);
