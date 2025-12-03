@@ -185,8 +185,12 @@ void main() {
         );
 
         // Add an item to the cart
-        final product =
-            Product(title: 'Test', price: '10', imageUrl: '', description: '');
+        final product = Product(
+            id: 'test',
+            title: 'Test',
+            price: '10',
+            imageUrl: '',
+            description: '');
         cartProvider.addItem(product, 2, 'Personal Use');
         await tester.pump();
 

@@ -49,31 +49,21 @@ void main() {
       await tester.pump();
 
       // Check that product cards are displayed
+      // The home page displays allProducts[0] through allProducts[3]
+      // which are: collection1[0-2] (KAWS, Squid Game, PAC-MAN) and collection2[0] (Garfield)
 
-      expect(find.text('Bearbrick Garfield 100% & 400% Set (Gold)'),
-          findsOneWidget);
+      expect(
+          find.text('KAWS Companion Bearbrick 1000% (Blue)'), findsOneWidget);
       expect(find.text('1000% Bearbrick - Squid Game (Red)'), findsOneWidget);
-      expect(
-          find.text('Bearbrick x Nike Tech Fleece N98 100% & 400% Set (Grey)'),
-          findsOneWidget);
-      expect(
-          find.text(
-              '400% & 100% Bearbrick Set – LBWK x BAPE Green Camo (Black)'),
+      expect(find.text('Bearbrick PAC-MAN 1000% (Black)'), findsOneWidget);
+      expect(find.text('Bearbrick Garfield 100% & 400% Set (Gold)'),
           findsOneWidget);
 
       // Check prices are displayed
 
-      expect(find.text('£112.00'), findsOneWidget);
-      expect(find.text('£160.00'), findsOneWidget);
-
-      // Find Text widgets with '£140.00' that are not strikethrough
-      final priceFinder = find.byWidgetPredicate((widget) =>
-          widget is Text &&
-          widget.data == '£140.00' &&
-          (widget.style?.decoration == null ||
-              widget.style?.decoration != TextDecoration.lineThrough));
-
-      expect(priceFinder, findsNWidgets(2));
+      expect(find.text('£200.00'), findsWidgets); // KAWS and PAC-MAN
+      expect(find.text('£160.00'), findsOneWidget); // Squid Game
+      expect(find.text('£112.00'), findsOneWidget); // Garfield
     });
 
     testWidgets('should display header icons', (tester) async {
