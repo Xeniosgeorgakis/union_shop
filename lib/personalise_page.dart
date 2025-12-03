@@ -335,6 +335,7 @@ class _PersonalisePageState extends State<PersonalisePage> {
               }
 
               final product = Product(
+                id: 'personalised-tshirt',
                 title: 'Personalised T-Shirt',
                 price: '£25.00',
                 imageUrl: 'assets/images/tshirt.png',

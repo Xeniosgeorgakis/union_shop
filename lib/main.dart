@@ -44,17 +44,27 @@ class UnionShopApp extends StatelessWidget {
       home: const HomeScreen(),
       initialRoute: '/',
       routes: {
-        '/product': (context) => const ProductPage(),
         '/about': (context) => const AboutUsPage(),
         '/sale': (context) => const SalePage(),
         '/login': (context) => const LoginPage(),
         '/signup': (context) => const SignUpPage(),
         '/collections': (context) => const CollectionsPage(),
-        '/collection/1': (context) => const CollectionOnePage(), // Add route
+        '/collection/1': (context) => const CollectionOnePage(),
         '/collection/2': (context) => const CollectionTwoPage(),
         '/printshark': (context) => const PrintsharkPage(),
         '/personalise': (context) => const PersonalisePage(),
         '/cart': (context) => const CartPage(),
+      },
+      onGenerateRoute: (settings) {
+        // Handle dynamic /product/:id routes
+        if (settings.name?.startsWith('/product/') == true) {
+          final productId = settings.name!.substring('/product/'.length);
+          return MaterialPageRoute(
+            builder: (context) => ProductPage(productId: productId),
+            settings: settings,
+          );
+        }
+        return null;
       },
     );
   }
@@ -223,6 +233,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               childAspectRatio: isMobile ? 1.2 : 0.75,
                               children: [
                                 ProductCard(
+                                  id: allProducts[0].id,
                                   title: allProducts[0].title,
                                   price: allProducts[0].price,
                                   originalPrice: allProducts[0].originalPrice,
@@ -230,6 +241,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   description: allProducts[0].description,
                                 ),
                                 ProductCard(
+                                  id: allProducts[1].id,
                                   title: allProducts[1].title,
                                   price: allProducts[1].price,
                                   originalPrice: allProducts[1].originalPrice,
@@ -287,12 +299,14 @@ class _HomeScreenState extends State<HomeScreen> {
                               childAspectRatio: isMobile ? 1.2 : 0.75,
                               children: [
                                 ProductCard(
+                                  id: allProducts[2].id,
                                   title: allProducts[2].title,
                                   price: allProducts[2].price,
                                   imageUrl: allProducts[2].imageUrl,
                                   description: allProducts[2].description,
                                 ),
                                 ProductCard(
+                                  id: allProducts[3].id,
                                   title: allProducts[3].title,
                                   price: allProducts[3].price,
                                   imageUrl: allProducts[3].imageUrl,
@@ -368,6 +382,7 @@ class _HomeScreenState extends State<HomeScreen> {
 }
 
 class ProductCard extends StatelessWidget {
+  final String id;
   final String title;
   final String price;
   final String? originalPrice;
@@ -376,6 +391,7 @@ class ProductCard extends StatelessWidget {
 
   const ProductCard({
     super.key,
+    required this.id,
     required this.title,
     required this.price,
     this.originalPrice,
@@ -389,14 +405,7 @@ class ProductCard extends StatelessWidget {
       onTap: () {
         Navigator.pushNamed(
           context,
-          '/product',
-          arguments: {
-            'title': title,
-            'price': price,
-            'originalPrice': originalPrice,
-            'imageUrl': imageUrl,
-            'description': description,
-          },
+          '/product/$id',
         );
       },
       child: Container(
