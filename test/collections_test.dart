@@ -37,7 +37,8 @@ void main() {
       await tester.pumpWidget(createTestableWidget());
       await tester.pumpAndSettle();
 
-      expect(find.text('Explore our curated Bearbrick collections.'), findsOneWidget);
+      expect(find.text('Explore our curated Bearbrick collections.'),
+          findsOneWidget);
     });
 
     testWidgets('should display explore buttons', (tester) async {
@@ -83,7 +84,8 @@ void main() {
       expect(find.byType(Image), findsAtLeastNWidgets(3));
     });
 
-    testWidgets('should display collection cards with proper layout', (tester) async {
+    testWidgets('should display collection cards with proper layout',
+        (tester) async {
       await tester.pumpWidget(createTestableWidget());
       await tester.pumpAndSettle();
 
