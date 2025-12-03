@@ -98,10 +98,7 @@ class _ProductPageState extends State<ProductPage> {
 
   @override
   Widget build(BuildContext context) {
-    // Retrieve arguments passed from HomeScreen
-
-    // Fallback values in case args are null (e.g. direct navigation)
-    // imageUrl is now handled by state _selectedImage
+    
 
     return Scaffold(
       appBar: const AppHeader(currentPage: '/product'),

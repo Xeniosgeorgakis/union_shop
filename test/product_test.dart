@@ -121,18 +121,28 @@ void main() {
       // Check initial quantity
       expect(find.text('1'), findsOneWidget);
 
+      // Find and scroll to the add icon
+      final addIcon = find.byIcon(Icons.add);
+      await tester.ensureVisible(addIcon);
+      await tester.pumpAndSettle();
+
       // Increment quantity
-      await tester.tap(find.byIcon(Icons.add));
+      await tester.tap(addIcon);
       await tester.pump();
       expect(find.text('2'), findsOneWidget);
 
+      // Find and scroll to the remove icon
+      final removeIcon = find.byIcon(Icons.remove);
+      await tester.ensureVisible(removeIcon);
+      await tester.pumpAndSettle();
+
       // Decrement quantity
-      await tester.tap(find.byIcon(Icons.remove));
+      await tester.tap(removeIcon);
       await tester.pump();
       expect(find.text('1'), findsOneWidget);
 
       // Ensure quantity does not go below 1
-      await tester.tap(find.byIcon(Icons.remove));
+      await tester.tap(removeIcon);
       await tester.pump();
       expect(find.text('1'), findsOneWidget);
     });
@@ -140,12 +150,21 @@ void main() {
     testWidgets('should change purchase type', (tester) async {
       await tester.pumpWidget(createTestableWidget(const ProductPage()));
 
+      // Find the dropdown finder.
+      final dropdownFinder = find.text('Personal Use');
+
+      // Ensure the dropdown is visible by scrolling to it.
+      await tester.ensureVisible(dropdownFinder);
+      await tester.pumpAndSettle();
+
       // Check initial purchase type
-      expect(find.text('Personal Use'), findsOneWidget);
+      expect(dropdownFinder, findsOneWidget);
 
       // Change purchase type to 'Gift'
-      await tester.tap(find.text('Personal Use'));
+      await tester.tap(dropdownFinder);
       await tester.pumpAndSettle(); // Wait for dropdown animation
+
+      // Find and tap the 'Gift' option in the opened dropdown.
       await tester.tap(find.text('Gift').last);
       await tester.pumpAndSettle();
 
