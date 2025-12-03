@@ -172,6 +172,54 @@ void main() {
       expect(find.text('Gift'), findsOneWidget);
     });
 
+    testWidgets('should add item to cart with correct purchase type',
+        (tester) async {
+      late CartProvider cartProvider;
+      await tester.pumpWidget(
+        createTestableWidget(
+          Builder(
+            builder: (context) {
+              cartProvider = Provider.of<CartProvider>(context, listen: false);
+              return Scaffold(
+                body: Center(
+                  child: ElevatedButton(
+                    onPressed: () => Navigator.pushNamed(context, '/product',
+                        arguments: productArgs),
+                    child: const Text('Go to Product'),
+                  ),
+                ),
+              );
+            },
+          ),
+        ),
+      );
+
+      // Go to product page
+      await tester.tap(find.text('Go to Product'));
+      await tester.pumpAndSettle();
+
+      // Change purchase type to 'Gift'
+      final dropdownFinder = find.text('Personal Use');
+      await tester.ensureVisible(dropdownFinder);
+      await tester.pumpAndSettle();
+      await tester.tap(dropdownFinder);
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('Gift').last);
+      await tester.pumpAndSettle();
+
+      // Add item to cart
+      final addToCartButton =
+          find.widgetWithText(ElevatedButton, 'ADD TO CART');
+      await tester.ensureVisible(addToCartButton);
+      await tester.pumpAndSettle();
+      await tester.tap(addToCartButton);
+      await tester.pump();
+
+      // Verify item was added to cart with the correct purchase type
+      expect(cartProvider.itemCount, 1);
+      expect(cartProvider.items.first.purchaseType, 'Gift');
+    });
+
     testWidgets('should add item to cart and show snackbar', (tester) async {
       late CartProvider cartProvider;
       await tester.pumpWidget(
