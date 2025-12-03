@@ -137,5 +137,88 @@ void main() {
               of: find.byType(Footer), matching: find.byIcon(Icons.search)),
           findsOneWidget);
     });
+
+    testWidgets('should navigate to sale page when "VIEW ALL SALES" is tapped',
+        (tester) async {
+      await tester.pumpWidget(
+        MultiProvider(
+          providers: [
+            ChangeNotifierProvider(create: (context) => CartProvider()),
+            ChangeNotifierProvider(create: (context) => SearchProvider()),
+          ],
+          child: const UnionShopApp(),
+        ),
+      );
+      await tester.pump();
+
+      // Find the "VIEW ALL SALES" button
+      final viewAllSalesButton =
+          find.widgetWithText(ElevatedButton, 'VIEW ALL SALES');
+
+      // Scroll to the button and tap it
+      await tester.ensureVisible(viewAllSalesButton);
+      await tester.pumpAndSettle();
+      await tester.tap(viewAllSalesButton);
+      await tester.pumpAndSettle();
+
+      // Verify navigation to the SalePage
+      expect(find.text('SALE ITEMS'), findsOneWidget);
+    });
+
+    testWidgets(
+        'should navigate to collections page when "BROWSE OUR COLLECTIONS" is tapped',
+        (tester) async {
+      await tester.pumpWidget(
+        MultiProvider(
+          providers: [
+            ChangeNotifierProvider(create: (context) => CartProvider()),
+            ChangeNotifierProvider(create: (context) => SearchProvider()),
+          ],
+          child: const UnionShopApp(),
+        ),
+      );
+      await tester.pump();
+
+      // Find the "BROWSE OUR COLLECTIONS" button
+      final browseButton =
+          find.widgetWithText(ElevatedButton, 'BROWSE OUR COLLECTIONS');
+
+      // Tap the button
+      await tester.tap(browseButton);
+      await tester.pumpAndSettle();
+
+      // Verify navigation to the CollectionsPage
+      expect(find.text('OUR COLLECTIONS'), findsOneWidget);
+    });
+
+    testWidgets(
+        'should navigate to personalise page when Print Shack image is tapped',
+        (tester) async {
+      await tester.pumpWidget(
+        MultiProvider(
+          providers: [
+            ChangeNotifierProvider(create: (context) => CartProvider()),
+            ChangeNotifierProvider(create: (context) => SearchProvider()),
+          ],
+          child: const UnionShopApp(),
+        ),
+      );
+      await tester.pump();
+
+      // Find the Print Shack image
+      final printShackImage = find.byWidgetPredicate((widget) =>
+          widget is Image &&
+          widget.image is AssetImage &&
+          (widget.image as AssetImage).assetName == 'assets/images/tshirt.png');
+
+      // Scroll to the image and tap it
+      await tester.ensureVisible(printShackImage);
+      await tester.pumpAndSettle();
+      await tester.tap(printShackImage);
+      await tester.pumpAndSettle();
+
+      // Verify navigation to the PersonalisePage
+      expect(find.text('Personalise Your T-Shirt'), findsOneWidget);
+    });
   });
 }
