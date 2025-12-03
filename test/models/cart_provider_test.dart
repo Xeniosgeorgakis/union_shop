@@ -12,6 +12,7 @@ void main() {
     setUp(() {
       cartProvider = CartProvider();
       testProduct1 = Product(
+        id: 'test-product-1',
         title: 'Bearbrick 1000% Test',
         price: '£250.00',
         originalPrice: '£300.00',
@@ -19,12 +20,14 @@ void main() {
         description: 'Test product 1',
       );
       testProduct2 = Product(
+        id: 'test-product-2',
         title: 'Bearbrick 400% Test',
         price: '£150.00',
         imageUrl: 'https://example.com/bearbrick2.jpg',
         description: 'Test product 2',
       );
       testProduct3 = Product(
+        id: 'test-product-3',
         title: 'Bearbrick 100% Test',
         price: '£50.00',
         imageUrl: 'https://example.com/bearbrick3.jpg',
@@ -415,6 +418,7 @@ void main() {
 
       test('should handle products with special characters in price', () {
         final specialProduct = Product(
+          id: 'test-special-product',
           title: 'Special Bearbrick',
           price: '£1,250.00',
           imageUrl: 'https://example.com/special.jpg',

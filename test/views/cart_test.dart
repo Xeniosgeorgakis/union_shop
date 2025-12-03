@@ -10,6 +10,7 @@ import 'package:union_shop/widgets/header_search_widget.dart';
 
 void main() {
   final testProduct = Product(
+    id: 'test-cart-product',
     title: 'Test Cart Product',
     price: '£100.00',
     imageUrl: 'assets/images/bearbricklogo.png',

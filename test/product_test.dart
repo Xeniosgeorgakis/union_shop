@@ -6,19 +6,14 @@ import 'package:union_shop/models/cart_provider.dart';
 import 'package:union_shop/models/search_provider.dart';
 import 'package:union_shop/product_page.dart';
 import 'package:union_shop/widgets/header_search_widget.dart';
+import 'package:union_shop/fixtures.dart';
 
 void main() {
   group('Product Page Tests', () {
-    const productArgs = {
-      'title': 'Test Product',
-      'price': '£99.99',
-      'originalPrice': '£120.00',
-      'imageUrl': 'assets/images/bearbricklogo.png',
-      'description': 'This is a test description.',
-    };
+    // Use a real product ID from fixtures
+    const testProductId = 'kaws-companion-bearbrick-1000-blue';
 
-    Widget createTestableWidget(Widget child,
-        {Map<String, dynamic>? arguments}) {
+    Widget createTestableWidget(Widget child, {String? productId}) {
       return MultiProvider(
         providers: [
           ChangeNotifierProvider(create: (context) => CartProvider()),
@@ -27,13 +22,11 @@ void main() {
         child: MaterialApp(
           home: child,
           onGenerateRoute: (settings) {
-            if (settings.name == '/product') {
+            if (settings.name?.startsWith('/product/') == true) {
+              final id = settings.name!.substring('/product/'.length);
               return MaterialPageRoute(
-                settings: RouteSettings(
-                  name: '/product',
-                  arguments: arguments ?? productArgs,
-                ),
-                builder: (_) => const ProductPage(),
+                settings: settings,
+                builder: (_) => ProductPage(productId: id),
               );
             }
             return null;
@@ -50,8 +43,8 @@ void main() {
             builder: (context) => Scaffold(
               body: Center(
                 child: ElevatedButton(
-                  onPressed: () => Navigator.pushNamed(context, '/product',
-                      arguments: productArgs),
+                  onPressed: () =>
+                      Navigator.pushNamed(context, '/product/$testProductId'),
                   child: const Text('Go to Product'),
                 ),
               ),
@@ -68,11 +61,11 @@ void main() {
         find.text('🔥 Massive BE@RBRICK Sale Live Now'),
         findsOneWidget,
       );
-      expect(find.text('Test Product'), findsOneWidget);
-      expect(find.text('£99.99'), findsOneWidget);
-      expect(find.text('£120.00'), findsOneWidget);
+      // Check for the actual product title and details from fixtures
+      final product = ProductFixtures.findById(testProductId);
+      expect(find.text(product!.title), findsOneWidget);
+      expect(find.text(product.price), findsOneWidget);
       expect(find.text('Description'), findsOneWidget);
-      expect(find.text('This is a test description.'), findsOneWidget);
     });
 
     testWidgets('should display header icons', (tester) async {
@@ -82,8 +75,8 @@ void main() {
             builder: (context) => Scaffold(
               body: Center(
                 child: ElevatedButton(
-                  onPressed: () => Navigator.pushNamed(context, '/product',
-                      arguments: productArgs),
+                  onPressed: () =>
+                      Navigator.pushNamed(context, '/product/$testProductId'),
                   child: const Text('Go to Product'),
                 ),
               ),
@@ -116,7 +109,8 @@ void main() {
     });
 
     testWidgets('should increment and decrement quantity', (tester) async {
-      await tester.pumpWidget(createTestableWidget(const ProductPage()));
+      await tester.pumpWidget(
+          createTestableWidget(const ProductPage(productId: testProductId)));
 
       // Check initial quantity
       expect(find.text('1'), findsOneWidget);
@@ -148,7 +142,8 @@ void main() {
     });
 
     testWidgets('should change purchase type', (tester) async {
-      await tester.pumpWidget(createTestableWidget(const ProductPage()));
+      await tester.pumpWidget(
+          createTestableWidget(const ProductPage(productId: testProductId)));
 
       // Find the dropdown finder.
       final dropdownFinder = find.text('Personal Use');
@@ -183,8 +178,8 @@ void main() {
               return Scaffold(
                 body: Center(
                   child: ElevatedButton(
-                    onPressed: () => Navigator.pushNamed(context, '/product',
-                        arguments: productArgs),
+                    onPressed: () =>
+                        Navigator.pushNamed(context, '/product/$testProductId'),
                     child: const Text('Go to Product'),
                   ),
                 ),
@@ -231,8 +226,8 @@ void main() {
               return Scaffold(
                 body: Center(
                   child: ElevatedButton(
-                    onPressed: () => Navigator.pushNamed(context, '/product',
-                        arguments: productArgs),
+                    onPressed: () =>
+                        Navigator.pushNamed(context, '/product/$testProductId'),
                     child: const Text('Go to Product'),
                   ),
                 ),
@@ -258,24 +253,19 @@ void main() {
       await tester.pump(); // Let the SnackBar appear
 
       // Verify SnackBar is shown
+      final product = ProductFixtures.findById(testProductId);
       expect(find.byType(SnackBar), findsOneWidget);
-      expect(find.text('Test Product has been added to your cart.'),
+      expect(find.text('${product!.title} has been added to your cart.'),
           findsOneWidget);
 
       // Verify item was added to cart
       expect(cartProvider.itemCount, 1);
-      expect(cartProvider.items.first.product.title, 'Test Product');
+      expect(cartProvider.items.first.product.title, product.title);
     });
 
     testWidgets('should select different product image', (tester) async {
-      const garfieldArgs = {
-        'title': 'Bearbrick Garfield 100% & 400% Set (Gold)',
-        'price': '£112.00',
-        'originalPrice': '£140.00',
-        'imageUrl':
-            'https://images.stockx.com/images/Bearbrick-Garfield-100-400-Set-Gold-Chrome-Ver-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1738193358',
-        'description': 'A Garfield Bearbrick.',
-      };
+      // Use the Garfield product from fixtures
+      const garfieldProductId = 'bearbrick-garfield-100-400-gold';
 
       await tester.pumpWidget(
         createTestableWidget(
@@ -283,14 +273,13 @@ void main() {
             builder: (context) => Scaffold(
               body: Center(
                 child: ElevatedButton(
-                  onPressed: () => Navigator.pushNamed(context, '/product',
-                      arguments: garfieldArgs),
+                  onPressed: () => Navigator.pushNamed(
+                      context, '/product/$garfieldProductId'),
                   child: const Text('Go to Product'),
                 ),
               ),
             ),
           ),
-          arguments: garfieldArgs,
         ),
       );
 
@@ -332,8 +321,8 @@ void main() {
             builder: (context) => Scaffold(
               body: Center(
                 child: ElevatedButton(
-                  onPressed: () => Navigator.pushNamed(context, '/product',
-                      arguments: productArgs),
+                  onPressed: () =>
+                      Navigator.pushNamed(context, '/product/$testProductId'),
                   child: const Text('Go to Product'),
                 ),
               ),
