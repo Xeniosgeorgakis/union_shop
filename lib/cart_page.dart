@@ -14,6 +14,7 @@ class CartPage extends StatefulWidget {
 
 class _CartPageState extends State<CartPage> {
   final ScrollController _scrollController = ScrollController();
+  bool _isProcessing = false;
 
   @override
   void dispose() {
@@ -23,6 +24,100 @@ class _CartPageState extends State<CartPage> {
 
   void navigateToHome(BuildContext context) {
     Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
+  }
+
+  Future<void> _processCheckout(BuildContext context) async {
+    setState(() {
+      _isProcessing = true;
+    });
+
+    // Show processing dialog
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return const AlertDialog(
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              CircularProgressIndicator(),
+              SizedBox(height: 20),
+              Text(
+                'Transaction in progress...',
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              ),
+              SizedBox(height: 10),
+              Text(
+                'Please wait while we process your order',
+                style: TextStyle(fontSize: 14, color: Colors.grey),
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
+        );
+      },
+    );
+
+    // Simulate processing time (3 seconds)
+    await Future.delayed(const Duration(seconds: 3));
+
+    // Close processing dialog
+    if (context.mounted) {
+      Navigator.of(context).pop();
+
+      // Show success dialog
+      showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: Colors.green.shade50,
+                    shape: BoxShape.circle,
+                  ),
+                  child: const Icon(
+                    Icons.check_circle,
+                    color: Colors.green,
+                    size: 60,
+                  ),
+                ),
+                const SizedBox(height: 20),
+                const Text(
+                  'Order Complete!',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 10),
+                const Text(
+                  'Your order has been placed successfully',
+                  style: TextStyle(fontSize: 14, color: Colors.grey),
+                  textAlign: TextAlign.center,
+                ),
+              ],
+            ),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  // Clear cart and go home
+                  Provider.of<CartProvider>(context, listen: false).clearCart();
+                  navigateToHome(context);
+                },
+                child: const Text('OK'),
+              ),
+            ],
+          );
+        },
+      );
+
+      setState(() {
+        _isProcessing = false;
+      });
+    }
   }
 
   @override
@@ -137,14 +232,26 @@ class _CartPageState extends State<CartPage> {
                           width: double.infinity,
                           height: 48,
                           child: ElevatedButton(
-                            onPressed: () {
-                              // Checkout logic
-                            },
+                            onPressed: _isProcessing
+                                ? null
+                                : () {
+                                    _processCheckout(context);
+                                  },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.black,
                               foregroundColor: Colors.white,
                             ),
-                            child: const Text('PROCEED TO CHECKOUT'),
+                            child: _isProcessing
+                                ? const SizedBox(
+                                    height: 20,
+                                    width: 20,
+                                    child: CircularProgressIndicator(
+                                      strokeWidth: 2,
+                                      valueColor: AlwaysStoppedAnimation<Color>(
+                                          Colors.white),
+                                    ),
+                                  )
+                                : const Text('PROCEED TO CHECKOUT'),
                           ),
                         ),
                       ],
