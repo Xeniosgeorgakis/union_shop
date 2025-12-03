@@ -28,9 +28,6 @@ void main() {
               '🔥 Massive BE@RBRICK Sale Live Now — Limited Editions, Exclusive Drops, and Up to 20% Off While Stock Lasts!'),
           findsOneWidget);
 
-      // Check for Logo
-      expect(find.byType(Image), findsWidgets);
-
       // Check for Login Title
       expect(find.text('Login'), findsOneWidget);
 

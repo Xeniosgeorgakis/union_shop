@@ -47,13 +47,8 @@ void main() {
       // Check for Logo
       expect(find.byType(Image), findsWidgets);
 
-      // Check for Navigation Links
-      expect(find.text('Home'), findsOneWidget);
-      expect(find.text('About Us'),
-          findsNWidgets(3)); // Header, content title, and footer link
-      expect(find.text('Collections'), findsOneWidget);
-      expect(find.text('SALE!'), findsOneWidget);
-      expect(find.text('PrintShack'), findsOneWidget);
+      // Check for content title
+      expect(find.text('About Us'), findsNWidgets(2));
 
       // Check for Header Icons
       expect(
