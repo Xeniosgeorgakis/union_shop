@@ -17,7 +17,6 @@ void main() {
       child: MaterialApp(
         home: child,
         routes: {
-          '/': (context) => const Scaffold(body: Text('Home Page')),
           '/about': (context) => const AboutUsPage(),
           '/collections': (context) =>
               const Scaffold(body: Text('Collections Page')),

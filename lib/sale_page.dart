@@ -113,94 +113,105 @@ class _SalePageState extends State<SalePage> {
                             ),
                           ),
                           const Spacer(),
-                          MouseRegion(
-                            cursor: SystemMouseCursors.click,
-                            child: GestureDetector(
-                              onTap: () {
-                                navigateToHome(context);
-                              },
-                              child: const Text(
-                                'Home',
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.black,
-                                ),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(width: 24),
-                          MouseRegion(
-                            cursor: SystemMouseCursors.click,
-                            child: GestureDetector(
-                              onTap: () {
-                                Navigator.pushNamed(context, '/about');
-                              },
-                              child: const Text(
-                                'About Us',
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.black,
-                                ),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(width: 24),
-                          MouseRegion(
-                            cursor: SystemMouseCursors.click,
-                            child: GestureDetector(
-                              onTap: () {
-                                Navigator.pushNamed(context, '/collections');
-                              },
-                              child: const Text(
-                                'Collections',
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.black,
-                                ),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(width: 24),
-                          const Text(
-                            'Sale',
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.black,
-                            ),
-                          ),
-                          const SizedBox(width: 24),
-                          PopupMenuButton<String>(
-                            onSelected: (value) {
-                              Navigator.pushNamed(context, value);
-                            },
-                            itemBuilder: (context) => [
-                              const PopupMenuItem(
-                                value: '/printshark',
-                                child: Text('About Print Shack'),
-                              ),
-                              const PopupMenuItem(
-                                value: '/personalise',
-                                child: Text('Personalise'),
-                              ),
-                            ],
-                            child: const MouseRegion(
-                              cursor: SystemMouseCursors.click,
+                          Expanded(
+                            child: SingleChildScrollView(
+                              scrollDirection: Axis.horizontal,
                               child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Text(
-                                    'Printshark',
+                                  MouseRegion(
+                                    cursor: SystemMouseCursors.click,
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        navigateToHome(context);
+                                      },
+                                      child: const Text(
+                                        'Home',
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w600,
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(width: 24),
+                                  MouseRegion(
+                                    cursor: SystemMouseCursors.click,
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        Navigator.pushNamed(context, '/about');
+                                      },
+                                      child: const Text(
+                                        'About Us',
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w600,
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(width: 24),
+                                  MouseRegion(
+                                    cursor: SystemMouseCursors.click,
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        Navigator.pushNamed(
+                                            context, '/collections');
+                                      },
+                                      child: const Text(
+                                        'Collections',
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w600,
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(width: 24),
+                                  const Text(
+                                    'Sale',
                                     style: TextStyle(
                                       fontSize: 16,
                                       fontWeight: FontWeight.w600,
                                       color: Colors.black,
                                     ),
                                   ),
-                                  Icon(Icons.arrow_drop_down,
-                                      color: Colors.black),
+                                  const SizedBox(width: 24),
+                                  PopupMenuButton<String>(
+                                    onSelected: (value) {
+                                      Navigator.pushNamed(context, value);
+                                    },
+                                    itemBuilder: (context) => [
+                                      const PopupMenuItem(
+                                        value: '/printshark',
+                                        child: Text('About Print Shack'),
+                                      ),
+                                      const PopupMenuItem(
+                                        value: '/personalise',
+                                        child: Text('Personalise'),
+                                      ),
+                                    ],
+                                    child: const MouseRegion(
+                                      cursor: SystemMouseCursors.click,
+                                      child: Row(
+                                        children: [
+                                          Text(
+                                            'Printshark',
+                                            style: TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w600,
+                                              color: Colors.black,
+                                            ),
+                                          ),
+                                          Icon(Icons.arrow_drop_down,
+                                              color: Colors.black),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
                                 ],
                               ),
                             ),
