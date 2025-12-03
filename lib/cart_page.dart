@@ -245,10 +245,12 @@ class CartListItem extends StatelessWidget {
                         fontSize: 16, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 8),
-                  Row(
+                  Wrap(
+                    spacing: 16,
+                    runSpacing: 8,
+                    crossAxisAlignment: WrapCrossAlignment.center,
                     children: [
                       _buildQuantitySelector(context),
-                      const SizedBox(width: 16),
                       Text(
                         'Purchase as: ${cartItem.purchaseType}',
                         style:
