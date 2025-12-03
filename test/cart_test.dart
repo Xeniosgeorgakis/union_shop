@@ -11,7 +11,8 @@ void main() {
     // Set a larger screen size for tests to avoid layout overflow
     TestWidgetsFlutterBinding.ensureInitialized();
     const Size testScreenSize = Size(1200, 800);
-    TestWidgetsFlutterBinding.instance.window.physicalSizeTestValue = testScreenSize;
+    TestWidgetsFlutterBinding.instance.window.physicalSizeTestValue =
+        testScreenSize;
     TestWidgetsFlutterBinding.instance.window.devicePixelRatioTestValue = 1.0;
   });
 
@@ -73,13 +74,16 @@ void main() {
 
     testWidgets('should display quantity controls', (tester) async {
       final cartProvider = CartProvider();
-      cartProvider.addItem(Product(
-        title: 'Test Product',
-        price: '£10.00',
-        originalPrice: '£15.00',
-        imageUrl: 'test.jpg',
-        description: 'Test description',
-      ), 1, 'Personal Use');
+      cartProvider.addItem(
+          Product(
+            title: 'Test Product',
+            price: '£10.00',
+            originalPrice: '£15.00',
+            imageUrl: 'test.jpg',
+            description: 'Test description',
+          ),
+          1,
+          'Personal Use');
 
       await tester.pumpWidget(MultiProvider(
         providers: [
@@ -97,15 +101,19 @@ void main() {
       expect(find.text('1'), findsAtLeastNWidgets(1));
     });
 
-    testWidgets('should increment quantity when add button tapped', (tester) async {
+    testWidgets('should increment quantity when add button tapped',
+        (tester) async {
       final cartProvider = CartProvider();
-      cartProvider.addItem(Product(
-        title: 'Test Product',
-        price: '£10.00',
-        originalPrice: '£15.00',
-        imageUrl: 'test.jpg',
-        description: 'Test description',
-      ), 1, 'Personal Use');
+      cartProvider.addItem(
+          Product(
+            title: 'Test Product',
+            price: '£10.00',
+            originalPrice: '£15.00',
+            imageUrl: 'test.jpg',
+            description: 'Test description',
+          ),
+          1,
+          'Personal Use');
 
       await tester.pumpWidget(MultiProvider(
         providers: [
@@ -124,15 +132,19 @@ void main() {
       expect(find.text('2'), findsAtLeastNWidgets(1));
     });
 
-    testWidgets('should decrement quantity when remove button tapped', (tester) async {
+    testWidgets('should decrement quantity when remove button tapped',
+        (tester) async {
       final cartProvider = CartProvider();
-      cartProvider.addItem(Product(
-        title: 'Test Product',
-        price: '£10.00',
-        originalPrice: '£15.00',
-        imageUrl: 'test.jpg',
-        description: 'Test description',
-      ), 1, 'Personal Use');
+      cartProvider.addItem(
+          Product(
+            title: 'Test Product',
+            price: '£10.00',
+            originalPrice: '£15.00',
+            imageUrl: 'test.jpg',
+            description: 'Test description',
+          ),
+          1,
+          'Personal Use');
 
       await tester.pumpWidget(MultiProvider(
         providers: [
@@ -155,15 +167,19 @@ void main() {
       expect(find.text('1'), findsAtLeastNWidgets(1));
     });
 
-    testWidgets('should remove item when quantity reaches zero', (tester) async {
+    testWidgets('should remove item when quantity reaches zero',
+        (tester) async {
       final cartProvider = CartProvider();
-      cartProvider.addItem(Product(
-        title: 'Test Product',
-        price: '£10.00',
-        originalPrice: '£15.00',
-        imageUrl: 'test.jpg',
-        description: 'Test description',
-      ), 1, 'Personal Use');
+      cartProvider.addItem(
+          Product(
+            title: 'Test Product',
+            price: '£10.00',
+            originalPrice: '£15.00',
+            imageUrl: 'test.jpg',
+            description: 'Test description',
+          ),
+          1,
+          'Personal Use');
 
       await tester.pumpWidget(MultiProvider(
         providers: [
@@ -185,13 +201,16 @@ void main() {
 
     testWidgets('should display subtotal', (tester) async {
       final cartProvider = CartProvider();
-      cartProvider.addItem(Product(
-        title: 'Test Product',
-        price: '£10.00',
-        originalPrice: '£15.00',
-        imageUrl: 'test.jpg',
-        description: 'Test description',
-      ), 1, 'Personal Use');
+      cartProvider.addItem(
+          Product(
+            title: 'Test Product',
+            price: '£10.00',
+            originalPrice: '£15.00',
+            imageUrl: 'test.jpg',
+            description: 'Test description',
+          ),
+          1,
+          'Personal Use');
 
       await tester.pumpWidget(MultiProvider(
         providers: [
@@ -210,13 +229,16 @@ void main() {
 
     testWidgets('should display checkout button', (tester) async {
       final cartProvider = CartProvider();
-      cartProvider.addItem(Product(
-        title: 'Test Product',
-        price: '£10.00',
-        originalPrice: '£15.00',
-        imageUrl: 'test.jpg',
-        description: 'Test description',
-      ), 1, 'Personal Use');
+      cartProvider.addItem(
+          Product(
+            title: 'Test Product',
+            price: '£10.00',
+            originalPrice: '£15.00',
+            imageUrl: 'test.jpg',
+            description: 'Test description',
+          ),
+          1,
+          'Personal Use');
 
       await tester.pumpWidget(MultiProvider(
         providers: [
@@ -232,15 +254,19 @@ void main() {
       expect(find.text('PROCEED TO CHECKOUT'), findsOneWidget);
     });
 
-    testWidgets('should show processing dialog during checkout', (tester) async {
+    testWidgets('should show processing dialog during checkout',
+        (tester) async {
       final cartProvider = CartProvider();
-      cartProvider.addItem(Product(
-        title: 'Test Product',
-        price: '£10.00',
-        originalPrice: '£15.00',
-        imageUrl: 'test.jpg',
-        description: 'Test description',
-      ), 1, 'Personal Use');
+      cartProvider.addItem(
+          Product(
+            title: 'Test Product',
+            price: '£10.00',
+            originalPrice: '£15.00',
+            imageUrl: 'test.jpg',
+            description: 'Test description',
+          ),
+          1,
+          'Personal Use');
 
       await tester.pumpWidget(MultiProvider(
         providers: [
@@ -258,7 +284,7 @@ void main() {
 
       expect(find.text('Transaction in progress...'), findsOneWidget);
       expect(find.byType(CircularProgressIndicator), findsAtLeastNWidgets(1));
-      
+
       // Wait for the 3-second timer to complete
       await tester.pump(const Duration(seconds: 3));
       await tester.pumpAndSettle();
@@ -266,13 +292,16 @@ void main() {
 
     testWidgets('should clear cart after successful checkout', (tester) async {
       final cartProvider = CartProvider();
-      cartProvider.addItem(Product(
-        title: 'Test Product',
-        price: '£10.00',
-        originalPrice: '£15.00',
-        imageUrl: 'test.jpg',
-        description: 'Test description',
-      ), 1, 'Personal Use');
+      cartProvider.addItem(
+          Product(
+            title: 'Test Product',
+            price: '£10.00',
+            originalPrice: '£15.00',
+            imageUrl: 'test.jpg',
+            description: 'Test description',
+          ),
+          1,
+          'Personal Use');
 
       await tester.pumpWidget(MultiProvider(
         providers: [
