@@ -38,7 +38,8 @@ void main() {
             body: Center(
               child: ElevatedButton(
                 onPressed: () {
-                  showSearch(context: context, delegate: delegate, query: 'Bearbrick');
+                  showSearch(
+                      context: context, delegate: delegate, query: 'Bearbrick');
                 },
                 child: const Text('Search'),
               ),
@@ -86,7 +87,8 @@ void main() {
             body: Center(
               child: ElevatedButton(
                 onPressed: () {
-                  showSearch(context: context, delegate: delegate, query: 'test');
+                  showSearch(
+                      context: context, delegate: delegate, query: 'test');
                 },
                 child: const Text('Search'),
               ),
@@ -141,7 +143,8 @@ void main() {
             body: Center(
               child: ElevatedButton(
                 onPressed: () {
-                  showSearch(context: context, delegate: delegate, query: 'Bearbrick');
+                  showSearch(
+                      context: context, delegate: delegate, query: 'Bearbrick');
                 },
                 child: const Text('Search'),
               ),
@@ -165,7 +168,10 @@ void main() {
             body: Center(
               child: ElevatedButton(
                 onPressed: () {
-                  showSearch(context: context, delegate: delegate, query: 'nonexistentproduct12345');
+                  showSearch(
+                      context: context,
+                      delegate: delegate,
+                      query: 'nonexistentproduct12345');
                 },
                 child: const Text('Search'),
               ),
@@ -189,7 +195,8 @@ void main() {
             body: Center(
               child: ElevatedButton(
                 onPressed: () {
-                  showSearch(context: context, delegate: delegate, query: 'bearbrick');
+                  showSearch(
+                      context: context, delegate: delegate, query: 'bearbrick');
                 },
                 child: const Text('Search'),
               ),
@@ -204,7 +211,8 @@ void main() {
       expect(find.byType(ListTile), findsAtLeastNWidgets(1));
     });
 
-    testWidgets('should display suggestions with product titles', (tester) async {
+    testWidgets('should display suggestions with product titles',
+        (tester) async {
       final delegate = CustomSearchDelegate();
 
       await tester.pumpWidget(MaterialApp(
@@ -213,7 +221,8 @@ void main() {
             body: Center(
               child: ElevatedButton(
                 onPressed: () {
-                  showSearch(context: context, delegate: delegate, query: 'BAPE');
+                  showSearch(
+                      context: context, delegate: delegate, query: 'BAPE');
                 },
                 child: const Text('Search'),
               ),

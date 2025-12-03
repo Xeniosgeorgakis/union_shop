@@ -10,7 +10,8 @@ void main() {
     // Set a larger screen size for tests to avoid layout overflow
     TestWidgetsFlutterBinding.ensureInitialized();
     const Size testScreenSize = Size(1200, 800);
-    TestWidgetsFlutterBinding.instance.window.physicalSizeTestValue = testScreenSize;
+    TestWidgetsFlutterBinding.instance.window.physicalSizeTestValue =
+        testScreenSize;
     TestWidgetsFlutterBinding.instance.window.devicePixelRatioTestValue = 1.0;
   });
 
@@ -38,7 +39,8 @@ void main() {
       await tester.pumpWidget(createTestableWidget());
       await tester.pumpAndSettle();
 
-      expect(find.text('Grab these exclusive deals before they are gone!'), findsOneWidget);
+      expect(find.text('Grab these exclusive deals before they are gone!'),
+          findsOneWidget);
     });
 
     testWidgets('should display products on sale', (WidgetTester tester) async {
