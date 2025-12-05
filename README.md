@@ -114,8 +114,8 @@ flutter test --coverage
 union_shop/
 ├── lib/
 │   ├── main.dart                  # App entry point and home screen
+│   ├── fixtures.dart              # Product data fixtures and repository
 │   ├── models/
-│   │   ├── all_products.dart      # Product data repository
 │   │   ├── cart_provider.dart     # Cart state management
 │   │   ├── product_model.dart     # Product data model
 │   │   └── search_provider.dart   # Search state management
@@ -123,6 +123,7 @@ union_shop/
 │   │   ├── app_drawer.dart        # Navigation drawer
 │   │   ├── app_header.dart        # Custom app header
 │   │   └── header_search_widget.dart # Search widget
+│   ├── auth/                      # Authentication related files
 │   ├── about_us_page.dart         # About page
 │   ├── cart_page.dart             # Shopping cart page
 │   ├── collections_page.dart      # Collections overview
@@ -137,6 +138,11 @@ union_shop/
 │   ├── search_delegate.dart       # Search functionality
 │   └── signup_page.dart           # Sign up page
 ├── test/                          # Test files (255 tests)
+│   ├── auth/                      # Authentication tests
+│   ├── models/                    # Model tests
+│   ├── views/                     # View tests
+│   ├── widgets/                   # Widget tests
+│   └── *.dart                     # Individual test files
 ├── assets/
 │   └── images/                    # Product and UI images
 ├── pubspec.yaml                   # Dependencies and configuration
