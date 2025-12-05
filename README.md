@@ -7,7 +7,7 @@ A fully functional e-commerce mobile application built with Flutter, specializin
 ### Core Functionality
 - **🏠 Home Page**: Dynamic product showcase with promotional banners and featured collections
 - **🛍️ Product Catalog**: Browse Bearbrick products with detailed information, pricing, and images
-- **🔍 Search**: Real-time product search with filtering capabilities
+- **🔍 Search**: Real-time autocomplete search with dropdown suggestions
 - **🛒 Shopping Cart**: Full cart management with quantity controls, price calculations, and checkout
 - **📦 Collections**: Organized product collections (BE@RBRICKS 100%, BE@RBRICKS 1000%)
 - **💰 Sales**: Dedicated sale section with discounted products
@@ -21,7 +21,7 @@ A fully functional e-commerce mobile application built with Flutter, specializin
 - **Navigation**: Named routes with parameter passing
 - **Custom Widgets**: Reusable components (AppHeader, AppDrawer, Footer)
 - **Product Models**: Structured data models for products and cart items
-- **Testing**: Comprehensive test suite with 88.55% code coverage (252 passing tests)
+- **Testing**: Comprehensive test suite with 88.6% code coverage (255 passing tests)
 
 ## 🚀 Getting Started
 
@@ -99,8 +99,8 @@ flutter test --coverage
 
 3. **Search Products**
    - Click the search icon in the header
-   - Enter product name or keywords
-   - Browse filtered results
+   - Type to see autocomplete dropdown suggestions
+   - Click any suggestion to navigate directly to the product
 
 4. **Personalize T-Shirts**
    - Navigate to Print Shack from home page
@@ -136,7 +136,7 @@ union_shop/
 │   ├── sale_page.dart             # Sale items page
 │   ├── search_delegate.dart       # Search functionality
 │   └── signup_page.dart           # Sign up page
-├── test/                          # Test files (252 tests)
+├── test/                          # Test files (255 tests)
 ├── assets/
 │   └── images/                    # Product and UI images
 ├── pubspec.yaml                   # Dependencies and configuration
@@ -164,9 +164,9 @@ union_shop/
 
 ## ✅ Testing & Quality
 
-- **Total Tests**: 252 tests
+- **Total Tests**: 255 tests
 - **Test Status**: All passing ✅
-- **Code Coverage**: 88.55%
+- **Code Coverage**: 88.6%
   - Total Lines: 1,362
   - Lines Covered: 1,206
   - Lines Uncovered: 156
@@ -189,10 +189,50 @@ union_shop/
 - [ ] Add Firebase Firestore for dynamic product management
 - [ ] Implement real payment gateway (Stripe/PayPal)
 - [ ] Add user order history and account dashboard
-- [ ] Enhance search with filters (price range, categories)
+- [x] Enhance search with autocomplete dropdown (implemented)
+- [ ] Add search filters (price range, categories)
 - [ ] Add product reviews and ratings
 - [ ] Implement wishlist functionality
 - [ ] Add desktop responsiveness optimization
+
+## 📱 Screenshots & Demo
+
+### Product Details
+![Product Page](assets/images/screenshots/product_page.png)
+*Detailed product view with add to cart functionality*
+
+### Shopping Cart
+![Cart](assets/images/screenshots/cart.png)
+*Cart management with quantity controls*
+
+### Search Functionality
+![Search](assets/images/screenshots/search.png)
+*Autocomplete search with dropdown suggestions*
+
+
+
+## 🎯 Key Features in Detail
+
+### Advanced Search
+- **Autocomplete Dropdown**: Type in the search bar to see real-time suggestions
+- **Direct Navigation**: Click any suggestion to instantly view the product
+- **No Results Handling**: Gracefully handles queries with no matches
+
+### Deep Linking
+- **Product URLs**: Each product has a unique URL (e.g., `/product/bearbrick-garfield-100-400-gold`)
+- **Shareable Links**: Products can be shared and accessed directly
+- **Browser Navigation**: Full support for back/forward browser buttons
+
+### Cart Management
+- **Persistent State**: Cart contents persist across app navigation
+- **Quantity Controls**: Increase/decrease item quantities
+- **Price Calculations**: Automatic total price updates
+- **Empty Cart Handling**: Clear cart functionality
+
+### Responsive Design
+- **Mobile-First**: Optimized for mobile devices
+- **Adaptive Layouts**: Components adjust to different screen sizes
+- **Touch-Friendly**: Large tap targets for mobile interaction
 
 ## 👤 Developer
 
@@ -210,6 +250,22 @@ This project was developed as coursework for the University of Portsmouth.
 - Original Union Shop website: [shop.upsu.net](https://shop.upsu.net)
 - Flutter documentation and community resources
 
+## 🤝 Contributing
+
+While this is a coursework project, contributions for educational purposes are welcome. Please follow these guidelines:
+
+1. **Fork** the repository
+2. **Create** a feature branch (`git checkout -b feature/amazing-feature`)
+3. **Commit** your changes (`git commit -m 'Add amazing feature'`)
+4. **Push** to the branch (`git push origin feature/amazing-feature`)
+5. **Open** a Pull Request
+
+### Development Guidelines
+- Follow Flutter best practices and conventions
+- Write tests for new features
+- Ensure all tests pass before submitting
+- Update documentation as needed
+
 ---
 
-**Note**: This application is designed primarily for mobile view. For the best experience, view in Chrome DevTools mobile device mode.
+**Note**: This application is designed primarily for mobile view. For the best experience, view in Edge DevTools mobile device mode.
