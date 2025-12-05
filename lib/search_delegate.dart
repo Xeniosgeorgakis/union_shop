@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:union_shop/models/all_products.dart';
+import 'package:union_shop/fixtures.dart';
 import 'package:union_shop/models/product_model.dart';
 
 class CustomSearchDelegate extends SearchDelegate {
@@ -28,7 +28,7 @@ class CustomSearchDelegate extends SearchDelegate {
   @override
   Widget buildResults(BuildContext context) {
     final List<Product> matchQuery = [];
-    for (var product in allProducts) {
+    for (var product in ProductFixtures.allProducts) {
       if (product.title.toLowerCase().contains(query.toLowerCase())) {
         matchQuery.add(product);
       }
@@ -50,7 +50,7 @@ class CustomSearchDelegate extends SearchDelegate {
   @override
   Widget buildSuggestions(BuildContext context) {
     final List<Product> matchQuery = [];
-    for (var product in allProducts) {
+    for (var product in ProductFixtures.allProducts) {
       if (product.title.toLowerCase().contains(query.toLowerCase())) {
         matchQuery.add(product);
       }

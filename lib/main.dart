@@ -16,7 +16,7 @@ import 'package:union_shop/printshark_page.dart';
 import 'package:union_shop/cart_page.dart';
 import 'package:union_shop/widgets/app_drawer.dart';
 import 'package:union_shop/widgets/app_header.dart';
-import 'package:union_shop/models/all_products.dart';
+import 'package:union_shop/fixtures.dart';
 
 void main() {
   runApp(
@@ -233,20 +233,26 @@ class _HomeScreenState extends State<HomeScreen> {
                               childAspectRatio: isMobile ? 1.2 : 0.75,
                               children: [
                                 ProductCard(
-                                  id: allProducts[0].id,
-                                  title: allProducts[0].title,
-                                  price: allProducts[0].price,
-                                  originalPrice: allProducts[0].originalPrice,
-                                  imageUrl: allProducts[0].imageUrl,
-                                  description: allProducts[0].description,
+                                  id: ProductFixtures.allProducts[0].id,
+                                  title: ProductFixtures.allProducts[0].title,
+                                  price: ProductFixtures.allProducts[0].price,
+                                  originalPrice: ProductFixtures
+                                      .allProducts[0].originalPrice,
+                                  imageUrl:
+                                      ProductFixtures.allProducts[0].imageUrl,
+                                  description: ProductFixtures
+                                      .allProducts[0].description,
                                 ),
                                 ProductCard(
-                                  id: allProducts[1].id,
-                                  title: allProducts[1].title,
-                                  price: allProducts[1].price,
-                                  originalPrice: allProducts[1].originalPrice,
-                                  imageUrl: allProducts[1].imageUrl,
-                                  description: allProducts[1].description,
+                                  id: ProductFixtures.allProducts[1].id,
+                                  title: ProductFixtures.allProducts[1].title,
+                                  price: ProductFixtures.allProducts[1].price,
+                                  originalPrice: ProductFixtures
+                                      .allProducts[1].originalPrice,
+                                  imageUrl:
+                                      ProductFixtures.allProducts[1].imageUrl,
+                                  description: ProductFixtures
+                                      .allProducts[1].description,
                                 ),
                               ],
                             );
@@ -299,18 +305,22 @@ class _HomeScreenState extends State<HomeScreen> {
                               childAspectRatio: isMobile ? 1.2 : 0.75,
                               children: [
                                 ProductCard(
-                                  id: allProducts[2].id,
-                                  title: allProducts[2].title,
-                                  price: allProducts[2].price,
-                                  imageUrl: allProducts[2].imageUrl,
-                                  description: allProducts[2].description,
+                                  id: ProductFixtures.allProducts[2].id,
+                                  title: ProductFixtures.allProducts[2].title,
+                                  price: ProductFixtures.allProducts[2].price,
+                                  imageUrl:
+                                      ProductFixtures.allProducts[2].imageUrl,
+                                  description: ProductFixtures
+                                      .allProducts[2].description,
                                 ),
                                 ProductCard(
-                                  id: allProducts[3].id,
-                                  title: allProducts[3].title,
-                                  price: allProducts[3].price,
-                                  imageUrl: allProducts[3].imageUrl,
-                                  description: allProducts[3].description,
+                                  id: ProductFixtures.allProducts[3].id,
+                                  title: ProductFixtures.allProducts[3].title,
+                                  price: ProductFixtures.allProducts[3].price,
+                                  imageUrl:
+                                      ProductFixtures.allProducts[3].imageUrl,
+                                  description: ProductFixtures
+                                      .allProducts[3].description,
                                 ),
                               ],
                             );

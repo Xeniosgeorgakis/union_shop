@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:union_shop/footer.dart';
 import 'package:union_shop/models/product_model.dart';
-import 'package:union_shop/models/all_products.dart';
+import 'package:union_shop/fixtures.dart';
 import 'package:union_shop/widgets/app_drawer.dart';
 import 'package:union_shop/widgets/app_header.dart';
 
@@ -21,7 +21,9 @@ class _SalePageState extends State<SalePage> {
   @override
   void initState() {
     super.initState();
-    _products = allProducts.where((p) => p.originalPrice != null).toList();
+    _products = ProductFixtures.allProducts
+        .where((p) => p.originalPrice != null)
+        .toList();
     _filteredProducts = List.from(_products);
   }
 

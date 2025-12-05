@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:union_shop/models/all_products.dart';
+import 'package:union_shop/fixtures.dart';
 import 'package:union_shop/models/product_model.dart';
 import 'package:union_shop/models/search_provider.dart';
 
@@ -47,7 +47,7 @@ class _HeaderSearchWidgetState extends State<HeaderSearchWidget> {
       _suggestions = [];
       _removeOverlay();
     } else {
-      _suggestions = allProducts
+      _suggestions = ProductFixtures.allProducts
           .where((product) => product.title.toLowerCase().contains(query))
           .toList();
       if (_focusNode.hasFocus) {
