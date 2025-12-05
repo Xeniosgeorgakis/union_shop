@@ -198,15 +198,15 @@ union_shop/
 ## 📱 Screenshots & Demo
 
 ### Product Details
-![Product Page](assets/images/screenshots/product_page.png)
+![Product Page](assets/images/product_page.png)
 *Detailed product view with add to cart functionality*
 
 ### Shopping Cart
-![Cart](assets/images/screenshots/cart.png)
+![Cart](assets/images/cart.png)
 *Cart management with quantity controls*
 
 ### Search Functionality
-![Search](assets/images/screenshots/search.png)
+![Search](assets/images/search.png)
 *Autocomplete search with dropdown suggestions*
 
 
